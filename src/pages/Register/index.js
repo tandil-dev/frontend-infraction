@@ -17,7 +17,6 @@ const Register = (props) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.userHasAuthenticated(false);
     setShowModal(true);
   }
 
