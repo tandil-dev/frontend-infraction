@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Switch } from 'react-router-dom';
 import MainTemplate from './templates/MainTemplate';
 import Home from './pages/Home';
@@ -11,18 +11,17 @@ import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
 const Routes = () => {
-  const [isAuthenticated, userHasAuthenticated] = useState(false);
   return(
-  <MainTemplate appProps={{isAuthenticated, userHasAuthenticated}}>
-    <Switch>
-      <AuthenticatedRoute path={`/`} exact component={Home} appProps={{ isAuthenticated, userHasAuthenticated }} />
-      <AuthenticatedRoute path={`/profile`} exact component={Profile} appProps={{ isAuthenticated, userHasAuthenticated }} />
-      <UnauthenticatedRoute path={`/login`} exact component={Login}  appProps={{ isAuthenticated, userHasAuthenticated }} />
-      <UnauthenticatedRoute path={`/register`} exact component={Register}  appProps={{ isAuthenticated, userHasAuthenticated }} />
-      <AppliedRoute component={NotFound} />
-    </Switch>
-  </MainTemplate>
-);
-  }
+    <MainTemplate>
+      <Switch>
+        <AuthenticatedRoute path={`/`} exact component={Home} />
+        <AuthenticatedRoute path={`/profile`} exact component={Profile} />
+        <UnauthenticatedRoute path={`/login`} exact component={Login} />
+        <UnauthenticatedRoute path={`/register`} exact component={Register} />
+        <AppliedRoute component={NotFound} />
+      </Switch>
+    </MainTemplate>
+  );
+}
 
 export default Routes;
