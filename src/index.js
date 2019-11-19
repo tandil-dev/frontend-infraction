@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import Routes from './Routes';
+
 import * as serviceWorker from './serviceWorker';
+import store from './redux/store';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,9 +15,11 @@ const render = (Component) => {
     renderMethod = ReactDOM.hydrate;
   }
   renderMethod(
-      <Router>
-        <Component />
-      </Router>,
+    <Provider store={store}>
+        <Router>
+          <Component />
+        </Router>
+      </Provider>,
     document.getElementById('root'),
   );
 };
