@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { connect } from 'react-redux';
+
+import Page from './Page';
+
+import login from '../../redux/actions/login';
 
 const Login = (props) => {
   const [email, setEmail] = useState('');
@@ -16,41 +16,26 @@ const Login = (props) => {
   function handleSubmit(event) {
     event.preventDefault();
     props.userHasAuthenticated(true);
+    props.login({
+      email,
+      password,
+    });
   }
 
   return (
-    <Container>
-      <Row className="justify-content-center mt-5">
-        <Col xs={1}><h1>Login</h1></Col>
-      </Row>
-      <Row className="justify-content-center mt-5">
-        <Col xs={4}>
-          <form onSubmit={handleSubmit}>
-            <Form.Group controlId="email" size="large">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                autoFocus
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group controlId="password" size="large">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                type="password"
-              />
-            </Form.Group>
-            <Button block size="large" disabled={!validateForm()} type="submit">
-              Login
-            </Button>
-          </form>
-        </Col>
-      </Row>
-    </Container>
+    <Page 
+      email={email}
+      password={password}
+      onEmailChange={setEmail}
+      onPasswordChange={setPassword}
+      validateForm={validateForm}
+      handleSubmit={handleSubmit}
+    />
   );
 }
 
-export default Login;
+const mapDispatchToProps = {
+  login,
+}
+
+export default connect(null, mapDispatchToProps)(Login);
