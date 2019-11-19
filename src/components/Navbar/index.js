@@ -1,16 +1,17 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
+import { connect } from 'react-redux';
+
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { LinkContainer } from "react-router-bootstrap";
 
-type PropsType = {
-  isAuthenticated: Boolean
-};
+import logout from '../../redux/actions/logout';
 
-const StyledNavbar = (props: PropsType) => {
+
+const StyledNavbar = (props) => {
   function handleLogout() {
-    props.userHasAuthenticated(false);
+    props.logout();
     props.history.push("/login");
   }
   
@@ -23,7 +24,7 @@ const StyledNavbar = (props: PropsType) => {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          { props.isAuthenticated
+          { props.currentUser.jwt
             ? <Nav>
                 <LinkContainer to="/profile">
                     <Nav.Item className="mr-1 link">Profile</Nav.Item>
@@ -45,4 +46,13 @@ const StyledNavbar = (props: PropsType) => {
   );
 }
 
-export default withRouter(StyledNavbar);
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+  }
+}
+const mapDispatchToProps = {
+  logout,
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(StyledNavbar));
