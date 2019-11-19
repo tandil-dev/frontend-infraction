@@ -6,7 +6,7 @@ import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
-import AppliedRoute from './components/AppliedRoute';
+import { Route } from "react-router-dom";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
@@ -18,7 +18,7 @@ const Routes = () => {
         <AuthenticatedRoute path={`/profile`} exact component={Profile} />
         <UnauthenticatedRoute path={`/login`} exact component={Login} />
         <UnauthenticatedRoute path={`/register`} exact component={Register} />
-        <AppliedRoute component={NotFound} />
+        <Route component={NotFound} />
       </Switch>
     </MainTemplate>
   );
