@@ -15,7 +15,6 @@ const Login = (props) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.userHasAuthenticated(true);
     props.login({
       email,
       password,
