@@ -22,6 +22,7 @@ const reducer = (state = defaultState, { type, payload }) => {
       return {
         ...state,
         jwt: false,
+        profile: null,
       }
     }
     default: return state;
