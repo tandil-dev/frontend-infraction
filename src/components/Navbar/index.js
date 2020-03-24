@@ -43,7 +43,7 @@ const StyledNavbar = (props) => {
         </Typography>
          {props.currentUser.jwt
             ? <Button color="inherit" onClick={handleLogout}>Log out</Button>
-            : <Button color="inherit" href="/login">Login</Button>
+            : <Button color="inherit" href="/login">Log in</Button> 
          }
       </Toolbar>
     </AppBar>
