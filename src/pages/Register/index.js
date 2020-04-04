@@ -1,37 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from 'react-redux';
 
 import Page from './Page';
 
-import login from '../../redux/actions/login';
+import register from '../../redux/actions/register';
 
 const Register = (props) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
- /* const { register, errors , handleSubmit} = useForm()
-  const onSubmit = data => {console.log(data)
-    //event.preventDefault();
-    props.login({
-      email,
-      password,
-    });
-  };
-*/
-
   return (
-    <Page 
-      /*email={email}
-      password={password}
-      onEmailChange={setEmail}
-      onPasswordChange={setPassword}*/
-      //handleSubmit={handleSubmit(onSubmit)}
-    />
+    <Page />
   );
 }
 
 const mapDispatchToProps = {
-  login,
+  register,
 }
 
 export default connect(null, mapDispatchToProps)(Register);
