@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -7,11 +8,15 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './style';
+import register from '../../redux/actions/register';
 
-function Form(){
+
+function Form(props){
   const { register, errors , handleSubmit} = useForm()
-  const onSubmit = data => {console.log(data)};
   const classes = useStyles();
+  const onSubmit = data => {
+    props.register(data);
+  };
 
   return (
     <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
@@ -143,7 +148,7 @@ function Form(){
                   id="password"
                   autoComplete="current-password"
                 />
-                {errors.lastName && errors.lastName.message}
+                {errors.password && errors.password.message}
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
@@ -164,12 +169,16 @@ function Form(){
             <Grid container justify="flex-end">
               <Grid item>
                 <Link href="/login" variant="body2">
-                  Already have an account? Sign in
+                  {"Already have an account? Sign in"}
                 </Link>
               </Grid>
             </Grid>
           </form>
   )
+}  
+
+const mapDispatchToProps = {
+  register,
 }
-  
-export default Form;
+
+export default connect(null, mapDispatchToProps)(Form);

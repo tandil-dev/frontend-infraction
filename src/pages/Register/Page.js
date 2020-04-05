@@ -22,7 +22,7 @@ function Copyright() {
   );
 }
 
-function Page(props){
+function Page(){
 
   const classes = useStyles();
 

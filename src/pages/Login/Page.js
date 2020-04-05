@@ -1,4 +1,4 @@
-  import React from 'react';
+import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Link from '@material-ui/core/Link';
@@ -22,12 +22,9 @@ function Copyright() {
   );
 }
 
-function Page(props){
+function Page(){
 
   const classes = useStyles();
-  /*const {
-    email, password, onEmailChange, onPasswordChange,
-  } = props;*/
 
   return (
     <Container component="main" maxWidth="xs">
@@ -40,11 +37,8 @@ function Page(props){
           Sign in
         </Typography>
         
-        <Form /*email={email}
-          password={password}
-          onEmailChange={onEmailChange}
-          onPasswordChange={onPasswordChange}*/
-        />
+        <Form />
+        
       </div>
       <Box mt={8}>
         <Copyright />

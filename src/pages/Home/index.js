@@ -1,14 +1,17 @@
 import React from "react";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import useStyles from './style';
 
 export default function Home() {
+  const classes = useStyles();
   return (
-    <Container>
-      <Row className="justify-content-center mt-5">
-        <Col xs={1}><h1>Home</h1></Col>
-      </Row>
+    <Container component="main" maxWidth="xs">      
+      <div className={classes.paper}>
+        <Typography component="h1" variant="h5">
+        Home
+        </Typography>   
+      </div>   
     </Container>
   );
 }
