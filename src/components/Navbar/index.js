@@ -1,48 +1,52 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
 import { connect } from 'react-redux';
-
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import logout from '../../redux/actions/logout';
+import logo from './logo.jpg';
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  logo: {
+    maxWidth: 50,
+    marginRight: theme.spacing(2),
+  },
+}));
 
 const StyledNavbar = (props) => {
   function handleLogout() {
     props.logout();
     props.history.push("/login");
   }
-  
+  const classes = useStyles();
+
   return (
-    <Navbar collapseOnSelect expand="lg" className="p-2">
-        <Navbar.Brand>
-          <LinkContainer to="/">
-            <Nav.Item className="ml-5">Home</Nav.Item >
-          </LinkContainer>
-        </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-          { props.currentUser.jwt
-            ? <Nav>
-                <LinkContainer to="/profile">
-                    <Nav.Item className="mr-1 link">Profile</Nav.Item>
-                </LinkContainer>
-                <Nav.Item onClick={handleLogout} className="mr-5">Logout</Nav.Item>
-              </Nav>
-            : <Nav>
-               <LinkContainer to="/login">
-                  <Nav.Item className="mr-1">Login</Nav.Item>
-                </LinkContainer>
-                <LinkContainer to="/register">
-                  <Nav.Item className="mr-5">Register</Nav.Item>
-                </LinkContainer>
-               
-              </Nav>
-          }
-      </Navbar.Collapse>
-    </Navbar>
+    <AppBar position="static">
+      <Toolbar>
+        <a href="/">
+          <img src={logo} alt="logo" className={classes.logo} />
+        </a>
+        <Typography variant="h6" className={classes.title}>
+          InfractApp
+        </Typography>
+         {props.currentUser.jwt
+            ? <Button color="inherit" onClick={handleLogout}>Log out</Button>
+            : <Button color="inherit" href="/login">Log in</Button> 
+         }
+      </Toolbar>
+    </AppBar>
   );
 }
 

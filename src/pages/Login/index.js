@@ -1,40 +1,11 @@
-import React, { useState } from "react";
-import { connect } from 'react-redux';
-
+import React from "react";
 import Page from './Page';
 
-import login from '../../redux/actions/login';
-
-const Login = (props) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    props.login({
-      email,
-      password,
-    });
-  }
+const Login = () => {
 
   return (
-    <Page 
-      email={email}
-      password={password}
-      onEmailChange={setEmail}
-      onPasswordChange={setPassword}
-      validateForm={validateForm}
-      handleSubmit={handleSubmit}
-    />
+    <Page/>
   );
 }
 
-const mapDispatchToProps = {
-  login,
-}
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;

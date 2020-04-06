@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Link from '@material-ui/core/Link';
@@ -14,7 +14,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="/">
-        InfractApp Tandil
+        InfractApp
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -28,23 +28,23 @@ function Page(){
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        
-        <Form />
-        
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+    <CssBaseline />
+    <div className={classes.paper}>
+      <Avatar className={classes.avatar}>
+        <LockOutlinedIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Sign up
+      </Typography>
+
+      <Form />
+      
+    </div>
+    <Box mt={5}>
+      <Copyright />
+    </Box>
+  </Container>
   );
-};
+}
 
 export default Page;

@@ -14,7 +14,7 @@ const Routes = () => {
   return(
     <MainTemplate>
       <Switch>
-        <AuthenticatedRoute path={`/`} exact component={Home} />
+        <UnauthenticatedRoute path={`/`} exact component={Home} />
         <AuthenticatedRoute path={`/profile`} exact component={Profile} />
         <UnauthenticatedRoute path={`/login`} exact component={Login} />
         <UnauthenticatedRoute path={`/register`} exact component={Register} />
