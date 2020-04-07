@@ -54,7 +54,7 @@ function Form(props){
             inputRef={register({ 
               required: true,               
               minLength: {
-                value: 9,
+                value: 8,
                 message: 'Password too short, at least 8 characters.',
               }
             })}
