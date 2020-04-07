@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import logout from '../../redux/actions/logout';
-import logo from './logo.jpg';
+import logo from './logo.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {
