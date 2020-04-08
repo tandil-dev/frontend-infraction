@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
+import { Button } from "@material-ui/core";
 
 
 function Profile({ currentUser }) {
@@ -24,7 +25,8 @@ function Profile({ currentUser }) {
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
         Profile
-        </Typography>   
+        </Typography>
+        <Button href="/editProfile">Edit Profile</Button> 
       </div>   
     </Container>
   );

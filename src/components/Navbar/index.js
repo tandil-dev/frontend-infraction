@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -40,10 +40,13 @@ const StyledNavbar = (props) => {
         </a>
         <Typography variant="h6" className={classes.title}>
           InfractApp
-        </Typography>
+        </Typography>    
          {props.currentUser.jwt
-            ? <Button color="inherit" onClick={handleLogout}>Log out</Button>
-            : <Button color="inherit" href="/login">Log in</Button> 
+            ? <Fragment>
+                  <Button color="inherit" href="/profile">Profile</Button>
+                  <Button color="inherit" onClick={handleLogout}>Log out</Button>
+              </Fragment>
+            : <Button color="inherit" href="/login">Log in</Button>
          }
       </Toolbar>
     </AppBar>
