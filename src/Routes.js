@@ -4,7 +4,7 @@ import MainTemplate from './templates/MainTemplate';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
-import editProfile from './pages/editProfile';
+import EditProfile from './pages/EditProfile';
 import Profile from './pages/Profile';
 import { Route } from "react-router-dom";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
@@ -17,7 +17,7 @@ const Routes = () => {
         <UnauthenticatedRoute path={`/`} exact component={Home} />
         <UnauthenticatedRoute path={`/login`} exact component={Login} />
         <AuthenticatedRoute path={`/profile`} exact component={Profile} />
-        <AuthenticatedRoute path={`/editProfile`} exact component={editProfile} />
+        <AuthenticatedRoute path={`/editProfile`} exact component={EditProfile} />
         <Route component={NotFound} />
       </Switch>
     </MainTemplate>
