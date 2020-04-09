@@ -1,6 +1,7 @@
 import React from "react";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -149,12 +150,14 @@ function Form(props){
               </Grid>
             </Grid>
             <Button
+              component={Link}
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
-              href="/profile"
+              to="profile"
+
             >
               Update
             </Button>
@@ -166,4 +169,4 @@ const mapDispatchToProps = {
   register,
 }
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(null, mapDispatchToProps)(withRouter(Form));
