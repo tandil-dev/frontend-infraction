@@ -150,17 +150,23 @@ function Form(props){
               </Grid>
             </Grid>
             <Button
-              component={Link}
               type="submit"
+              fullWidth
+              variant="contained"
+              color="secondary"
+            >
+              Update
+            </Button>
+            <Button 
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              component={Link}
               to="profile"
-
             >
-              Update
-            </Button>
+            Back to Profile  
+            </Button> 
           </form>
   )
 }  
