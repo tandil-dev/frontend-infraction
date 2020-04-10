@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { withRouter, Link } from "react-router-dom";
+import React from 'react';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import logout from '../../redux/actions/logout';
 import logo from './logo.svg';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -25,10 +25,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const StyledNavbar = (props) => {
+// eslint-disable-next-line no-shadow
+const StyledNavbar = ({ logout, history, currentUser }) => {
   function handleLogout() {
-    props.logout();
-    props.history.push("/login");
+    logout();
+    history.push('/login');
   }
   const classes = useStyles();
 
@@ -40,26 +41,25 @@ const StyledNavbar = (props) => {
         </a>
         <Typography variant="h6" className={classes.title}>
           InfractApp
-        </Typography>    
-         {props.currentUser.jwt
-            ? <Fragment>
-                  <Button component={Link} color="inherit" to="profile">Profile</Button>
-                  <Button color="inherit" onClick={handleLogout}>Log out</Button>
-              </Fragment>
-            : <Button color="inherit" href="/login">Log in</Button>
-         }
+        </Typography>
+        {currentUser.jwt
+          ? (
+            <>
+              <Button component={Link} color="inherit" to="profile">Profile</Button>
+              <Button color="inherit" onClick={handleLogout}>Log out</Button>
+            </>
+          )
+          : <Button color="inherit" href="/login">Log in</Button>}
       </Toolbar>
     </AppBar>
   );
-}
+};
 
-const mapStateToProps = (state) => {
-  return {
-    currentUser: state.currentUser,
-  }
-}
+const mapStateToProps = (state) => ({
+  currentUser: state.currentUser,
+});
 const mapDispatchToProps = {
   logout,
-}
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(withRouter(StyledNavbar));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(StyledNavbar));

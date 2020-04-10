@@ -15,15 +15,15 @@ function Copyright() {
       {'Copyright © '}
       <Link color="inherit" href="/">
         InfractApp Tandil
-      </Link>{' '}
+      </Link>
+      {' '}
       {new Date().getFullYear()}
-      {'.'}
+      .
     </Typography>
   );
 }
 
-function Page(){
-
+function Page() {
   const classes = useStyles();
 
   return (
@@ -36,15 +36,15 @@ function Page(){
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        
+
         <Form />
-        
+
       </div>
       <Box mt={8}>
         <Copyright />
       </Box>
     </Container>
   );
-};
+}
 
 export default Page;

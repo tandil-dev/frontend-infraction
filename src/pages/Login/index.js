@@ -1,11 +1,8 @@
-import React from "react";
+import React from 'react';
 import Page from './Page';
 
-const Login = () => {
-
-  return (
-    <Page/>
-  );
-}
+const Login = () => (
+  <Page />
+);
 
 export default Login;
