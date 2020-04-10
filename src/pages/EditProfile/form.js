@@ -1,11 +1,9 @@
 import React from "react";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './style';
 import register from '../../redux/actions/register';
@@ -150,29 +148,25 @@ function Form(props){
                 />
                 {errors.password && errors.password.message}
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
+              color="secondary"
+            >
+              Update
+            </Button>
+            <Button 
+              fullWidth
+              variant="contained"
               color="primary"
               className={classes.submit}
+              component={Link}
+              to="profile"
             >
-              Sign Up
-            </Button>
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  {"Already have an account? Sign in"}
-                </Link>
-              </Grid>
-            </Grid>
+            Back to Profile  
+            </Button> 
           </form>
   )
 }  
@@ -181,4 +175,4 @@ const mapDispatchToProps = {
   register,
 }
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(null, mapDispatchToProps)(withRouter(Form));
