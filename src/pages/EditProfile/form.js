@@ -10,6 +10,7 @@ import register from '../../redux/actions/register';
 
 
 function Form(props) {
+  // eslint-disable-next-line no-shadow
   const { register, errors, handleSubmit } = useForm();
   const classes = useStyles();
   const onSubmit = (data) => {
