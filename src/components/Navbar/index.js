@@ -1,5 +1,5 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import logout from '../../redux/actions/logout';
 import logo from './logo.svg';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 const StyledNavbar = (props) => {
   function handleLogout() {
     props.logout();
-    props.history.push("/login");
+    props.history.push('/login');
   }
   const classes = useStyles();
 
@@ -41,22 +41,19 @@ const StyledNavbar = (props) => {
         <Typography variant="h6" className={classes.title}>
           InfractApp
         </Typography>
-         {props.currentUser.jwt
-            ? <Button color="inherit" onClick={handleLogout}>Log out</Button>
-            : <Button color="inherit" href="/login">Log in</Button> 
-         }
+        {props.currentUser.jwt
+          ? <Button color="inherit" onClick={handleLogout}>Log out</Button>
+          : <Button color="inherit" href="/login">Log in</Button>}
       </Toolbar>
     </AppBar>
   );
-}
+};
 
-const mapStateToProps = (state) => {
-  return {
-    currentUser: state.currentUser,
-  }
-}
+const mapStateToProps = (state) => ({
+  currentUser: state.currentUser,
+});
 const mapDispatchToProps = {
   logout,
-}
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(withRouter(StyledNavbar));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(StyledNavbar));

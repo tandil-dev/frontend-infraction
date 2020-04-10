@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -13,27 +13,25 @@ function Profile({ currentUser }) {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      },
-    }
+    },
+  }
   ));
 
 
   const classes = useStyles();
   return (
-    <Container component="main" maxWidth="xs">      
+    <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
-        Profile
-        </Typography>   
-      </div>   
+          Profile
+        </Typography>
+      </div>
     </Container>
   );
-};
-
-const mapStateToProps = (state) => {
-  return {
-    currentUser: state.currentUser,
-  }
 }
+
+const mapStateToProps = (state) => ({
+  currentUser: state.currentUser,
+});
 
 export default connect(mapStateToProps)(Profile);

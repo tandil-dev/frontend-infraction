@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -16,10 +16,10 @@ const render = (Component) => {
   }
   renderMethod(
     <Provider store={store}>
-        <Router>
-          <Component />
-        </Router>
-      </Provider>,
+      <Router>
+        <Component />
+      </Router>
+    </Provider>,
     document.getElementById('root'),
   );
 };

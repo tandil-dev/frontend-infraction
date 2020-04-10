@@ -1,13 +1,13 @@
-import { type as loginType} from '../actions/login';
-import { type as registerType} from '../actions/register';
-import { type as logoutType} from '../actions/logout';
+import { type as loginType } from '../actions/login';
+import { type as registerType } from '../actions/register';
+import { type as logoutType } from '../actions/logout';
 
 const defaultState = {
   jwt: false,
 };
 
 const reducer = (state = defaultState, { type, payload }) => {
-  switch (type) {    
+  switch (type) {
     case loginType: {
       return {
         ...state,
@@ -16,8 +16,8 @@ const reducer = (state = defaultState, { type, payload }) => {
           name: 'Test User',
           cars: ['aaa000', 'zzz999'],
           email: payload.email,
-        }
-      }
+        },
+      };
     }
     case registerType: {
       return {
@@ -27,18 +27,18 @@ const reducer = (state = defaultState, { type, payload }) => {
           name: 'Test User',
           cars: ['aaa000', 'zzz999'],
           email: payload.email,
-        }
-      }
+        },
+      };
     }
     case logoutType: {
       return {
         ...state,
         jwt: false,
         profile: null,
-      }
+      };
     }
     default: return state;
   }
-}
+};
 
 export default reducer;

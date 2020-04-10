@@ -1,9 +1,7 @@
 export const type = 'LOGOUT';
 
-const logout = () => {
-  return {
-    type,
-  }
-};
+const logout = () => ({
+  type,
+});
 
 export default logout;
