@@ -36,9 +36,9 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <a href="/">
+        <Button component={Link} to="/">
           <img src={logo} alt="logo" className={classes.logo} />
-        </a>
+        </Button>
         <Typography variant="h6" className={classes.title}>
           InfractApp
         </Typography>
@@ -49,7 +49,7 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
               <Button color="inherit" onClick={handleLogout}>Log out</Button>
             </>
           )
-          : <Button color="inherit" href="/login">Log in</Button>}
+          : <Button component={Link} color="inherit" to="login">Log in</Button>}
       </Toolbar>
     </AppBar>
   );
