@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import ReactPlayer from 'react-player';
 import useStyles from './style';
 
 export default function Home() {
@@ -12,6 +13,12 @@ export default function Home() {
           Home
         </Typography>
       </div>
+      <ReactPlayer
+        url="https://youtu.be/YVgfHZMFFFQ"
+        playing
+        width="100%"
+        height="100%"
+      />
     </Container>
   );
 }
