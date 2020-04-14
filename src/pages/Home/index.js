@@ -4,8 +4,8 @@ import { Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import ReactPlayer from 'react-player';
 import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import useStyles from './style';
-import './videoStyle.css';
 
 export default function Home() {
   const classes = useStyles();
@@ -23,9 +23,10 @@ export default function Home() {
         justify="space-between"
       >
         <Grid item sm>
-          <Card className="player-wrapper">
-            <ReactPlayer
-              className="react-player"
+          <Card>
+            <CardMedia
+              className={classes.media}
+              component={ReactPlayer}
               url="https://youtu.be/70asKwy15Ds"
               playing
               width="100%"
@@ -34,9 +35,10 @@ export default function Home() {
           </Card>
         </Grid>
         <Grid item sm>
-          <Card className="player-wrapper">
-            <ReactPlayer
-              className="react-player"
+          <Card>
+            <CardMedia
+              className={classes.media}
+              component={ReactPlayer}
               url="https://youtu.be/YVgfHZMFFFQ"
               playing
               width="100%"
