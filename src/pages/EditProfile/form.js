@@ -49,7 +49,6 @@ function Form(props) {
             fullWidth
             id="lastName"
             label="Last Name"
-            autoFocus
             inputRef={register({
               required: true,
               maxLength: {
