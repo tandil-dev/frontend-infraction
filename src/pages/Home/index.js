@@ -20,7 +20,7 @@ export default function Home() {
       </Container>
       <Grid
         container
-        justify="space-between"
+        justify="center"
       >
         <Grid item sm>
           <Card>
@@ -28,7 +28,6 @@ export default function Home() {
               className={classes.media}
               component={ReactPlayer}
               url="https://youtu.be/70asKwy15Ds"
-              playing
               width="100%"
               height="100%"
             />
@@ -40,7 +39,6 @@ export default function Home() {
               className={classes.media}
               component={ReactPlayer}
               url="https://youtu.be/YVgfHZMFFFQ"
-              playing
               width="100%"
               height="100%"
             />
