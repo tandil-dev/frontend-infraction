@@ -49,7 +49,7 @@ function Form(props) {
             fullWidth
             id="lastName"
             label="Last Name"
-            inputRef={updateProfile({
+            inputRef={register({
               required: true,
               maxLength: {
                 value: 20,
@@ -68,7 +68,7 @@ function Form(props) {
             label="CUIL"
             name="cuil"
             autoComplete="cuil"
-            inputRef={updateProfile({
+            inputRef={register({
               required: true,
               pattern: {
                 value: /^[0-9]*$/i,
@@ -95,7 +95,7 @@ function Form(props) {
             label="Phone number"
             name="tel"
             autoComplete="tel"
-            inputRef={updateProfile({
+            inputRef={register({
               required: true,
               pattern: {
                 value: /^[0-9]*$/i,
@@ -125,7 +125,7 @@ function Form(props) {
             label="Email Address"
             name="email"
             autoComplete="email"
-            inputRef={updateProfile({
+            inputRef={register({
               required: true,
               pattern: {
                 value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
