@@ -9,12 +9,15 @@ import useStyles from './style';
 import updateProfile from '../../redux/actions/updateProfile';
 
 
-function Form(props) {
-  // eslint-disable-next-line no-shadow
+const mapStateToProps = (state) => ({
+  currentUser: state,
+});
+
+function Form(currentUser) {
   const { register, errors, handleSubmit } = useForm();
   const classes = useStyles();
   const onSubmit = (data) => {
-    props.updateProfile(data);
+    currentUser.updateProfile(data);
   };
 
   return (
@@ -175,4 +178,4 @@ const mapDispatchToProps = {
   updateProfile,
 };
 
-export default connect(null, mapDispatchToProps)(withRouter(Form));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Form));
