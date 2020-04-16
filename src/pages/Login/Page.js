@@ -12,9 +12,9 @@ import useStyles from './style';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="/">
-        InfractApp Tandil
+      {'This is free and unencumbered software released into the public domain. '}
+      <Link color="inherit" href="https://unlicense.org/">
+        Unlicense.org
       </Link>
       {' '}
       {new Date().getFullYear()}
