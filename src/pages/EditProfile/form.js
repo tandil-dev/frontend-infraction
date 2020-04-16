@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './style';
-import register from '../../redux/actions/register';
+import updateProfile from '../../redux/actions/updateProfile';
 
 
 function Form(props) {
@@ -14,7 +14,7 @@ function Form(props) {
   const { register, errors, handleSubmit } = useForm();
   const classes = useStyles();
   const onSubmit = (data) => {
-    props.register(data);
+    props.updateProfile(data);
   };
 
   return (
@@ -49,7 +49,7 @@ function Form(props) {
             fullWidth
             id="lastName"
             label="Last Name"
-            inputRef={register({
+            inputRef={updateProfile({
               required: true,
               maxLength: {
                 value: 20,
@@ -68,7 +68,7 @@ function Form(props) {
             label="CUIL"
             name="cuil"
             autoComplete="cuil"
-            inputRef={register({
+            inputRef={updateProfile({
               required: true,
               pattern: {
                 value: /^[0-9]*$/i,
@@ -95,7 +95,7 @@ function Form(props) {
             label="Phone number"
             name="tel"
             autoComplete="tel"
-            inputRef={register({
+            inputRef={updateProfile({
               required: true,
               pattern: {
                 value: /^[0-9]*$/i,
@@ -125,7 +125,7 @@ function Form(props) {
             label="Email Address"
             name="email"
             autoComplete="email"
-            inputRef={register({
+            inputRef={updateProfile({
               required: true,
               pattern: {
                 value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
@@ -172,7 +172,7 @@ function Form(props) {
 }
 
 const mapDispatchToProps = {
-  register,
+  updateProfile,
 };
 
 export default connect(null, mapDispatchToProps)(withRouter(Form));
