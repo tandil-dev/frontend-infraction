@@ -10,14 +10,15 @@ import updateProfile from '../../redux/actions/updateProfile';
 
 
 const mapStateToProps = (state) => ({
-  currentUser: state,
+  currentUser: state.currentUser,
 });
 
-function Form(currentUser) {
-  const { register, errors, handleSubmit } = useForm();
+function Form(props) {
+// eslint-disable-next-line no-shadow
+  const { register, errors, handleSubmit } = useForm({ defaultValues: props.currentUser.profile });
   const classes = useStyles();
   const onSubmit = (data) => {
-    currentUser.updateProfile(data);
+    props.updateProfile(data);
   };
 
   return (
@@ -30,7 +31,7 @@ function Form(currentUser) {
             variant="outlined"
             required
             fullWidth
-            id="firstName"
+            id="name"
             label="First Name"
             autoFocus
             inputRef={register({
@@ -94,10 +95,10 @@ function Form(currentUser) {
             variant="outlined"
             required
             fullWidth
-            id="tel"
+            id="phone"
             label="Phone number"
-            name="tel"
-            autoComplete="tel"
+            name="phone"
+            autoComplete="phone"
             inputRef={register({
               required: true,
               pattern: {
