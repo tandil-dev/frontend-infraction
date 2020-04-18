@@ -16,11 +16,8 @@ const mapStateToProps = (state) => ({
 function Form(props) {
   // eslint-disable-next-line react/destructuring-assignment
   const { register, errors, handleSubmit } = useForm({ defaultValues: props.currentUser.profile });
-  // eslint-disable-next-line react/destructuring-assignment
-  console.log('props.currentUser: ', props.currentUser.profile);
   const classes = useStyles();
   const onSubmit = (data) => {
-    console.log('Data: ', data);
     props.updateProfile(data);
   };
 
