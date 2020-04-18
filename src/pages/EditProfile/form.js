@@ -1,20 +1,24 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './style';
-import register from '../../redux/actions/register';
+import updateProfile from '../../redux/actions/updateProfile';
 
+
+const mapStateToProps = (state) => ({
+  currentUser: state.currentUser,
+});
 
 function Form(props) {
-  // eslint-disable-next-line no-shadow
-  const { register, errors, handleSubmit } = useForm();
+  // eslint-disable-next-line react/destructuring-assignment
+  const { register, errors, handleSubmit } = useForm({ defaultValues: props.currentUser.profile });
   const classes = useStyles();
   const onSubmit = (data) => {
-    props.register(data);
+    props.updateProfile(data);
   };
 
   return (
@@ -23,34 +27,30 @@ function Form(props) {
         <Grid item xs={12}>
           <TextField
             autoComplete="fname"
-            name="firstName"
+            name="name"
             variant="outlined"
-            required
             fullWidth
-            id="firstName"
+            id="name"
             label="First Name"
             autoFocus
             inputRef={register({
-              required: true,
               maxLength: {
                 value: 25,
                 message: 'Max length is 25',
               },
             })}
           />
-          {errors.firstName && errors.firstName.message}
+          {errors.name && errors.name.message}
         </Grid>
         <Grid item xs={12}>
           <TextField
             autoComplete="lname"
             name="lastName"
             variant="outlined"
-            required
             fullWidth
             id="lastName"
             label="Last Name"
             inputRef={register({
-              required: true,
               maxLength: {
                 value: 20,
                 message: 'Max length is 20',
@@ -62,14 +62,12 @@ function Form(props) {
         <Grid item xs={12}>
           <TextField
             variant="outlined"
-            required
             fullWidth
             id="cuil"
             label="CUIL"
             name="cuil"
             autoComplete="cuil"
             inputRef={register({
-              required: true,
               pattern: {
                 value: /^[0-9]*$/i,
                 message: 'Invalid CUIL, only numbers allowed',
@@ -89,21 +87,19 @@ function Form(props) {
         <Grid item xs={12}>
           <TextField
             variant="outlined"
-            required
             fullWidth
-            id="tel"
+            id="phone"
             label="Phone number"
-            name="tel"
-            autoComplete="tel"
+            name="phone"
+            autoComplete="phone"
             inputRef={register({
-              required: true,
               pattern: {
                 value: /^[0-9]*$/i,
                 message: 'Invalid phone number, only numbers allowed',
               },
             })}
           />
-          {errors.tel && errors.tel.message}
+          {errors.phone && errors.phone.message}
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -113,20 +109,24 @@ function Form(props) {
             label="Address"
             name="address"
             autoComplete="address"
+            inputRef={register({
+              maxLength: {
+                value: 25,
+                message: 'Max length is 25',
+              },
+            })}
           />
           {errors.address && errors.address.message}
         </Grid>
         <Grid item xs={12}>
           <TextField
             variant="outlined"
-            required
             fullWidth
             id="email"
             label="Email Address"
             name="email"
             autoComplete="email"
             inputRef={register({
-              required: true,
               pattern: {
                 value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                 message: 'Invalid email address',
@@ -136,43 +136,22 @@ function Form(props) {
           {errors.email && errors.email.message}
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            variant="outlined"
-            required
+          <Button
+            type="submit"
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          {errors.password && errors.password.message}
+            variant="contained"
+            color="secondary"
+          >
+            Update
+          </Button>
         </Grid>
       </Grid>
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="secondary"
-      >
-        Update
-      </Button>
-      <Button
-        fullWidth
-        variant="contained"
-        color="primary"
-        className={classes.submit}
-        component={Link}
-        to="profile"
-      >
-        Back to Profile
-      </Button>
     </form>
   );
 }
 
 const mapDispatchToProps = {
-  register,
+  updateProfile,
 };
 
-export default connect(null, mapDispatchToProps)(withRouter(Form));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Form));

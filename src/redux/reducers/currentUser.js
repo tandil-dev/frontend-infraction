@@ -1,6 +1,7 @@
 import { type as loginType } from '../actions/login';
 import { type as registerType } from '../actions/register';
 import { type as logoutType } from '../actions/logout';
+import { type as updateProfileType } from '../actions/updateProfile';
 
 const defaultState = {
   jwt: false,
@@ -27,6 +28,20 @@ const reducer = (state = defaultState, { type, payload }) => {
           name: 'Test User',
           cars: ['aaa000', 'zzz999'],
           email: payload.email,
+        },
+      };
+    }
+    case updateProfileType: {
+      return {
+        ...state,
+        profile: {
+          name: payload.name,
+          lastName: payload.lastName,
+          cuil: payload.cuil,
+          phone: payload.phone,
+          address: payload.address,
+          email: payload.email,
+          password: payload.password,
         },
       };
     }
