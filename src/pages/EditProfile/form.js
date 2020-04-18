@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
@@ -34,7 +34,6 @@ function Form(props) {
             label="First Name"
             autoFocus
             inputRef={register({
-              required: true,
               maxLength: {
                 value: 25,
                 message: 'Max length is 25',
@@ -52,7 +51,6 @@ function Form(props) {
             id="lastName"
             label="Last Name"
             inputRef={register({
-              required: true,
               maxLength: {
                 value: 20,
                 message: 'Max length is 20',
@@ -70,7 +68,6 @@ function Form(props) {
             name="cuil"
             autoComplete="cuil"
             inputRef={register({
-              required: true,
               pattern: {
                 value: /^[0-9]*$/i,
                 message: 'Invalid CUIL, only numbers allowed',
@@ -96,7 +93,6 @@ function Form(props) {
             name="phone"
             autoComplete="phone"
             inputRef={register({
-              required: true,
               pattern: {
                 value: /^[0-9]*$/i,
                 message: 'Invalid phone number, only numbers allowed',
@@ -114,7 +110,6 @@ function Form(props) {
             name="address"
             autoComplete="address"
             inputRef={register({
-              required: true,
               maxLength: {
                 value: 25,
                 message: 'Max length is 25',
@@ -132,7 +127,6 @@ function Form(props) {
             name="email"
             autoComplete="email"
             inputRef={register({
-              required: true,
               pattern: {
                 value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                 message: 'Invalid email address',
@@ -141,25 +135,17 @@ function Form(props) {
           />
           {errors.email && errors.email.message}
         </Grid>
+        <Grid item xs={12}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="secondary"
+          >
+            Update
+          </Button>
+        </Grid>
       </Grid>
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="secondary"
-      >
-        Update
-      </Button>
-      <Button
-        fullWidth
-        variant="contained"
-        color="primary"
-        className={classes.submit}
-        component={Link}
-        to="profile"
-      >
-        Back to Profile
-      </Button>
     </form>
   );
 }
