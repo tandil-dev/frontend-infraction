@@ -29,7 +29,6 @@ function Form(props) {
             autoComplete="fname"
             name="name"
             variant="outlined"
-            required
             fullWidth
             id="name"
             label="First Name"
@@ -49,7 +48,6 @@ function Form(props) {
             autoComplete="lname"
             name="lastName"
             variant="outlined"
-            required
             fullWidth
             id="lastName"
             label="Last Name"
@@ -66,7 +64,6 @@ function Form(props) {
         <Grid item xs={12}>
           <TextField
             variant="outlined"
-            required
             fullWidth
             id="cuil"
             label="CUIL"
@@ -93,7 +90,6 @@ function Form(props) {
         <Grid item xs={12}>
           <TextField
             variant="outlined"
-            required
             fullWidth
             id="phone"
             label="Phone number"
@@ -130,7 +126,6 @@ function Form(props) {
         <Grid item xs={12}>
           <TextField
             variant="outlined"
-            required
             fullWidth
             id="email"
             label="Email Address"
@@ -145,22 +140,6 @@ function Form(props) {
             })}
           />
           {errors.email && errors.email.message}
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            variant="outlined"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            inputRef={register({
-              required: true,
-            })}
-          />
-          {errors.password && errors.password.message}
         </Grid>
       </Grid>
       <Button
