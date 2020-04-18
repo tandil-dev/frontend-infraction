@@ -1,17 +1,8 @@
 export const type = 'UPDATE-PROFILE';
 
-const updateProfile = ({
-  name, lastname, cuil, phone, email, password,
-}) => ({
+const updateProfile = (payload) => ({
   type,
-  payload: {
-    name,
-    lastname,
-    cuil,
-    phone,
-    email,
-    password,
-  },
+  payload,
 });
 
 export default updateProfile;

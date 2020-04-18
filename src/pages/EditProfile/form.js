@@ -14,10 +14,13 @@ const mapStateToProps = (state) => ({
 });
 
 function Form(props) {
-// eslint-disable-next-line no-shadow
+  // eslint-disable-next-line react/destructuring-assignment
   const { register, errors, handleSubmit } = useForm({ defaultValues: props.currentUser.profile });
+  // eslint-disable-next-line react/destructuring-assignment
+  console.log('props.currentUser: ', props.currentUser.profile);
   const classes = useStyles();
   const onSubmit = (data) => {
+    console.log('Data: ', data);
     props.updateProfile(data);
   };
 
@@ -27,7 +30,7 @@ function Form(props) {
         <Grid item xs={12}>
           <TextField
             autoComplete="fname"
-            name="firstName"
+            name="name"
             variant="outlined"
             required
             fullWidth
@@ -42,7 +45,7 @@ function Form(props) {
               },
             })}
           />
-          {errors.firstName && errors.firstName.message}
+          {errors.name && errors.name.message}
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -107,7 +110,7 @@ function Form(props) {
               },
             })}
           />
-          {errors.tel && errors.tel.message}
+          {errors.phone && errors.phone.message}
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -117,6 +120,13 @@ function Form(props) {
             label="Address"
             name="address"
             autoComplete="address"
+            inputRef={register({
+              required: true,
+              maxLength: {
+                value: 25,
+                message: 'Max length is 25',
+              },
+            })}
           />
           {errors.address && errors.address.message}
         </Grid>
@@ -149,6 +159,9 @@ function Form(props) {
             type="password"
             id="password"
             autoComplete="current-password"
+            inputRef={register({
+              required: true,
+            })}
           />
           {errors.password && errors.password.message}
         </Grid>

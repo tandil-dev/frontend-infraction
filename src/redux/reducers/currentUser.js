@@ -36,10 +36,10 @@ const reducer = (state = defaultState, { type, payload }) => {
         ...state,
         profile: {
           name: payload.name,
-          lastName: payload.lastname,
+          lastName: payload.lastName,
           cuil: payload.cuil,
           phone: payload.phone,
-          adress: payload.adress,
+          address: payload.address,
           email: payload.email,
           password: payload.password,
         },
