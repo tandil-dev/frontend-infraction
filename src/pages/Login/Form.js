@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './style';
 import login from '../../redux/actions/login';
@@ -59,12 +57,6 @@ function Form(props) {
             })}
           />
           {errors.password && errors.password.message}
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
         </Grid>
       </Grid>
       <Button
