@@ -40,7 +40,7 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
           <img src={logo} alt="logo" className={classes.logo} />
         </Button>
         <Typography variant="h6" className={classes.title}>
-          InfractApp
+          Centinela
         </Typography>
         {currentUser.jwt
           ? (
