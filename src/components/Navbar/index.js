@@ -45,6 +45,7 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
         {currentUser.jwt
           ? (
             <>
+              <Button component={Link} color="inherit" to="admin">Admin</Button>
               <Button component={Link} color="inherit" to="profile">Profile</Button>
               <Button color="inherit" onClick={handleLogout}>Log out</Button>
             </>
