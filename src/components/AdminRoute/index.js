@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 
 
 function AdminRoute({ component: C, currentUser, ...rest }) {
+  const isAdmin = currentUser.jwt || currentUser.djwt;
   return (
     <Route
       {...rest}
-      render={(props) => (currentUser.jwt
+      render={(props) => (isAdmin
         ? <C {...props} />
         : (
           <Redirect

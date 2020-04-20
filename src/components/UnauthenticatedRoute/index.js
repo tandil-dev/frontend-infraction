@@ -20,11 +20,11 @@ function querystring(name, url = window.location.href) {
 
 function UnauthenticatedRoute({ component: C, currentUser, ...rest }) {
   const redirect = querystring('redirect');
-
+  const isLogedIn = currentUser.jwt || currentUser.djwt;
   return (
     <Route
       {...rest}
-      render={(props) => (!currentUser.jwt
+      render={(props) => (!isLogedIn
         ? <C {...props} />
         : (
           <Redirect

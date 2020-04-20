@@ -6,7 +6,9 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Form from './form';
+
+import MetamaskButton from '../../components/MetamaskButton';
+import Form from './Form';
 import useStyles from './style';
 
 function Copyright() {
@@ -23,7 +25,7 @@ function Copyright() {
   );
 }
 
-function Page() {
+function Page({ handleMetamaskLogin }) {
   const classes = useStyles();
 
   return (
@@ -33,14 +35,16 @@ function Page() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
+        <Typography variant="h4" className={classes.typography1}>
+          Sign in with Metamask
         </Typography>
-
+        <MetamaskButton onClick={handleMetamaskLogin} />
+        <Typography variant="h6" className={classes.typography2}>
+          or
+        </Typography>
         <Form />
-
       </div>
-      <Box mt={8}>
+      <Box mt={1}>
         <Copyright />
       </Box>
     </Container>

@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 
 
 function AuthenticatedRoute({ component: C, currentUser, ...rest }) {
+  const isLogedIn = currentUser.jwt || currentUser.djwt;
   return (
     <Route
       {...rest}
-      render={(props) => (currentUser.jwt
+      render={(props) => (isLogedIn
         ? <C {...props} />
         : (
           <Redirect

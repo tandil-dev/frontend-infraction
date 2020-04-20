@@ -1,10 +1,11 @@
 import { type as loginType } from '../actions/login';
-import { type as registerType } from '../actions/register';
 import { type as logoutType } from '../actions/logout';
+import { loginWithMetamaskType } from '../actions/loginWithMetamaskAction';
 import { type as updateProfileType } from '../actions/updateProfile';
 
 const defaultState = {
   jwt: false,
+  djwt: false,
 };
 
 const reducer = (state = defaultState, { type, payload }) => {
@@ -13,22 +14,14 @@ const reducer = (state = defaultState, { type, payload }) => {
       return {
         ...state,
         jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGFuZGlsLmRldiIsIm5hbWUiOiJKb2huIERvZSIsImlhdCI6MTUxNjIzOTAyMn0.yRKvF6EP78lqkOHNls37eeUBh4k3LPZ39HbNrnPfDfs',
-        profile: {
-          name: 'Test User',
-          cars: ['aaa000', 'zzz999'],
-          email: payload.email,
-        },
       };
     }
-    case registerType: {
+    case logoutType: {
       return {
         ...state,
-        jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGFuZGlsLmRldiIsIm5hbWUiOiJKb2huIERvZSIsImlhdCI6MTUxNjIzOTAyMn0.yRKvF6EP78lqkOHNls37eeUBh4k3LPZ39HbNrnPfDfs',
-        profile: {
-          name: 'Test User',
-          cars: ['aaa000', 'zzz999'],
-          email: payload.email,
-        },
+        jwt: false,
+        djwt: false,
+        profile: null,
       };
     }
     case updateProfileType: {
@@ -45,11 +38,10 @@ const reducer = (state = defaultState, { type, payload }) => {
         },
       };
     }
-    case logoutType: {
+    case loginWithMetamaskType: {
       return {
         ...state,
-        jwt: false,
-        profile: null,
+        djwt: payload,
       };
     }
     default: return state;
