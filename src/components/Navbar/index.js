@@ -40,11 +40,12 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
           <img src={logo} alt="logo" className={classes.logo} />
         </Button>
         <Typography variant="h6" className={classes.title}>
-          InfractApp
+          Centinela
         </Typography>
         {isLogedIn
           ? (
             <>
+              <Button component={Link} color="inherit" to="admin">Admin</Button>
               <Button component={Link} color="inherit" to="profile">Profile</Button>
               <Button color="inherit" onClick={handleLogout}>Log out</Button>
             </>

@@ -1,6 +1,7 @@
 import { type as loginType } from '../actions/login';
 import { type as logoutType } from '../actions/logout';
 import { loginWithMetamaskType } from '../actions/loginWithMetamaskAction';
+import { type as updateProfileType } from '../actions/updateProfile';
 
 const defaultState = {
   jwt: false,
@@ -21,6 +22,20 @@ const reducer = (state = defaultState, { type, payload }) => {
         jwt: false,
         djwt: false,
         profile: null,
+      };
+    }
+    case updateProfileType: {
+      return {
+        ...state,
+        profile: {
+          name: payload.name,
+          lastName: payload.lastName,
+          cuil: payload.cuil,
+          phone: payload.phone,
+          address: payload.address,
+          email: payload.email,
+          password: payload.password,
+        },
       };
     }
     case loginWithMetamaskType: {

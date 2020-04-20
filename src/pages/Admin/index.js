@@ -1,8 +1,8 @@
 import React from 'react';
 import Page from './Page';
 
-const EditProfile = () => (
+const Login = () => (
   <Page />
 );
 
-export default EditProfile;
+export default Login;

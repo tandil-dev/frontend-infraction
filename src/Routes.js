@@ -6,9 +6,11 @@ import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import EditProfile from './pages/EditProfile';
 import Profile from './pages/Profile';
+import Admin from './pages/Admin';
 
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';
+import AdminRoute from './components/AdminRoute';
 
 const Routes = () => (
   <MainTemplate>
@@ -17,6 +19,7 @@ const Routes = () => (
       <UnauthenticatedRoute path="/login" exact component={Login} />
       <AuthenticatedRoute path="/profile" exact component={Profile} />
       <AuthenticatedRoute path="/editProfile" exact component={EditProfile} />
+      <AdminRoute path="/admin" exact component={Admin} />
       <Route component={NotFound} />
     </Switch>
   </MainTemplate>
