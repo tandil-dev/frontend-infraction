@@ -32,7 +32,7 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
     history.push('/login');
   }
   const classes = useStyles();
-
+  const isLogedIn = currentUser.jwt || currentUser.djwt;
   return (
     <AppBar position="static">
       <Toolbar>
@@ -42,7 +42,7 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
         <Typography variant="h6" className={classes.title}>
           InfractApp
         </Typography>
-        {currentUser.jwt
+        {isLogedIn
           ? (
             <>
               <Button component={Link} color="inherit" to="profile">Profile</Button>
