@@ -9,7 +9,7 @@ import Page from './Page';
 const creteToken = async (web3, [address], loginWithMetamask) => {
   // Build the header
   const header = {
-    alg: 'ETH', //
+    alg: 'P-256k', //
     typ: 'JWT',
   };
 
