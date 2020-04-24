@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
+import MetamaskGateway from '../../components/MetamaskGateway';
 import MetamaskButton from '../../components/MetamaskButton';
 import Form from './Form';
 import useStyles from './style';
@@ -38,7 +38,9 @@ function Page({ handleMetamaskLogin }) {
         <Typography variant="h4" className={classes.typography1}>
           Sign in with Metamask
         </Typography>
-        <MetamaskButton onClick={handleMetamaskLogin} />
+        <MetamaskGateway>
+          <MetamaskButton onClick={handleMetamaskLogin} />
+        </MetamaskGateway>
         <Typography variant="h6" className={classes.typography2}>
           or
         </Typography>
