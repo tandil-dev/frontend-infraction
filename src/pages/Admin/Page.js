@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import useStyles from './style';
+import {
+  Tabs, Tab, Box, Typography,
+} from '@material-ui/core';
 
+import InfractionList from '../../components/InfractionList';
+import useStyles from './style';
+import { infractions } from './mock';
 
 function TabPanel(props) {
   const {
@@ -26,21 +26,13 @@ function TabPanel(props) {
   );
 }
 
-TabPanel.propTypes = {
-  // eslint-disable-next-line react/require-default-props
-  children: PropTypes.node,
-  // eslint-disable-next-line react/forbid-prop-types
-  index: PropTypes.any.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  value: PropTypes.any.isRequired,
-};
-
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
     'aria-controls': `vertical-tabpanel-${index}`,
   };
 }
+
 export default function VerticalTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -55,29 +47,25 @@ export default function VerticalTabs() {
         orientation="vertical"
         value={value}
         onChange={handleChange}
-        aria-label="Vertical tabs example"
+        aria-label="Menu"
         className={classes.tabs}
       >
-        <Tab label="Infracciones Reportadas" {...a11yProps(0)} />
-        <Tab label="Infracciones Pendientes" {...a11yProps(1)} />
-        <Tab label="Infracciones Confirmadas" {...a11yProps(2)} />
-        <Tab label="Infracciones Saldadas" {...a11yProps(3)} />
-        <Tab label="Entidades Beneficiadas" {...a11yProps(4)} />
+        <Tab label="Reportadas" {...a11yProps(0)} className={classes.tab} />
+        <Tab label="Pendientes" {...a11yProps(1)} className={classes.tab} />
+        <Tab label="Confirmadas" {...a11yProps(2)} className={classes.tab} />
+        <Tab label="Saldadas" {...a11yProps(3)} className={classes.tab} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Infracciones Reportadas
+        <InfractionList infractions={infractions} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Infracciones Pendientes
+        <InfractionList infractions={infractions.slice(3)} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Infracciones Confirmadas
+        <InfractionList infractions={infractions.slice(5)} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Infracciones Saldadas
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Entidades Beneficiadas
+        <InfractionList infractions={infractions.slice(7)} />
       </TabPanel>
     </div>
   );
