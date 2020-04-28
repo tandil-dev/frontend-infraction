@@ -6,11 +6,7 @@ const MainTemplate = ({ children, appProps }) => (
   <>
     <NavBar {...appProps} />
     {children}
-<<<<<<< HEAD
-    <Footer {...appProps} />
-=======
     <Footer />
->>>>>>> develop
   </>
 );
 
