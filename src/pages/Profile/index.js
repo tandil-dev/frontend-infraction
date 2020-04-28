@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 
 
-function Profile() {
+function Page() {
   const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(8),
@@ -18,7 +18,6 @@ function Profile() {
     },
   }
   ));
-
 
   const classes = useStyles();
   return (
@@ -37,4 +36,4 @@ const mapStateToProps = (state) => ({
   currentUser: state.currentUser,
 });
 
-export default connect(mapStateToProps)(withRouter(Profile));
+export default connect(mapStateToProps)(withRouter(Page));
