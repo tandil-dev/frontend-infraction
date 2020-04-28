@@ -9,7 +9,6 @@ import {
   DialogActions,
   Button,
 } from '@material-ui/core';
-import MetamaskButton from '../MetamaskButton';
 
 
 const MetamaskDownload = () => {
@@ -22,10 +21,9 @@ const MetamaskDownload = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
   return (
     <>
-      <MetamaskButton onClick={handleClickOpen} />
+      onClick={handleClickOpen};
       <Dialog
         open={open}
         onClose={handleClose}

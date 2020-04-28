@@ -7,7 +7,7 @@ const MetamaskGateway = ({ children }) => {
   return isWeb3Browser
     ? children
     : (
-      <MetamaskDownload />
+      <children onClick={MetamaskDownload} />
     );
 };
 
