@@ -11,17 +11,15 @@ import MetamaskGateway from '../MetamaskGateway';
 const Footer = ({ currentUser }) => {
   const classes = useStyles();
   const isLogedIn = currentUser.jwt || currentUser.djwt;
+  function onClick() {
+    console.log('click');
+  }
+
   return (
     <>
       {isLogedIn && (
         <MetamaskGateway>
-          <Fab
-            color="primary"
-            aria-label="add"
-            className={classes.fab}
-          >
-            <AddIcon />
-          </Fab>
+          <Fab color="primary" aria-label="add" className={classes.fab} onClick={onClick}><AddIcon /></Fab>
         </MetamaskGateway>
       )}
     </>

@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Button,
-  Fab,
-} from '@material-ui/core';
+import MetamaskDownload from './MetamaskDownload';
 
 const MetamaskGateway = ({ children }) => {
   const isWeb3Browser = !!window.ethereum;
@@ -25,29 +17,10 @@ const MetamaskGateway = ({ children }) => {
     ? children
     : (
       <>
-        <Fab onClick={handleClickOpen}>
-          {children}
-        </Fab>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">Descargar Metamask</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Esta Aplicación requiere Metamask para funcionar correctamente. <br />
-              Por favor instale Metamask en su navegador o ingrese con su email <br />
-              y contraseña.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button href="https://metamask.io/download.html" color="primary" autoFocus>
-              Descargar
-            </Button>
-          </DialogActions>
-        </Dialog>
+        {React.Children.map(children, (child) => React.cloneElement(child, {
+          onClick: handleClickOpen,
+        }))}
+        <MetamaskDownload open={open} handleClose={handleClose} />
       </>
     );
 };

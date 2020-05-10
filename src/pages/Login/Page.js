@@ -25,7 +25,7 @@ function Copyright() {
   );
 }
 
-function Page() {
+function Page({ handleMetamaskLogin }) {
   const classes = useStyles();
 
   return (
@@ -39,7 +39,7 @@ function Page() {
           Sign in with Metamask
         </Typography>
         <MetamaskGateway>
-          <MetamaskButton />
+          <MetamaskButton onClick={handleMetamaskLogin} />
         </MetamaskGateway>
         <Typography variant="h6" className={classes.typography2}>
           or
