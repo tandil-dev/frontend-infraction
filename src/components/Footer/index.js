@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
@@ -11,15 +11,12 @@ import MetamaskGateway from '../MetamaskGateway';
 const Footer = ({ currentUser }) => {
   const classes = useStyles();
   const isLogedIn = currentUser.jwt || currentUser.djwt;
-  function onClick() {
-    console.log('click');
-  }
 
   return (
     <>
       {isLogedIn && (
         <MetamaskGateway>
-          <Fab color="primary" aria-label="add" className={classes.fab} onClick={onClick}><AddIcon /></Fab>
+          <Fab color="primary" aria-label="add" className={classes.fab} component={Link} to="report"><AddIcon /></Fab>
         </MetamaskGateway>
       )}
     </>
