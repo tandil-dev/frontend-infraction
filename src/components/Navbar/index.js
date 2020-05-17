@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 50,
     marginRight: theme.spacing(2),
   },
+  button: {
+    flexGrow: 1,
+  }
 }));
 
 // eslint-disable-next-line no-shadow
@@ -50,7 +53,13 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
               <Button color="inherit" onClick={handleLogout}>Log out</Button>
             </>
           )
-          : <Button component={Link} color="inherit" to="login">Log in</Button>}
+          : (
+            <>
+              <Button component={Link} color="inherit" to="login">Ingresar</Button>
+              <Button component={Link} color="inherit" >Registrarse</Button>
+            </>
+          )  
+        }
       </Toolbar>
     </AppBar>
   );

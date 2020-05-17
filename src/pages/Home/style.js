@@ -5,14 +5,19 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 345,
   },
   media: {
-    height: 140,
+    height: 300,
+    width: "full-width",
   },
   paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
+    width: 500,
     alignItems: 'center',
   },
+  typography: {
+    padding: theme.spacing(2),
+  },
+  popup: {
+    padding: theme.spacing(2),
+  }
 }
 ));
 
