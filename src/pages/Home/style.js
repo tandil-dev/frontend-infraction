@@ -15,9 +15,6 @@ const useStyles = makeStyles((theme) => ({
   typography: {
     padding: theme.spacing(2),
   },
-  popup: {
-    padding: theme.spacing(2),
-  }
 }
 ));
 

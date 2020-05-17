@@ -10,28 +10,26 @@ type DataType = {
 
 const cardsInfo: DataType[] = [
   {
-    title: 'Suppliers',
-    text: 'Suppliers can distribute inventory directly to points of sale, skipping costly intermediaries and bottlenecks to data.',
-    linkText: 'Learn More',
-    href: '/suppliers',
-    shortText: 'New profitable distribution channel',
-    buttonLabel: 'Learn More',
+    title: 'Usuario',
+    text: 'Reportar una infracción',
+    href: '/usuario',
+    shortText: 'Reportar una infracción',
+    buttonLabel: 'Ingresar',
   },
   {
-    title: 'Sellers & Agents',
-    text: 'Access inventory from all suppliers from a single platform with no markup fees and no barriers to entry.',
-    linkText: 'Learn More',
-    href: '/sellers',
-    shortText: 'No fees and bureaucracy to sell inventory',
-    buttonLabel: 'Learn More',
+    title: 'Juez',
+    text: 'Aceptar o rechazar infracciones pendientes',
+    href: '/juez',
+    shortText: 'Acceder a las infracciones pendientes',
+    buttonLabel: 'Ingresar',
   },
   {
-    title: 'Software Vendors',
+    title: 'Oficial de transito',
     text: 'Build your projects on a set of open-source protocols and APIs. Be a part of the ecosystem!',
     linkText: 'Learn More',
-    href: '/software-vendors',
-    shortText: 'Deliver more value to your customers',
-    buttonLabel: 'Learn More',
+    href: '/oficial',
+    shortText: 'Acceder al panel de administración',
+    buttonLabel: 'Ingresar',
   },
 ];
 

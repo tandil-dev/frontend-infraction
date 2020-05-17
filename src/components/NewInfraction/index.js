@@ -1,28 +1,9 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import useStyles from './styles';
 import UserType from '../UserType';
-import { Card } from '@material-ui/core';
 
 
-const InfractionList = ({ infractions }) => {
-  const classes = useStyles();
-  return (
-    <>
-      <Paper className={classes.paper} elevation={3}>
-        <UserType />
-        <Card>
-          <Typography color="primary" className={classes.typography} variant="h6" >Reportar una Infracción</Typography>
-        </Card>
-        <Typography className={classes.typography} ariant="body1" >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-        </Typography>
-        <Button variant="contained" color="secondary" >Registrarse</Button>
-      </Paper>
-    </>
-  );
-};
+const InfractionList = ({ infractions }) => (
+  <UserType />
+);
 
 export default InfractionList;
