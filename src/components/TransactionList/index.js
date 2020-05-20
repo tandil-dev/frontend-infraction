@@ -91,8 +91,7 @@ function TransactionList({ currentReport }) {
           );
         })}
       </List>
-      { checked[0] && checked[1]
-        && (<Button component={Link} color="primary" to="/" fullWidth>Terminar</Button>)}
+      { checked > 1 && (<Button component={Link} color="primary" to="/" fullWidth>Terminar</Button>)}
     </>
   );
 }
