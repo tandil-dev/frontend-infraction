@@ -1,11 +1,7 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Card, CardMedia, Popover, Button, Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import ReactPlayer from 'react-player';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import Popover from '@material-ui/core/Popover';
-import Button from '@material-ui/core/Button';
 import NewInfraction from '../../components/NewInfraction';
 import useStyles from './style';
 
@@ -46,7 +42,13 @@ export default function Home() {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         </Typography>
       </Grid>
-      <Grid justify="center">
+      <Grid
+        className={classes.usertype}
+        container
+        direction="column"
+        alignItems="center"
+        justify="center"
+      >
         <NewInfraction />
       </Grid>
       <Grid
