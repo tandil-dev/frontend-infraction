@@ -1,30 +1,43 @@
 import React from 'react';
+import { withRouter, Link } from 'react-router-dom';
+
 import {
   CardMedia, Card, CardActionArea, CardActions, Typography, Button, CardContent,
 } from '@material-ui/core';
 
 import useStyles from './styles';
 
-export default function InfactionCard({ createdTime }) {
+function InfactionCard({ blockNumber, createdBy, infractionAddress }) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea component={Link} to={`infraction/${infractionAddress}`}>
         <CardMedia
           className={classes.media}
           image="/logo.svg"
         />
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {createdTime}
+          <Typography variant="h6" color="textSecondary">
+            Bloque
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            {blockNumber}
+          </Typography>
+          <Typography variant="h6" color="textSecondary">
+            Creador
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            {`${createdBy.slice(0, 6)} ... ${createdBy.slice(-4)}`}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          View on EtherScan
+        <Button size="small" color="primary" fullWidth component={Link} to={`infraction/${infractionAddress}`}>
+          Ver detalles
         </Button>
       </CardActions>
     </Card>
   );
 }
+
+export default (withRouter(InfactionCard));

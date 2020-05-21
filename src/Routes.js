@@ -8,6 +8,7 @@ import EditProfile from './pages/EditProfile';
 import Profile from './pages/Profile';
 import Admin from './pages/Admin';
 import Report from './pages/Report';
+import MyInfractions from './pages/MyInfractions';
 
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';
@@ -20,6 +21,7 @@ const Routes = () => (
       <UnauthenticatedRoute path="/login" exact component={Login} />
       <AuthenticatedRoute path="/profile" exact component={Profile} />
       <AuthenticatedRoute path="/editProfile" exact component={EditProfile} />
+      <AuthenticatedRoute path="/myInfractions" exact component={MyInfractions} />
       <AuthenticatedRoute path="/report" exact component={Report} />
       <AdminRoute path="/admin" exact component={Admin} />
       <Route component={NotFound} />
