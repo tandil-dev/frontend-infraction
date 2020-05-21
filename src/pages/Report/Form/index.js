@@ -3,7 +3,8 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import DateFnsUtils from '@date-io/date-fns';
-import ReactPlayer from 'react-player';
+// import ReactPlayer from 'react-player';
+import Image from 'material-ui-image';
 
 import {
   Button, TextField, Grid, NativeSelect, Typography, InputLabel, FormControl,
@@ -13,6 +14,7 @@ import {
 } from '@material-ui/pickers';
 
 import useStyles from './styles';
+import { DOMINIO, SITUACION, MAP } from '../consts';
 
 function Form({ onSubmit, currentReport }) {
   const { register, errors, handleSubmit } = useForm({ defaultValues: currentReport });
@@ -22,7 +24,7 @@ function Form({ onSubmit, currentReport }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Grid container justify="center" alignItems="center" className={classes.grid} spacing={2}>
+      <Grid container justify="center" alignItems="stretch" className={classes.grid} spacing={2}>
         <Grid item xs={12}>
           <Typography variant="h6">
             Datos de la infracción
@@ -49,7 +51,11 @@ function Form({ onSubmit, currentReport }) {
         </Grid>
 
         <Grid item xs={12}>
-          <TextField
+          <Image
+            src={SITUACION.URL}
+            aspectRatio={(SITUACION.WIDTH / SITUACION.HEIGHT)}
+          />
+          {/* <TextField
             name="infractionVideo"
             id="infractionVideo"
             label="Url del video donde se ve la infracción"
@@ -63,11 +69,15 @@ function Form({ onSubmit, currentReport }) {
               required: true,
               validate: (url) => ReactPlayer.canPlay(url),
             })}
-          />
+          /> */}
         </Grid>
 
         <Grid item xs={12}>
-          <TextField
+          <Image
+            src={DOMINIO.URL}
+            aspectRatio={(DOMINIO.WIDTH / DOMINIO.HEIGHT)}
+          />
+          {/* <TextField
             name="imagenDominio"
             id="imagenDominio"
             label="Url de la imágen donde se ve el dominio"
@@ -78,7 +88,7 @@ function Form({ onSubmit, currentReport }) {
             multiline
             error={!!errors.imagenDominio}
             inputRef={register({ required: true })}
-          />
+          /> */}
         </Grid>
 
         <Grid item xs={12}>
@@ -92,7 +102,14 @@ function Form({ onSubmit, currentReport }) {
             inputRef={register({ required: true })}
           />
         </Grid>
-        {/* Imagen mapa */}
+
+        <Grid item xs={12}>
+          <Image
+            src={MAP.URL}
+            aspectRatio={(MAP.WIDTH / MAP.HEIGHT)}
+          />
+        </Grid>
+
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid item xs={12}>
             <KeyboardDatePicker
@@ -158,22 +175,11 @@ function Form({ onSubmit, currentReport }) {
               <option value={2}>Camioneta</option>
               <option value={3}>Colectivo</option>
               <option value={4}>Moto</option>
-              <option value={5}>Especies</option>
-              <option value={6}>Otros</option>
+              <option value={5}>Otros</option>
             </NativeSelect>
           </FormControl>
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            name="dominio"
-            id="dominio"
-            label="Ingrese dominio del vehículo (Opcional)"
-            variant="outlined"
-            helperText={errors.dominio && 'Ingrese una patente válida'}
-            fullWidth
-            inputRef={register()}
-          />
-        </Grid>
+
         <Grid item xs={12}>
           <TextField
             name="color"

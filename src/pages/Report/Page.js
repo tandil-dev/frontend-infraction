@@ -21,7 +21,12 @@ function Page({ onSubmit, onStepBack, step }) {
         ))}
       </Stepper>
       {step === 0
-        ? <Form onSubmit={onSubmit} onStepBack={onStepBack} />
+        ? (
+          <Form
+            onSubmit={onSubmit}
+            onStepBack={onStepBack}
+          />
+        )
         : <TransactionList />}
     </Container>
   );

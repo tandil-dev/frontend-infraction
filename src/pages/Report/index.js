@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Page from './Page';
-
+import { DOMINIO, SITUACION } from './consts';
 import reportInfractionAction from '../../redux/actions/reportInfractionAction';
 
 function Report({ reportInfraction }) {
@@ -9,7 +9,11 @@ function Report({ reportInfraction }) {
 
   const onSubmit = (data) => {
     setStep(step + 1);
-    reportInfraction(data); // enviar a redux la data
+    reportInfraction({
+      ...data,
+      infractionVideo: SITUACION.URL,
+      imagenDominio: DOMINIO.URL,
+    }); // enviar a redux la data
   };
 
   return (
