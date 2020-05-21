@@ -26,11 +26,8 @@ const UserType = () => {
   return (
     <>
       {cardsInfo.map((card) => (
-        <Grid item xs={12} className={classes.item}>
-          <Card
-            key={card.info}
-            className={classes.card}
-          >
+        <Grid item xs={12} className={classes.item} key={card.info}>
+          <Card className={classes.card}>
             <Typography align="center" variant="h6" component="h2" className={classes.header}>{card.title}</Typography>
             <Typography align="justify" variant="body1" component="p" className={classes.info}>{card.info}</Typography>
             <Button

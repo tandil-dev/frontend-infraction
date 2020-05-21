@@ -17,7 +17,6 @@ export default function Home() {
         className={classes.header}
       >
         <CardMedia
-          sm
           className={classes.media}
           component="img"
           title="home"
@@ -51,7 +50,7 @@ export default function Home() {
         <Grid item xs={12} className={classes.infracionList}>
           <List component="nav" aria-label="main mailbox folders">
             { infracionList.map((i) => (
-              <ListItem button component={Link} to="report">
+              <ListItem button component={Link} to="report" key={i}>
                 <ListItemIcon>
                   <ReceiptIcon />
                 </ListItemIcon>
