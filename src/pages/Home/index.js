@@ -1,116 +1,78 @@
 import React from 'react';
-import { Card, CardMedia, Popover, Button, Grid } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-import NewInfraction from '../../components/NewInfraction';
+import {
+  Card, CardMedia, Grid, List, ListItem, Typography, ListItemIcon, ListItemText,
+} from '@material-ui/core';
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import UserTypes from '../../components/UserTypes';
 import useStyles from './style';
+import { infracionList } from './data';
 
 export default function Home() {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
   return (
     <>
-      <Grid
-        justify="center"
+      <Card
+        className={classes.header}
       >
-          <Card>
-            <CardMedia sm
-              className={classes.media}
-              component="img"
-              title="home"
-              image="https://images.clarin.com/2018/07/07/multas-de-transito-que-tramites___S105h50MX_1256x620__2.jpg"
-            />
-          </Card>
-        </Grid>
-      <Grid
-        container
-        justify="center"
-      >
-        <Typography className={classes.typography} variant="h4" >¿Qué es "Centinela"?</Typography>
-        <Typography className={classes.typography} ariant="body1" >
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        </Typography>
-      </Grid>
-      <Grid
-        className={classes.usertype}
-        container
-        direction="column"
-        alignItems="center"
-        justify="center"
-      >
-        <NewInfraction />
-      </Grid>
-      <Grid
-        className={classes.popup}
-        container
-        justify="center"
-      >
-        <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
-          ¿Qué denuncias puedo hacer?
-        </Button>
-        <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-        >
-          <Typography className={classes.typography}>
-            <ul>
-              <li>Estacionamiento en cordon amarillo</li>
-              <li>Obstrucción de Rampa/Espacio dreservado</li>
-              <li>Obstrucción de senda peatonal</li>
-              <li>Obstrucción de ochava</li>
-              <li>Estaciona sobre senda peatonal</li>
-              <li>Estaciona sobre espacios verdes</li>
-              <li>Estaciona en dobre o triple fila</li>
-            </ul>
+        <CardMedia
+          sm
+          className={classes.media}
+          component="img"
+          title="home"
+          image="https://images.clarin.com/2018/07/07/multas-de-transito-que-tramites___S105h50MX_1256x620__2.jpg"
+        />
+      </Card>
+      <Grid container className={classes.root}>
+        <Grid item xs={12}>
+          <Typography variant="h4" component="h2" align="center" className={classes.header}>¿Qué es Centinela?</Typography>
+          <Typography ariant="body1" align="justify">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+            ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+            est laborum.
           </Typography>
-        </Popover>
-      </Grid>
-      <Grid
-        container
-        justify="center"
-      >
-        <Grid item sm>
-          <Card>
-            <CardMedia
-              className={classes.media}
-              component={ReactPlayer}
-              url="https://youtu.be/70asKwy15Ds"
-              width="100%"
-              height="100%"
-            />
-          </Card>
         </Grid>
-        <Grid item sm>
-          <Card>
-            <CardMedia
-              className={classes.media}
-              component={ReactPlayer}
-              url="https://youtu.be/YVgfHZMFFFQ"
-              width="100%"
-              height="100%"
-            />
-          </Card>
+        <Grid
+          className={classes.userType}
+          container
+          alignItems="center"
+        >
+          <UserTypes />
+        </Grid>
+        <Grid item xs={12}>
+          <Typography align="center" variant="h5" component="h2">
+            ¿Qué denuncias puedo hacer?
+          </Typography>
+        </Grid>
+        <Grid item xs={12} className={classes.infracionList}>
+          <List component="nav" aria-label="main mailbox folders">
+            { infracionList.map((i) => (
+              <ListItem button component={Link} to="report">
+                <ListItemIcon>
+                  <ReceiptIcon />
+                </ListItemIcon>
+                <ListItemText primary={i} />
+              </ListItem>
+            ))}
+          </List>
+        </Grid>
+        <Grid item xs={12} className={classes.videoPlayer}>
+          <ReactPlayer
+            light
+            url="https://youtu.be/70asKwy15Ds"
+            width="100%"
+          />
+        </Grid>
+        <Grid item xs={12} className={classes.videoPlayer}>
+          <ReactPlayer
+            light
+            url="https://youtu.be/YVgfHZMFFFQ"
+            width="100%"
+          />
         </Grid>
       </Grid>
     </>

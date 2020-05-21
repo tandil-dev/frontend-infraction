@@ -1,22 +1,21 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  media: {
-    height: 300,
-    width: "full-width",
+  header: {
+    margin: theme.spacing(0, 0, 2, 0),
   },
-  typography: {
-    margin: 10,
+  root: {
+    padding: theme.spacing(1),
   },
-  usertype: {
-    margin: 10,
+  userType: {
+    padding: theme.spacing(1),
   },
-  popup: {
-    margin: 10,
+  videoPlayer: {
+    padding: theme.spacing(0, 0, 1, 0),
   },
-  button: {
-    flexGrow: 1,
-  }
+  infracionList: {
+    padding: theme.spacing(0, 0, 2, 0),
+  },
 }
 ));
 
