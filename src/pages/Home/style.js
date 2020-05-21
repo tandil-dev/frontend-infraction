@@ -1,17 +1,20 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+  header: {
+    margin: theme.spacing(0, 0, 2, 0),
+  },
   root: {
-    maxWidth: 345,
+    padding: theme.spacing(1),
   },
-  media: {
-    height: 140,
+  userType: {
+    padding: theme.spacing(1),
   },
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+  videoPlayer: {
+    padding: theme.spacing(0, 0, 1, 0),
+  },
+  infracionList: {
+    padding: theme.spacing(0, 0, 2, 0),
   },
 }
 ));

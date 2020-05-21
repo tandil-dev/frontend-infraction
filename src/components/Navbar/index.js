@@ -50,7 +50,7 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
               <Button color="inherit" onClick={handleLogout}>Log out</Button>
             </>
           )
-          : <Button component={Link} color="inherit" to="login">Log in</Button>}
+          : <Button component={Link} color="inherit" to="login">Ingresar</Button>}
       </Toolbar>
     </AppBar>
   );
