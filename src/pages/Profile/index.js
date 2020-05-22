@@ -11,7 +11,7 @@ import { Button } from '@material-ui/core';
 function Page() {
   const useStyles = makeStyles((theme) => ({
     paper: {
-      marginTop: theme.spacing(8),
+      margin: theme.spacing(2, 0),
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -21,12 +21,13 @@ function Page() {
 
   const classes = useStyles();
   return (
-    <Container component="main" maxWidth="xs">
+    <Container>
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h3">
           Profile
         </Typography>
         <Button component={Link} to="editProfile">Edit Profile</Button>
+        <Button component={Link} to="MyInfractions">Mis infracciones</Button>
       </div>
     </Container>
   );
