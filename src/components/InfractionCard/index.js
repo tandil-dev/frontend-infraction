@@ -11,7 +11,7 @@ function InfactionCard({ blockNumber, createdBy, infractionAddress }) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <CardActionArea component={Link} to={`infraction/${infractionAddress}`}>
+      <CardActionArea component={Link} to={`/infractions/${infractionAddress}`}>
         <CardMedia
           className={classes.media}
           image="/logo.svg"
@@ -32,7 +32,7 @@ function InfactionCard({ blockNumber, createdBy, infractionAddress }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" fullWidth component={Link} to={`infraction/${infractionAddress}`}>
+        <Button size="small" color="primary" fullWidth component={Link} to={`/infractions/${infractionAddress}`}>
           Ver detalles
         </Button>
       </CardActions>
