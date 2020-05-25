@@ -27,18 +27,8 @@ const Footer = ({ currentUser }) => {
       {isLogedIn && (
         <AppBar position="fixed" color="primary" className={classes.appBar}>
           <Toolbar>
-            <Grid container spacing={0} >
-              <Grid container item xs={12} spacing={0} >
-                <Grid item xs={4} key={0} justify="center">
-                    <MetamaskGateway>
-                      <IconButton edge="start" color="inherit">
-                        <Fab color="secondary" aria-label="add" className={classes.fabButton} component={Link} to="report">
-                          <AddAPhoto />
-                        </Fab>
-                      </IconButton>
-                    </MetamaskGateway>
-                  </Grid>
-
+            <Grid container text-align="center">
+              <Grid container item xs={12} spacing={0} justify="center">
                 <Grid item xs={4} key={1} justify="center">
                     <IconButton color="inherit">
                       <Fab color="secondary" aria-label="add" className={classes.fabButton}>
@@ -46,6 +36,16 @@ const Footer = ({ currentUser }) => {
                       </Fab>
                     </IconButton>
                   </Grid>
+
+                <Grid item xs={4} key={0} justify="center">
+                  <MetamaskGateway>
+                    <IconButton edge="start" color="inherit">
+                      <Fab color="secondary" aria-label="add" className={classes.fabButton} component={Link} to="report">
+                        <AddAPhoto />
+                      </Fab>
+                    </IconButton>
+                  </MetamaskGateway>
+                </Grid>
 
                 <Grid item xs={4} key={2} justify="center">
                     <IconButton edge="end" color="inherit">
