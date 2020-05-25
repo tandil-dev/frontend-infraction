@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Admin from './pages/Admin';
 import Report from './pages/Report';
 import MyInfractions from './pages/MyInfractions';
+import Infractions from './pages/Infractions';
 
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';
@@ -24,6 +25,7 @@ const Routes = () => (
       <AuthenticatedRoute path="/myInfractions" exact component={MyInfractions} />
       <AuthenticatedRoute path="/report" exact component={Report} />
       <AdminRoute path="/admin" exact component={Admin} />
+      <AuthenticatedRoute path="/infractions/:id" exact component={Infractions} />
       <Route component={NotFound} />
     </Switch>
   </MainTemplate>

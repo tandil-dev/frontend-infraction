@@ -16,7 +16,7 @@ const Footer = ({ currentUser }) => {
     <>
       {isLogedIn && (
         <MetamaskGateway>
-          <Fab color="primary" aria-label="add" className={classes.fab} component={Link} to="report"><AddIcon /></Fab>
+          <Fab color="primary" aria-label="add" className={classes.fab} component={Link} to="/report"><AddIcon /></Fab>
         </MetamaskGateway>
       )}
     </>
