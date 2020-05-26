@@ -28,6 +28,7 @@ function Page() {
         </Typography>
         <Button component={Link} to="/editProfile">Edit Profile</Button>
         <Button component={Link} to="/MyInfractions">Mis infracciones</Button>
+        <Button component={Link} to="/vote">Verificar infracciones</Button>
       </div>
     </Container>
   );

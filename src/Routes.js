@@ -10,6 +10,8 @@ import Admin from './pages/Admin';
 import Report from './pages/Report';
 import MyInfractions from './pages/MyInfractions';
 import Infractions from './pages/Infractions';
+import VoteInfractions from './pages/VoteInfractions';
+import VoteNext from './pages/VoteNext';
 
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';
@@ -26,6 +28,8 @@ const Routes = () => (
       <AuthenticatedRoute path="/report" exact component={Report} />
       <AdminRoute path="/admin" exact component={Admin} />
       <AuthenticatedRoute path="/infractions/:id" exact component={Infractions} />
+      <AuthenticatedRoute path="/vote/:id" exact component={VoteInfractions} />
+      <AuthenticatedRoute path="/vote" exact component={VoteNext} />
       <Route component={NotFound} />
     </Switch>
   </MainTemplate>
