@@ -7,7 +7,7 @@ import ReactPlayer from 'react-player';
 import { Grid, Typography } from '@material-ui/core';
 import Image from 'material-ui-image';
 import ipfs from '../../web3/ipfs';
-import { abi } from '../../web3/infraction';
+import { infractionAbi } from '../../web3/infraction';
 import { DOMINIO, SITUACION, headers } from './consts';
 import useStyles from './styles';
 
@@ -23,7 +23,7 @@ function InfractionDetails({ match, showStage, address }) {
 
   useEffect(() => {
     if (infractionContract) return;
-    setInfractionContract(subspace.contract({ abi, address }));
+    setInfractionContract(subspace.contract({ abi: infractionAbi, address }));
   }, [subspace, infractionContract, match.params.id]);
 
   useEffect(() => {

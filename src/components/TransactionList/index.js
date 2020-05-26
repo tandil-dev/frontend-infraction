@@ -11,7 +11,7 @@ import {
 import CheckIcon from '@material-ui/icons/Check';
 
 import ipfs from '../../web3/ipfs';
-import { abi, infractionFactoryAddress } from '../../web3/infractionFactory';
+import { infractionFactoryAbi, infractionFactoryAddress } from '../../web3/infractionFactory';
 import { infractionsData } from './infractions';
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +51,7 @@ function TransactionList({ currentReport }) {
 
   useEffect(() => {
     if (infractionFactory) return;
-    setInfractionFactory(subspace.contract({ abi, address: infractionFactoryAddress }));
+    setInfractionFactory(subspace.contract({ abi: infractionFactoryAbi, address: infractionFactoryAddress }));
   }, [subspace]);
 
   const sendTx = async () => {
@@ -59,7 +59,7 @@ function TransactionList({ currentReport }) {
 
     infractionFactory.methods
       .createInfraction(ipfsHash, currentReport.infractionVideo, currentReport.imagenDominio)
-      .send({ from: subspace.web3.eth.defaultAccount, gasLimit: 2100000 })
+      .send({ from: subspace.web3.eth.defaultAccount, gasLimit: 3000000 })
       .then((r) => {
         // eslint-disable-next-line no-console
         console.log(r);
