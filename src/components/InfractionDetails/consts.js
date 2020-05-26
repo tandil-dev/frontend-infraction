@@ -13,3 +13,12 @@ export const MAP = {
   HEIGHT: '707',
   URL: '/map.png',
 };
+
+export const headers = {
+  address: 'Dirección',
+  description: 'Descripción',
+  dominio: 'Dominio',
+  color: 'Color',
+  marca: 'Marca',
+  modelo: 'Modelo',
+};

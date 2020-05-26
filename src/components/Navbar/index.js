@@ -45,10 +45,12 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
         {isLogedIn
           ? (
             <>
+              <Button component={Link} color="inherit" to="/admin">Admin</Button>
+              <Button component={Link} color="inherit" to="/profile">Profile</Button>
               <Button color="inherit" onClick={handleLogout}>Log out</Button>
             </>
           )
-          : <Button component={Link} color="inherit" to="login">Ingresar</Button>}
+          : <Button component={Link} color="inherit" to="/login">Ingresar</Button>}
       </Toolbar>
     </AppBar>
   );
