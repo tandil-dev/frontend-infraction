@@ -1,12 +1,17 @@
-// @flow
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import useStyles from './style';
+import {
+  AppBar, Toolbar, IconButton, Grid,
+} from '@material-ui/core';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import AddAPhoto from '@material-ui/icons/AddAPhoto';
+
 import MetamaskGateway from '../MetamaskGateway';
 
+import IconMenu from './IconMenu';
+
+import useStyles from './styles';
 
 const Footer = ({ currentUser }) => {
   const classes = useStyles();
@@ -15,9 +20,29 @@ const Footer = ({ currentUser }) => {
   return (
     <>
       {isLogedIn && (
-        <MetamaskGateway>
-          <Fab color="primary" aria-label="add" className={classes.fab} component={Link} to="/report"><AddIcon /></Fab>
-        </MetamaskGateway>
+        <AppBar position="fixed" color="primary" className={classes.appBar}>
+          <Toolbar>
+            <Grid container className={classes.grid}>
+              <Grid item xs={4}>
+                <IconButton color="inherit" component={Link} to="/profile">
+                  <AccountCircle />
+                </IconButton>
+              </Grid>
+
+              <Grid item xs={4}>
+                <MetamaskGateway>
+                  <IconButton color="inherit" component={Link} to="/report">
+                    <AddAPhoto />
+                  </IconButton>
+                </MetamaskGateway>
+              </Grid>
+
+              <Grid item xs={4}>
+                <IconMenu />
+              </Grid>
+            </Grid>
+          </Toolbar>
+        </AppBar>
       )}
     </>
   );
