@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 
 import InfactionList from '../../components/InfractionList';
-import { abi, infractionFactoryAddress, infractionFactorydeployBlock } from '../../web3/infractionFactory';
+import { infractionFactoryAbi, infractionFactoryAddress, infractionFactorydeployBlock } from '../../web3/infractionFactory';
 
 import useStyles from './styles';
 
@@ -20,7 +20,9 @@ function Page() {
 
   useEffect(() => {
     if (infractionFactoryContract) return;
-    setInfractionFactoryContract(subspace.contract({ abi, address: infractionFactoryAddress }));
+    setInfractionFactoryContract(
+      subspace.contract({ abi: infractionFactoryAbi, address: infractionFactoryAddress }),
+    );
   }, [subspace, infractionFactoryContract]);
 
   useEffect(() => {
