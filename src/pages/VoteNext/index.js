@@ -64,7 +64,15 @@ function Page() {
   }, [infraction]);
 
   async function handleTrue() {
-    console.log(true);
+    infraction.methods
+      .vote(true)
+      .send({ from: subspace.web3.eth.defaultAccount, gasLimit: 3000000 })
+      .then((r) => {
+        console.log('Vote saved', r);
+      })
+    // eslint-disable-next-line no-console
+      .catch((e) => console.log(e));
+
     setIndex(index + 1);
     setHasVoted(true);
     setInfraction(undefined);
@@ -72,14 +80,22 @@ function Page() {
   }
 
   async function handleFalse() {
-    console.log(false);
+    infraction.methods
+      .vote(false)
+      .send({ from: subspace.web3.eth.defaultAccount, gasLimit: 3000000 })
+      .then((r) => {
+        console.log('Vote saved', r);
+      })
+    // eslint-disable-next-line no-console
+      .catch((e) => console.log(e));
+
     setIndex(index + 1);
     setHasVoted(true);
     setInfraction(undefined);
     setInfractionAddress(undefined);
   }
   console.log(index, totalInfractions);
-  if (index === totalInfractions) return <NoMoreInfrctions />;
+  if (index >= totalInfractions) return <NoMoreInfrctions />;
   return (
     <>
       { hasVoted
