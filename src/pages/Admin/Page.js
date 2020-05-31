@@ -1,30 +1,15 @@
-import React from 'react';
+/* eslint-disable radix */
+import React, { useState, useEffect } from 'react';
+import { useSubspace } from '@embarklabs/subspace-react';
+
 import {
-  Tabs, Tab, Box, Typography,
+  Tabs, Tab,
 } from '@material-ui/core';
 
-import InfractionList from '../../components/InfractionList';
+import InfractionTabPanel from './InfractionTabPanel';
 import useStyles from './style';
-import { infractions } from './mock';
-
-function TabPanel(props) {
-  const {
-    children, value, index, ...other
-  } = props;
-
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
-  );
-}
+import { infractionFactoryAbi, infractionFactoryAddress } from '../../web3/infractionFactory';
+import { infractionAbi } from '../../web3/infraction';
 
 function a11yProps(index) {
   return {
@@ -34,39 +19,101 @@ function a11yProps(index) {
 }
 
 export default function VerticalTabs() {
+  const subspace = useSubspace();
+  const [tab, setTab] = useState(1);
+  const [infractionFactoryContract, setInfractionFactoryContract] = useState();
+  const [totalInfractions, setTotalInfractions] = useState(0);
+  const [page, setPage] = useState(1);
+  const [address, setAddress] = useState();
+  const [infractionContract, setInfractionContract] = useState();
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  useEffect(() => {
+    if (infractionFactoryContract) return;
+    setInfractionFactoryContract(
+      subspace.contract({ abi: infractionFactoryAbi, address: infractionFactoryAddress }),
+    );
+  }, [subspace, infractionFactoryContract]);
+
+
+  useEffect(() => {
+    if (!infractionFactoryContract) return;
+
+    const methods = ['getTotalInfactinsForVote', 'getTotalInfactinsForDepartmentReview', 'getTotalInfactinsForJudgeReview'];
+    const method = methods[tab];
+    infractionFactoryContract.methods[method]().call()
+      .then((total) => {
+        setTotalInfractions(parseInt(total));
+      });
+  }, [subspace, infractionFactoryContract, tab]);
+
+  useEffect(() => {
+    if (page > totalInfractions) console.log('Page out of range');
+    if (!totalInfractions || page > totalInfractions) return;
+    const methods = ['infractionsForVote(uint256)', 'infractionsForDepartmentReview(uint256)', 'infractionsForJudgeReview(uint256)'];
+    const method = methods[tab];
+    infractionFactoryContract.methods[method](page - 1).call()
+      .then((_address) => {
+        setAddress(_address);
+      });
+  }, [totalInfractions, tab, page]);
+
+  useEffect(() => {
+    if (infractionContract || !address) return;
+    setInfractionContract(subspace.contract({ abi: infractionAbi, address }));
+  }, [subspace, infractionContract, address]);
+
+  const handleTabChange = (event, newValue) => {
+    setAddress(undefined);
+    setTotalInfractions(0);
+    setTab(newValue);
+    setPage(1);
+  };
+
+  const handlePageChange = (event, newValue) => {
+    setAddress(undefined);
+    setPage(newValue);
+  };
+
+  const handleAction = async (value) => {
+    if (!infractionContract) return;
+    const methods = {
+      1: {
+        true: 'departamentApproves()',
+        false: 'departamentRejects()',
+      },
+      2: {
+        true: 'courtApproves()',
+        false: 'courtRejects()',
+      },
+    };
+    const method = methods[tab][value];
+    infractionContract.methods[method]()
+      .send({ from: subspace.web3.eth.defaultAccount, gasLimit: 3000000 })
+      .then((r) => {
+        console.log('saved', r);
+      });
   };
 
   return (
     <div className={classes.root}>
       <Tabs
         orientation="vertical"
-        value={value}
-        onChange={handleChange}
+        value={tab}
+        onChange={handleTabChange}
         aria-label="Menu"
         className={classes.tabs}
+        fullWidth
       >
-        <Tab label="Reportadas" {...a11yProps(0)} className={classes.tab} />
-        <Tab label="Pendientes" {...a11yProps(1)} className={classes.tab} />
-        <Tab label="Confirmadas" {...a11yProps(2)} className={classes.tab} />
-        <Tab label="Saldadas" {...a11yProps(3)} className={classes.tab} />
+        <Tab label="Verificación comunitaria" {...a11yProps(0)} className={classes.tab} />
+        <Tab label="Verificación en departamento" {...a11yProps(1)} className={classes.tab} />
+        <Tab label="Verificación en juzgado" {...a11yProps(2)} className={classes.tab} />
+        <Tab label="Todas" {...a11yProps(3)} className={classes.tab} />
       </Tabs>
-      <TabPanel value={value} index={0}>
-        <InfractionList infractions={infractions} />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <InfractionList infractions={infractions.slice(3)} />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <InfractionList infractions={infractions.slice(5)} />
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <InfractionList infractions={infractions.slice(7)} />
-      </TabPanel>
+      <InfractionTabPanel value={tab} index={0} address={address} totalInfractions={totalInfractions} page={page} handleChange={handlePageChange} handleAction={handleAction} />
+      <InfractionTabPanel value={tab} index={1} address={address} totalInfractions={totalInfractions} page={page} handleChange={handlePageChange} handleAction={handleAction} />
+      <InfractionTabPanel value={tab} index={2} address={address} totalInfractions={totalInfractions} page={page} handleChange={handlePageChange} handleAction={handleAction} />
+      <InfractionTabPanel value={tab} index={3} address={address} totalInfractions={totalInfractions} page={page} handleChange={handlePageChange} />
     </div>
   );
 }
