@@ -5,7 +5,9 @@ import Footer from '../../components/Footer';
 const MainTemplate = ({ children, appProps }) => (
   <>
     <NavBar {...appProps} />
-    {children}
+    <div style={{ marginBottom: '60px' }}>
+      {children}
+    </div>
     <Footer {...appProps} />
   </>
 );
