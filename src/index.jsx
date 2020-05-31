@@ -1,13 +1,14 @@
-import React from "react";
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { SubspaceProvider } from '@embarklabs/subspace-react';
+
 import { Provider } from 'react-redux';
 import Routes from './Routes';
 
 import * as serviceWorker from './serviceWorker';
 import store from './redux/store';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { web3 } from './web3';
 
 const render = (Component) => {
   let renderMethod = ReactDOM.render;
@@ -16,10 +17,12 @@ const render = (Component) => {
   }
   renderMethod(
     <Provider store={store}>
+      <SubspaceProvider web3={web3}>
         <Router>
           <Component />
         </Router>
-      </Provider>,
+      </SubspaceProvider>
+    </Provider>,
     document.getElementById('root'),
   );
 };

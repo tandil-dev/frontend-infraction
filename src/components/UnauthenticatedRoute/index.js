@@ -1,43 +1,42 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 function querystring(name, url = window.location.href) {
-  name = name.replace(/[[]]/g, "\\$&");
+  const replacedName = name.replace(/[[]]/g, '\\$&');
 
-  const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)", "i");
+  const regex = new RegExp(`[?&]${replacedName}(=([^&#]*)|&|#|$)`, 'i');
   const results = regex.exec(url);
 
   if (!results) {
     return null;
   }
   if (!results[2]) {
-    return "";
+    return '';
   }
 
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
 function UnauthenticatedRoute({ component: C, currentUser, ...rest }) {
-  const redirect = querystring("redirect");
-  
+  const redirect = querystring('redirect');
+  const isLogedIn = currentUser.jwt || currentUser.djwt;
   return (
     <Route
       {...rest}
-      render={props =>
-        !currentUser.jwt
-          ? <C {...props} />
-          : <Redirect
-              to={redirect === "" || redirect === null ? "/" : redirect}
-            />}
+      render={(props) => (!isLogedIn
+        ? <C {...props} />
+        : (
+          <Redirect
+            to={redirect === '' || redirect === null ? '/profile' : redirect}
+          />
+        ))}
     />
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentUser: state.currentUser,
-  }
-}
+const mapStateToProps = (state) => ({
+  currentUser: state.currentUser,
+});
 
 export default connect(mapStateToProps)(UnauthenticatedRoute);
