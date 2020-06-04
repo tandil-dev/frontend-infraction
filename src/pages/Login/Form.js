@@ -22,7 +22,7 @@ function Form(props) {
           <TextField
             variant="outlined"
             required
-            fullWidth
+            
             id="email"
             label="Email Address"
             name="email"
@@ -42,7 +42,7 @@ function Form(props) {
           <TextField
             variant="outlined"
             required
-            fullWidth
+            
             name="password"
             label="Password"
             type="password"
@@ -61,7 +61,7 @@ function Form(props) {
       </Grid>
       <Button
         type="submit"
-        fullWidth
+        
         variant="contained"
         color="secondary"
         className={classes.submit}
