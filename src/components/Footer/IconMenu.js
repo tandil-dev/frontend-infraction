@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button, Menu, MenuItem } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import { menuData } from './data';
 import logout from '../../redux/actions/logout';
+
 
 // eslint-disable-next-line no-shadow
 function IconMenu({ logout, history }) {
@@ -28,7 +30,7 @@ function IconMenu({ logout, history }) {
   return (
     <div>
       <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        <MenuIcon />
+        <MenuIcon color="inherit" />
       </Button>
       <Menu
         id="simple-menu"
@@ -37,6 +39,9 @@ function IconMenu({ logout, history }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        {menuData.map(({ to, label }) => (
+          <MenuItem component={Link} to={to} onClick={handleClose}>{label}</MenuItem>
+        ))}
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>
