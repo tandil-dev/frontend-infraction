@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Button, Menu, MenuItem } from '@material-ui/core';
+
+import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import logout from '../../redux/actions/logout';
@@ -27,9 +28,11 @@ function IconMenu({ logout, history }) {
 
   return (
     <div>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+      <IconButton alignItems="center" color="inherit" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
         <MenuIcon />
-      </Button>
+      </IconButton>
+
+
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
