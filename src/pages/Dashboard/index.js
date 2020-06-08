@@ -13,7 +13,7 @@ function Dashboard() {
     <Grid container justify="space-around" className={classes.grid}>
       {/* <MyReportedInfractionsCard /> */}
       {cardsData.map((i) => (
-        <Grid item md={3} xs={11} className={classes.gridItem} key={i}>
+        <Grid item md={3} xs={11} className={classes.gridItem} key={i.mainText}>
           <DashBoardCard {...i} />
         </Grid>
       ))}

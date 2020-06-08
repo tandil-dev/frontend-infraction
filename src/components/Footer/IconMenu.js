@@ -43,7 +43,7 @@ function IconMenu({ logout, history }) {
         onClose={handleClose}
       >
         {menuData.map(({ to, label }) => (
-          <MenuItem component={Link} to={to} onClick={handleClose}>{label}</MenuItem>
+          <MenuItem component={Link} to={to} onClick={handleClose} key={label}>{label}</MenuItem>
         ))}
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
