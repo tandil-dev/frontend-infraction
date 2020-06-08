@@ -2,9 +2,11 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
+
   AppBar, Toolbar, IconButton, Grid,
 } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+
 import AddAPhoto from '@material-ui/icons/AddAPhoto';
 
 import MetamaskGateway from '../MetamaskGateway';
@@ -40,6 +42,7 @@ const Footer = ({ currentUser }) => {
               <Grid item xs={4}>
                 <IconMenu />
               </Grid>
+
             </Grid>
           </Toolbar>
         </AppBar>
