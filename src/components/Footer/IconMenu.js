@@ -30,7 +30,7 @@ function IconMenu({ logout, history }) {
 
   return (
     <div>
-      <IconButton alignItems="center" color="inherit" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+      <IconButton color="inherit" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
         <MenuIcon />
       </IconButton>
 
