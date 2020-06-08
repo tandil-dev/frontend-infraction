@@ -12,7 +12,7 @@ import { infractionFactoryAbi, infractionFactoryAddress, infractionFactorydeploy
 
 import useStyles from './styles';
 
-function Page() {
+function ReportedInfractions() {
   const subspace = useSubspace();
   const [infractionFactoryContract, setInfractionFactoryContract] = useState();
   const [myInfractionsObservable$, setMyInfractionsObservable] = useState();
@@ -46,7 +46,7 @@ function Page() {
     <Grid container className={classes.grid}>
       <Grid item xs={12}>
         <Typography component="h2" variant="h4" className={classes.header} align="center">
-          Mis infracciones
+          Infracciones reportadas
         </Typography>
       </Grid>
       <Grid item xs={12}>
@@ -62,4 +62,4 @@ const mapStateToProps = (state) => ({
   currentUser: state.currentUser,
 });
 
-export default connect(mapStateToProps)(withRouter(Page));
+export default connect(mapStateToProps)(withRouter(ReportedInfractions));

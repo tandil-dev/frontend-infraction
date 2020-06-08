@@ -21,7 +21,7 @@ const NoMoreInfractions = () => {
       <Grid item xs={12}>
         <Button
           component={Link}
-          to="/profile"
+          to="/dashboard"
           variant="contained"
           color="secondary"
           fullWidth
