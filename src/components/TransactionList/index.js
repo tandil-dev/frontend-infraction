@@ -2,10 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import all from 'it-all';
 import { useSubspace } from '@embarklabs/subspace-react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  List, ListItem, ListItemIcon, ListItemText, CircularProgress, Button,
+  List, ListItem, ListItemIcon, ListItemText, CircularProgress, Button, Typography,
 } from '@material-ui/core';
 
 import CheckIcon from '@material-ui/icons/Check';
@@ -25,19 +26,47 @@ const useStyles = makeStyles((theme) => ({
 function TransactionList({ currentReport }) {
   const [checked, setChecked] = useState(0);
   const classes = useStyles();
+  const [domainIpfsHash, setDomainIpfsHash] = useState(undefined);
   const [ipfsHash, setIpfsHash] = useState(undefined);
+
   const subspace = useSubspace();
   const [infractionFactory, setInfractionFactory] = useState(null);
+
 
   async function saveToIpfs(reportData) {
     try {
       const ipfs2 = await ipfs; // ipfs is a promise here, need to await
-      const result = [];
-      for await (const resultPart of ipfs2.add([JSON.stringify(reportData)])) {
-        result.push(resultPart);
+
+      const fileObjectsArray = [];
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < reportData.situationFiles.length; i++) {
+        fileObjectsArray.push({
+          path: reportData.situationFiles[i].name,
+          content: reportData.situationFiles[i],
+        });
       }
-      setIpfsHash(result[0].path);
+
+      const situationResult = await all(
+        ipfs2.add(
+          fileObjectsArray,
+          {
+            wrapWithDirectory: true,
+            pin: true,
+          },
+        ),
+      );
+      const directory = situationResult.find(({ path }) => path === '');
+      if (!directory) throw new Error('Error creating directory');
       setChecked(1);
+      const domainResult = await all(ipfs2.add([reportData.domainFile], { pin: true }));
+      setDomainIpfsHash(domainResult[domainResult.length - 1].cid.string);
+      setChecked(2);
+      const dataResult = await all(ipfs2.add([JSON.stringify({
+        ...reportData,
+        situationHash: directory.cid.string,
+      })], { pin: true }));
+      setIpfsHash(dataResult[dataResult.length - 1].cid.string);
+      setChecked(3);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
@@ -51,24 +80,26 @@ function TransactionList({ currentReport }) {
 
   useEffect(() => {
     if (infractionFactory) return;
-    setInfractionFactory(subspace.contract({ abi: infractionFactoryAbi, address: infractionFactoryAddress }));
+    setInfractionFactory(subspace.contract(
+      { abi: infractionFactoryAbi, address: infractionFactoryAddress },
+    ));
   }, [subspace]);
 
   const sendTx = async () => {
     if (!infractionFactory) return;
 
     infractionFactory.methods
-      .createInfraction(ipfsHash, currentReport.infractionVideo, currentReport.imagenDominio)
+      .createInfraction(ipfsHash, domainIpfsHash)
       .send({ from: subspace.web3.eth.defaultAccount, gasLimit: 3000000 })
       .then((r) => {
         // eslint-disable-next-line no-console
         console.log(r);
-        setChecked(3);
+        setChecked(5);
       })
       // eslint-disable-next-line no-console
       .catch((e) => console.log(e));
 
-    setChecked(2);
+    setChecked(4);
   };
 
   useEffect(() => {
@@ -91,7 +122,16 @@ function TransactionList({ currentReport }) {
           );
         })}
       </List>
-      { checked > 1 && (<Button component={Link} color="primary" to="/" fullWidth>Terminar</Button>)}
+      { checked > 3 && (
+      <>
+        <Typography variant="body1">
+          Luego de confirmar la transacción, esta puede tardar un largo
+          tiempo en crearse. De todas formas, puede salir de esta página. La infraccción
+          aparecer en la lista de infracciones creadas cuando sea procesada.
+        </Typography>
+        <Button component={Link} color="primary" to="/" fullWidth>Atrás</Button>
+      </>
+      )}
     </>
   );
 }

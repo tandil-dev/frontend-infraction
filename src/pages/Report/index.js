@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Page from './Page';
-import { DOMINIO, SITUACION } from './consts';
 import reportInfractionAction from '../../redux/actions/reportInfractionAction';
 
 function Report({ reportInfraction }) {
@@ -11,9 +10,9 @@ function Report({ reportInfraction }) {
     setStep(step + 1);
     reportInfraction({
       ...data,
-      infractionVideo: SITUACION.URL,
-      imagenDominio: DOMINIO.URL,
-    }); // enviar a redux la data
+      situationFiles: data.situationFiles,
+      domainFile: data.domainFile[0],
+    });
   };
 
   return (
@@ -26,10 +25,8 @@ function Report({ reportInfraction }) {
   );
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToPros = {
   reportInfraction: reportInfractionAction,
 };
 
-export default connect(mapStateToProps, mapDispatchToPros)(Report);
+export default connect(null, mapDispatchToPros)(Report);

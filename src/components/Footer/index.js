@@ -26,7 +26,7 @@ const Footer = ({ currentUser }) => {
           <Toolbar>
             <Grid container className={classes.grid}>
               <Grid item xs={4}>
-                <IconButton color="inherit" component={Link} to="/profile">
+                <IconButton color="inherit" component={Link} to="/dashboard">
                   <AccountCircle />
                 </IconButton>
               </Grid>
