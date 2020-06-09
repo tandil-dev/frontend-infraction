@@ -28,6 +28,7 @@ export default function Home() {
           <ReactPlayer
             url="https://youtu.be/HfUFuNCZ3T8"
             width="100%"
+            controls="true"
           />
         </Grid>
         <Grid
@@ -47,6 +48,7 @@ export default function Home() {
             <ReactPlayer
               url="https://youtu.be/15jzJiw7gJw"
               width="100%"
+              controls="true"
             />
           </Grid>
         </Grid>
