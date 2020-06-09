@@ -8,6 +8,9 @@ const useStyles = makeStyles((theme) => ({
   image: {
     padding: theme.spacing(0, 0, 3, 0),
   },
+  button: {
+    margin: theme.spacing(3, 0),
+  },
 }));
 
 export default useStyles;

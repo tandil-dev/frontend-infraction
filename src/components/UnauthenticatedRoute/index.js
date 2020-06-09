@@ -28,7 +28,7 @@ function UnauthenticatedRoute({ component: C, currentUser, ...rest }) {
         ? <C {...props} />
         : (
           <Redirect
-            to={redirect === '' || redirect === null ? '/profile' : redirect}
+            to={redirect === '' || redirect === null ? '/dashboard' : redirect}
           />
         ))}
     />

@@ -210,17 +210,12 @@ export const infractionFactoryAbi = [
     inputs: [
       {
         internalType: 'string',
-        name: 'infractionData',
+        name: 'infractionDataHash',
         type: 'string',
       },
       {
         internalType: 'string',
-        name: 'infractionVideoUrl',
-        type: 'string',
-      },
-      {
-        internalType: 'string',
-        name: 'infractionDomainUrl',
+        name: 'domainImageHash',
         type: 'string',
       },
     ],
