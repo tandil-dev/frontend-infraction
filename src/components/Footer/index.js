@@ -38,7 +38,7 @@ const Footer = ({ currentUser }) => {
               </Grid>
 
               <Grid item xs={4}>
-                <IconMenu />
+                <IconMenu border-radius="50%" />
               </Grid>
             </Grid>
           </Toolbar>
