@@ -15,14 +15,17 @@ const UserType = () => {
           <Card className={classes.card}>
             <Typography align="center" variant="h5" component="h2" className={classes.header}>{card.title}</Typography>
             <Typography align="justify" variant="body1" component="p" className={classes.info}>{card.info}</Typography>
-            <Button
-              component={Link}
-              to={card.to}
-              variant="contained"
-              fullWidth
-            >
-              {card.buttonLabel}
-            </Button>
+            {card.to
+              && (
+              <Button
+                component={Link}
+                to={card.to}
+                variant="contained"
+                fullWidth
+              >
+                {card.buttonLabel}
+              </Button>
+              )}
           </Card>
         </Grid>
       ))}
