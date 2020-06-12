@@ -9,13 +9,9 @@ export const cardsInfo = [
   {
     title: 'Departamento de tránsito',
     info: 'El departamento de tránsito se encarga de verifcar las infracciones reportadas y comprar que los datos sean correctos.',
-    to: '/login',
-    buttonLabel: 'Verificar',
   },
   {
     title: 'Juzgado de faltas',
     info: 'Se verifican las pruebas presentadas, se emite la multa correspondiente y notifica mediante correspondencia al infractor.',
-    to: '/login',
-    buttonLabel: 'Verificar y emitir',
   },
 ];
