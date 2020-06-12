@@ -1,24 +1,30 @@
 import React from 'react';
+import { observe } from '@embarklabs/subspace-react';
 import {
-  Card, Typography, CardContent,
+  Card, Typography, CardContent, LinearProgress,
 } from '@material-ui/core';
 
 import useStyles from './styles';
 
 function DashboardCard({ mainText, secondaryText }) {
   const classes = useStyles();
+
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography variant="h6" color="textSecondary">
           {mainText}
         </Typography>
-        <Typography variant="body2" color="textSecondary">
-          {secondaryText}
-        </Typography>
+        { secondaryText || secondaryText === 0
+          ? (
+            <Typography variant="body2" color="textSecondary">
+              {secondaryText}
+            </Typography>
+          )
+          : <LinearProgress />}
       </CardContent>
     </Card>
   );
 }
 
-export default (DashboardCard);
+export default observe(DashboardCard);
