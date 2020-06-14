@@ -14,17 +14,12 @@ export const infractionAbi = [
       },
       {
         internalType: 'string',
-        name: '_infractionData',
+        name: '_infractionDataHash',
         type: 'string',
       },
       {
         internalType: 'string',
-        name: '_infractionVideoUrl',
-        type: 'string',
-      },
-      {
-        internalType: 'string',
-        name: '_infractionDomainUrl',
+        name: '_domainImageHash',
         type: 'string',
       },
     ],
@@ -143,6 +138,19 @@ export const infractionAbi = [
   },
   {
     inputs: [],
+    name: 'domainImageHash',
+    outputs: [
+      {
+        internalType: 'string',
+        name: '',
+        type: 'string',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
     name: 'factory',
     outputs: [
       {
@@ -175,33 +183,7 @@ export const infractionAbi = [
   },
   {
     inputs: [],
-    name: 'infractionData',
-    outputs: [
-      {
-        internalType: 'string',
-        name: '',
-        type: 'string',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'infractionDomainUrl',
-    outputs: [
-      {
-        internalType: 'string',
-        name: '',
-        type: 'string',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'infractionVideoUrl',
+    name: 'infractionDataHash',
     outputs: [
       {
         internalType: 'string',

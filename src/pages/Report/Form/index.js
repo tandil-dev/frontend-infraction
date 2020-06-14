@@ -14,7 +14,7 @@ import {
 } from '@material-ui/pickers';
 
 import useStyles from './styles';
-import { DOMINIO, SITUACION, MAP } from '../consts';
+import { MAP } from '../consts';
 
 function Form({ onSubmit, currentReport }) {
   const { register, errors, handleSubmit } = useForm({ defaultValues: currentReport });
@@ -31,13 +31,12 @@ function Form({ onSubmit, currentReport }) {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <FormControl fullWidth>
-            <InputLabel htmlFor="age-native-helper">Tipo de infracción</InputLabel>
+          <FormControl fullWidth ref={register({ required: true })}>
+            <InputLabel htmlFor="InfractionType">Tipo de infracción</InputLabel>
             <NativeSelect
               id="InfractionType"
               name="InfractionType"
               fullWidth
-              ref={register({ required: true })}
             >
               <option value={0}>Alta velocidad</option>
               <option value={1}>Estaciona en cordón amarillo</option>
@@ -51,44 +50,31 @@ function Form({ onSubmit, currentReport }) {
         </Grid>
 
         <Grid item xs={12}>
-          <Image
-            src={SITUACION.URL}
-            aspectRatio={(SITUACION.WIDTH / SITUACION.HEIGHT)}
-          />
-          {/* <TextField
-            name="infractionVideo"
-            id="infractionVideo"
-            label="Url del video donde se ve la infracción"
-            helperText={errors.infractionVideo && 'No se reconoce el video.'}
-            variant="outlined"
-            type="url"
-            error={!!errors.infractionVideo}
-            fullWidth
-            multiline
-            inputRef={register({
-              required: true,
-              validate: (url) => ReactPlayer.canPlay(url),
-            })}
-          /> */}
+          <FormControl fullWidth ref={register({ required: true })}>
+            <Typography>Situación</Typography>
+            <input
+              type="file"
+              id="situationFiles"
+              name="situationFiles"
+              multiple
+              // accept="image/png, image/jpeg"
+              ref={register({ required: true })}
+            />
+          </FormControl>
         </Grid>
 
         <Grid item xs={12}>
-          <Image
-            src={DOMINIO.URL}
-            aspectRatio={(DOMINIO.WIDTH / DOMINIO.HEIGHT)}
-          />
-          {/* <TextField
-            name="imagenDominio"
-            id="imagenDominio"
-            label="Url de la imágen donde se ve el dominio"
-            helperText={errors.imagenDominio && 'Ingrese url de imagen de dominio'}
-            variant="outlined"
-            type="url"
-            fullWidth
-            multiline
-            error={!!errors.imagenDominio}
-            inputRef={register({ required: true })}
-          /> */}
+          <FormControl fullWidth ref={register({ required: true })}>
+            {/* <InputLabel htmlFor="domain">Dominio</InputLabel> */}
+            <Typography>Domino</Typography>
+            <input
+              type="file"
+              id="domainFile"
+              name="domainFile"
+              accept="image/png, image/jpeg"
+              ref={register({ required: true })}
+            />
+          </FormControl>
         </Grid>
 
         <Grid item xs={12}>
@@ -162,13 +148,12 @@ function Form({ onSubmit, currentReport }) {
         </Grid>
 
         <Grid item xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth ref={register({ required: true })}>
             <InputLabel htmlFor="age-native-helper">Tipo de vehículo</InputLabel>
             <NativeSelect
               name="vehicleType"
               id="vehicleType"
               fullWidth
-              ref={register({ required: true })}
             >
               <option value={0}>Auto</option>
               <option value={1}>Camion</option>

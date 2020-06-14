@@ -1,21 +1,17 @@
 // eslint-disable-next-line import/prefer-default-export
 export const cardsInfo = [
   {
-    title: 'Ciudadano',
-    info: 'Como ciudadano, tenés derecho a reportar contravenciones y faltas municipales. Estas son eveluadas por el municio e emitida la multa correspondiente.',
+    title: 'Ciudadanos',
+    info: 'Ganá incentivos contribuyendo. Reportá contravenciones y faltas municipales, verificá reportes de otros usuarios y recibí un incentivo.',
     to: '/login',
-    buttonLabel: 'Reportar infracción',
+    buttonLabel: 'Reportar y verificar',
   },
   {
     title: 'Departamento de tránsito',
-    info: 'El departamento de tránsito se encarga de verifcar las infracciones reportadas y comprar que los datos sean correctos. Las pruebas son dirigidas posteriormente al juzgado competente local.',
-    to: '/login',
-    buttonLabel: 'Verificar infracción',
+    info: 'El departamento de tránsito se encarga de verifcar las infracciones reportadas y comprar que los datos sean correctos.',
   },
   {
     title: 'Juzgado de faltas',
-    info: 'Aqui se emite la multa correspondiente por el juzgado de faltas de la jurisdicción. Luego se notifica e inicia el proceso correspondiente.',
-    to: '/login',
-    buttonLabel: 'Emitir multa',
+    info: 'Se verifican las pruebas presentadas, se emite la multa correspondiente y notifica mediante correspondencia al infractor.',
   },
 ];

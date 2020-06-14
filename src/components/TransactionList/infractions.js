@@ -2,10 +2,16 @@
 
 export const infractionsData = [
   {
-    text: 'Guardando datos en IPFS',
+    text: 'Almacenando archivos de la situación',
   },
   {
-    text: 'Enviando nueva infracción',
+    text: 'Almacenando imágen del dominio del vehículo',
+  },
+  {
+    text: 'Almacenando datos de la infrcción',
+  },
+  {
+    text: 'Creando nueva infracción',
   },
   {
     text: 'Infracción creada',

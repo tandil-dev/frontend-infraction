@@ -27,7 +27,6 @@ function Form(props) {
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
             inputRef={register({
               required: true,
               pattern: {
