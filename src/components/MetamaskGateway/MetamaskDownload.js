@@ -20,9 +20,8 @@ const MetamaskDownload = ({ open, handleClose }) => (
     <DialogTitle id="alert-dialog-title">Descargar Metamask</DialogTitle>
     <DialogContent>
       <DialogContentText id="alert-dialog-description">
-        Esta Aplicación requiere Metamask para funcionar correctamente. <br />
-        Por favor instale Metamask en su navegador o ingrese con su email <br />
-        y contraseña.
+        Esta aplicación funciona con Metamask. <br />
+        Instalá el complemento para continuar.
       </DialogContentText>
     </DialogContent>
     <DialogActions>
