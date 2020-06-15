@@ -115,7 +115,6 @@ export default function Admin() {
       });
   };
 
-  console.log(tab);
   return (
     <div className={classes.root}>
       <Tabs
@@ -136,7 +135,7 @@ export default function Admin() {
           totalInfractions={totalInfractions}
           page={page}
           handleChange={handlePageChange}
-          handleAction={handleAction}
+          handleAction={i !== 0 ? handleAction : undefined}
           key={label}
         />
       ))}
