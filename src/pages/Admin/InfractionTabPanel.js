@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  LinearProgress, Typography, Box, Grid, Button,
+  LinearProgress, Grid, Button,
 } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination';
 import { makeStyles } from '@material-ui/core/styles';
-import InfractionDetails from '../../../components/InfractionDetails';
+import InfractionDetails from '../../components/InfractionDetails';
+import TabPanel from './TabPanel';
 
 const useStyles = makeStyles(() => ({
   grid: {
@@ -12,33 +13,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function TabPanel(props) {
-  const {
-    children, value, index, ...other
-  } = props;
-
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
-  );
-}
-
 const InfractionTabPanel = ({
   value, index, address, totalInfractions, page, handleChange, handleAction,
 }) => {
   const classes = useStyles();
   return (
-    <TabPanel value={value} index={index} fullWidth>
-      {
-      !address ? <LinearProgress />
+    <TabPanel value={value} index={index}>
+      {!address
+        ? <LinearProgress />
         : (
           <>
             <InfractionDetails address={address} />
@@ -62,8 +44,7 @@ const InfractionTabPanel = ({
               </Grid>
             </Grid>
           </>
-        )
-    }
+        )}
     </TabPanel>
   );
 };
