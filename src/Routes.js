@@ -12,6 +12,7 @@ import ReportedInfractions from './pages/ReportedInfractions';
 import Infractions from './pages/Infractions';
 import VoteInfractions from './pages/VoteInfractions';
 import VoteNext from './pages/VoteNext';
+import Pay from './pages/Pay';
 
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';
@@ -30,6 +31,7 @@ const Routes = () => (
       <AuthenticatedRoute path="/infractions/:id" exact component={Infractions} />
       <AuthenticatedRoute path="/vote/:id" exact component={VoteInfractions} />
       <AuthenticatedRoute path="/vote" exact component={VoteNext} />
+      <AuthenticatedRoute path="/pay/:id" exact component={Pay} />
       <Route component={NotFound} />
     </Switch>
   </MainTemplate>
