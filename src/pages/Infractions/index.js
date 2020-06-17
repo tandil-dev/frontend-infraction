@@ -6,7 +6,7 @@ import InfractionDetails from '../../components/InfractionDetails';
 function Page({ match }) {
   return (
     <Container>
-      <InfractionDetails address={match.params.id} />
+      <InfractionDetails address={match.params.id} showStage />
     </Container>
   );
 }
