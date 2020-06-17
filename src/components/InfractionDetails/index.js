@@ -30,9 +30,10 @@ function InfractionDetails({
   }, [subspace, infractionContract, match.params.id]);
 
   useEffect(() => {
-    if (infractionContract) return;
+    if (stage !== '5') return;
+    if (rewardsContract) return;
     setRewardsContract(subspace.contract({ abi: rewardsAbi, address: rewardsAddress }));
-  }, [subspace, infractionContract, match.params.id]);
+  }, [subspace, rewardsContract, stage]);
 
   useEffect(() => {
     if (!infractionContract) return;
