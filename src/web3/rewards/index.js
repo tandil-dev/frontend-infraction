@@ -1,6 +1,6 @@
 export const rewardsDeployBlock = process.env.REACT_APP_REWARDS_TANDIL_BLOCK;
 export const rewardsAddress = process.env.REACT_APP_REWARDS_TANDIL_ADDRESS;
-console.log(rewardsDeployBlock, rewardsAddress);
+
 export const rewardsAbi = [
   {
     inputs: [],
@@ -289,11 +289,6 @@ export const rewardsAbi = [
         internalType: 'address',
         name: 'infractionAddress',
         type: 'address',
-      },
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256',
       },
     ],
     name: 'claimReward',

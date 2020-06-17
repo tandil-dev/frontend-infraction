@@ -85,12 +85,6 @@ export const infractionAbi = [
   {
     anonymous: false,
     inputs: [],
-    name: 'overduePaimentPeriodEnds',
-    type: 'event',
-  },
-  {
-    anonymous: false,
-    inputs: [],
     name: 'paid',
     type: 'event',
   },
@@ -98,12 +92,6 @@ export const infractionAbi = [
     anonymous: false,
     inputs: [],
     name: 'ready',
-    type: 'event',
-  },
-  {
-    anonymous: false,
-    inputs: [],
-    name: 'regularPaimentPeriodEnds',
     type: 'event',
   },
   {
@@ -128,12 +116,6 @@ export const infractionAbi = [
     anonymous: false,
     inputs: [],
     name: 'rejectedByDepartment',
-    type: 'event',
-  },
-  {
-    anonymous: false,
-    inputs: [],
-    name: 'volunteerPaimentPeriodEnds',
     type: 'event',
   },
   {
@@ -222,6 +204,19 @@ export const infractionAbi = [
         internalType: 'uint8',
         name: '',
         type: 'uint8',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'reward',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
       },
     ],
     stateMutability: 'view',
@@ -346,7 +341,13 @@ export const infractionAbi = [
     type: 'function',
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_reward',
+        type: 'uint256',
+      },
+    ],
     name: 'courtApproves',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -355,27 +356,6 @@ export const infractionAbi = [
   {
     inputs: [],
     name: 'courtRejects',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'endVolunteerPayment',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'endRegularPayment',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'endOverduePayment',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
