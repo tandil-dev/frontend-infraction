@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   header: {
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(0),
   },
   info: {
-    margin: theme.spacing(4, 0),
+    margin: theme.spacing(1, 0),
   },
 }));
 
