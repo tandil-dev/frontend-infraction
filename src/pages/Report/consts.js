@@ -20,7 +20,7 @@ export const infractionTypes = [
   'Estaciona en cordón amarillo',
   'Estaciona en zona restringida fuera de horario',
   'Estaciona obstruyendo bici senda',
-  'Estaciona obstruyendo garage',
+  'Estaciona obstruyendo garaje',
   'Estaciona obstruyendo ochava',
   'Estaciona obstruyendo rampa y/o espacio reservado',
   'Estaciona obstruyendo senda aeróbica',
@@ -28,14 +28,14 @@ export const infractionTypes = [
   'Estaciona obstruyendo vereda',
   'Gira a la izquierda en avenida',
   'Gira sin luces',
-  'Pasa semaforo en rojo',
+  'Pasa semáforo en rojo',
   'Sobrepasa en ruta con línea amarilla',
   'Uso de celular en movimiento',
 ];
 
 export const motoTypes = [
   'Motociclista sin casco',
-  'Motociclista exedido de pasajeros',
+  'Motociclista excedido de pasajeros',
 ];
 
 export const otherTypes = [
