@@ -22,3 +22,18 @@ export const headers = {
   marca: 'Marca',
   modelo: 'Modelo',
 };
+
+
+export const stages = [
+  'Revisión comunitaria',
+  'Revisión en departamento',
+  'Revisión en juzgado',
+  'Aprobada por juzgado',
+  'Periodo de pago',
+  'Pagada',
+  'Reclamada',
+  'Rechazada por la comunidad',
+  'Rechazada por departamento',
+  'Rechazada por juzgado',
+  'Rechazo total',
+];
