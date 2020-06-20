@@ -49,14 +49,24 @@ export default function Home() {
               ¿Qué denuncias puedo hacer?
             </Typography>
             <List component="nav">
-              <ListItemText primary="Estacionamiento en cordón amarillo." />
-              <ListItemText primary="Obstruye rampa/espacio reservado." />
-              <ListItemText primary="Estaciona obstruyendo senda peatonal." />
-              <ListItemText primary="Estaciona obstruyendo ochava." />
-              <ListItemText primary="Estaciona sobre la senda peatonal." />
-              <ListItemText primary="Estacionamiento para bicicletas." />
-              <ListItemText primary="Estacionamiento sobre espacios verdes." />
-              <ListItemText primary="Estaciona en doble o triple fila." />
+              <ListItemText primary="Circula de noche sin luces" />
+              <ListItemText primary="Estaciona doble o triple fila" />
+              <ListItemText primary="Estaciona en cordón amarillo" />
+              <ListItemText primary="Estaciona en zona restringida fuera de horario" />
+              <ListItemText primary="Estaciona obstruyendo bici senda" />
+              <ListItemText primary="Estaciona obstruyendo garaje" />
+              <ListItemText primary="Estaciona obstruyendo ochava" />
+              <ListItemText primary="Estaciona obstruyendo rampa y/o espacio reservado" />
+              <ListItemText primary="Estaciona obstruyendo senda aeróbica" />
+              <ListItemText primary="Estaciona obstruyendo senda peatonal" />
+              <ListItemText primary="Estaciona obstruyendo vereda" />
+              <ListItemText primary="Gira a la izquierda en avenida" />
+              <ListItemText primary="Gira sin luces" />
+              <ListItemText primary="Pasa semáforo en rojo" />
+              <ListItemText primary="Sobrepasa en ruta con línea amarilla" />
+              <ListItemText primary="Uso de celular en movimiento" />
+              <ListItemText primary="Motociclista sin casco" />
+              <ListItemText primary="Motociclista excedido de pasajeros" />
             </List>
           </Grid>
           <Grid item sm={6} xs={12}>
