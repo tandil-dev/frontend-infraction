@@ -21,8 +21,9 @@ export const headers = {
   color: 'Color',
   marca: 'Marca',
   modelo: 'Modelo',
+  date: 'Fecha',
+  time: 'Horario',
 };
-
 
 export const stages = [
   'Revisión comunitaria',

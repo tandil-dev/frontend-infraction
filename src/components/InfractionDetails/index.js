@@ -85,7 +85,7 @@ function InfractionDetails({
         <Typography variant="h4" className={classes.header}>Detalles infracción</Typography>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="h5" component="h2">Dominio</Typography>
+        <Typography variant="h6" component="h3">Dominio</Typography>
       </Grid>
       <Grid item xs={12} className={classes.image}>
         { domainImageHash
@@ -98,29 +98,26 @@ function InfractionDetails({
 
       {infractionInformtion && (
         <>
-          <Grid item xs={12}>
-            <Typography variant="h5" component="h2">Detalles </Typography>
-          </Grid>
           {showStage && (
           <>
             <Grid item xs={12}>
               <Typography variant="h6" component="h3">Estado</Typography>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={8}>
               <Typography variant="body1">{stages[stage]}</Typography>
             </Grid>
           </>
           )}
           {showPay && stage === '4' && (
           <>
-            <Grid item xs={12}>
+            <Grid item xs={4}>
               <Button onClick={pay} fullWidth variant="contained" color="secondary">Simular pago</Button>
             </Grid>
           </>
           )}
           {stage === '5' && (
           <>
-            <Grid item xs={12}>
+            <Grid item xs={4}>
               <Button onClick={claim} fullWidth variant="contained" color="secondary">Reclamar recompensa!</Button>
             </Grid>
           </>
@@ -141,9 +138,6 @@ function InfractionDetails({
               </Grid>
             );
           })}
-          <Grid item xs={12}>
-            <Typography variant="h5" component="h2">Situación</Typography>
-          </Grid>
           <Button
             href={`https://ipfs.infura.io/ipfs/${infractionInformtion.situationHash}`}
             color="primary"

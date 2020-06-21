@@ -10,7 +10,6 @@ function Report({ reportInfraction }) {
     setStep(step + 1);
     reportInfraction({
       ...data,
-      situationFiles: data.situationFiles,
       domainFile: data.domainFile[0],
     });
   };
