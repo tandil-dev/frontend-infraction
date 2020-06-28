@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
   section: {
     padding: theme.spacing(0, 0, 3, 0),
   },
+  list: {
+    margin: theme.spacing(-1, 0),
+  },
 }
 ));
 
