@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import {
-  Card, CardMedia, Grid, Typography, List, ListItemText, ListItem,
+  Card, CardMedia, Grid, Typography, List, ListItemText, ListItem, ListItemIcon,
 } from '@material-ui/core';
+import LensIcon from '@material-ui/icons/Lens';
 import UserTypes from '../../components/UserTypes';
 import useStyles from './styles';
 
@@ -44,69 +45,122 @@ export default function Home() {
             </Typography>
           </Grid>
           <UserTypes />
-          <Grid
-            item
-            xs={12}
-
-          >
+          <Grid>
+            <Typography variant="h5" component="h2" className={classes.header}>
+              ¿Qué denuncias puedo hacer?
+            </Typography>
             <Card>
-              <Typography variant="h5" component="h2" className={classes.header}>
-                ¿Qué denuncias puedo hacer?
-              </Typography>
               <List component="nav">
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Circula de noche sin luces" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Estaciona doble o triple fila" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Estaciona en cordón amarillo" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Estaciona en zona restringida fuera de horario" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Estaciona obstruyendo bici senda" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Estaciona obstruyendo garaje" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Estaciona obstruyendo ochava" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Estaciona obstruyendo rampa y/o espacio reservado" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Estaciona obstruyendo senda aeróbica" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Estaciona obstruyendo senda peatonal" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Estaciona obstruyendo vereda" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Gira a la izquierda en avenida" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Gira sin luces" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Pasa semáforo en rojo" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Sobrepasa en ruta con línea amarilla" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Uso de celular en movimiento" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Motociclista sin casco" className={classes.list} />
                 </ListItem>
                 <ListItem>
+                  <ListItemIcon>
+                    <LensIcon className={classes.icon} />
+                  </ListItemIcon>
                   <ListItemText primary="Motociclista excedido de pasajeros" className={classes.list} />
+                </ListItem>
+                <ListItem>
+                  <ListItemText secondary="Basado en la Ley Nacional de Transito Nº 24.449." />
                 </ListItem>
               </List>
             </Card>
