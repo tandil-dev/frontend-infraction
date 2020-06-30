@@ -45,10 +45,12 @@ export default function Home() {
             </Typography>
           </Grid>
           <UserTypes />
-          <Grid>
+          <Grid item xs={12}>
             <Typography variant="h5" component="h2" className={classes.header}>
               ¿Qué denuncias puedo hacer?
             </Typography>
+          </Grid>
+          <Grid item md={3} xs={12}>
             <Card>
               <List component="nav">
                 <ListItem>
@@ -164,6 +166,11 @@ export default function Home() {
                 </ListItem>
               </List>
             </Card>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="h5" component="h2" className={classes.header}>
+              ¿Cómo funciona?
+            </Typography>
           </Grid>
           <Grid item sm={6} xs={12}>
             <ReactPlayer
