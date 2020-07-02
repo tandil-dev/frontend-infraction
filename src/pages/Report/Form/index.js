@@ -50,6 +50,10 @@ function Form({ onSubmit, currentReport }) {
         </Grid>
 
         <Grid item xs={12}>
+          <Typography variant="h6">Prueba fotografica</Typography>
+        </Grid>
+
+        <Grid item xs={12}>
           <FormControl fullWidth ref={register({ required: true })}>
             <Typography>Situación</Typography>
             <input
