@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TransactionList({ currentReport }) {
+function TransactionList({ currentReport, onBack }) {
   const [checked, setChecked] = useState(0);
   const classes = useStyles();
   const [domainIpfsHash, setDomainIpfsHash] = useState(undefined);
@@ -31,7 +31,6 @@ function TransactionList({ currentReport }) {
 
   const subspace = useSubspace();
   const [infractionFactory, setInfractionFactory] = useState(null);
-
 
   async function saveToIpfs(reportData) {
     try {
@@ -58,7 +57,7 @@ function TransactionList({ currentReport }) {
       const directory = situationResult.find(({ path }) => path === '');
       if (!directory) throw new Error('Error creating directory');
       setChecked(1);
-      const domainResult = await all(ipfs2.add([reportData.domainFile], { pin: true }));
+      const domainResult = await all(ipfs2.add(reportData.domainFile, { pin: true }));
       setDomainIpfsHash(domainResult[domainResult.length - 1].cid.string);
       setChecked(2);
       const dataResult = await all(ipfs2.add([JSON.stringify({
@@ -76,34 +75,33 @@ function TransactionList({ currentReport }) {
   useEffect(() => {
     if (ipfsHash || !currentReport) return;
     saveToIpfs(currentReport);
-  }, [currentReport]);
+  }, [currentReport, ipfsHash]);
 
   useEffect(() => {
     if (infractionFactory) return;
     setInfractionFactory(subspace.contract(
       { abi: infractionFactoryAbi, address: infractionFactoryAddress },
     ));
-  }, [subspace]);
-
-  const sendTx = async () => {
-    if (!infractionFactory) return;
-
-    infractionFactory.methods
-      .createInfraction(ipfsHash, domainIpfsHash)
-      .send({ from: subspace.web3.eth.defaultAccount, gasLimit: 3000000 })
-      .then((r) => {
-        // eslint-disable-next-line no-console
-        console.log(r);
-        setChecked(5);
-      })
-      // eslint-disable-next-line no-console
-      .catch((e) => console.log(e));
-
-    setChecked(4);
-  };
+  }, [subspace, infractionFactory]);
 
   useEffect(() => {
     if (!infractionFactory || !currentReport || !ipfsHash) return;
+    const sendTx = async () => {
+      if (!infractionFactory) return;
+
+      infractionFactory.methods
+        .createInfraction(ipfsHash, domainIpfsHash)
+        .send({ from: subspace.web3.eth.defaultAccount, gasLimit: 3000000 })
+        .then((r) => {
+          // eslint-disable-next-line no-console
+          console.log(r);
+          setChecked(5);
+        })
+        // eslint-disable-next-line no-console
+        .catch((e) => console.log(e));
+
+      setChecked(4);
+    };
     sendTx();
   }, [ipfsHash, infractionFactory, currentReport]);
 
@@ -129,7 +127,7 @@ function TransactionList({ currentReport }) {
           tiempo en crearse. De todas formas, puede salir de esta página. La infraccción
           aparecer en la lista de infracciones creadas cuando sea procesada.
         </Typography>
-        <Button component={Link} color="primary" to="/" fullWidth>Atrás</Button>
+        <Button component={Link} color="primary" to="/" fullWidth onClick={onBack}>Atrás</Button>
       </>
       )}
     </>
