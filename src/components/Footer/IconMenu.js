@@ -8,7 +8,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { menuData } from './data';
 import logout from '../../redux/actions/logout';
 
-
 // eslint-disable-next-line no-shadow
 function IconMenu({ logout, history }) {
   const [anchorEl, setAnchorEl] = useState(null);
