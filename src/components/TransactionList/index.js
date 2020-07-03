@@ -28,7 +28,7 @@ function TransactionList({ currentReport, onBack }) {
   const classes = useStyles();
   const [domainIpfsHash, setDomainIpfsHash] = useState(undefined);
   const [ipfsHash, setIpfsHash] = useState(undefined);
-
+  const [retry, setRetry] = useState(false);
   const subspace = useSubspace();
   const [infractionFactory, setInfractionFactory] = useState(null);
 
@@ -55,7 +55,10 @@ function TransactionList({ currentReport, onBack }) {
         ),
       );
       const directory = situationResult.find(({ path }) => path === '');
-      if (!directory) throw new Error('Error creating directory');
+      if (!directory) {
+        setRetry(true);
+        throw new Error('Error creating directory');
+      }
       setChecked(1);
       const domainResult = await all(ipfs2.add(reportData.domainFile, { pin: true }));
       setDomainIpfsHash(domainResult[domainResult.length - 1].cid.string);
@@ -73,9 +76,10 @@ function TransactionList({ currentReport, onBack }) {
   }
 
   useEffect(() => {
-    if (ipfsHash || !currentReport) return;
+    if (!retry && (ipfsHash || !currentReport)) return;
+    setRetry(false);
     saveToIpfs(currentReport);
-  }, [currentReport, ipfsHash]);
+  }, [currentReport, ipfsHash, retry]);
 
   useEffect(() => {
     if (infractionFactory) return;
