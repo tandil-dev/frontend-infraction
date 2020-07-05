@@ -22,6 +22,7 @@ const UserType = () => {
                 to={card.to}
                 variant="contained"
                 fullWidth
+                color="primary"
               >
                 {card.buttonLabel}
               </Button>
