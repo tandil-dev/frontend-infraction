@@ -7,8 +7,7 @@ import {
 import TransactionList from '../../components/TransactionList';
 import Form from './Form';
 
-
-function Page({ onSubmit, onStepBack, step }) {
+function Page({ onSubmit, onBack, step }) {
   const steps = ['Cargar datos', 'Procesando'];
 
   return (
@@ -24,10 +23,14 @@ function Page({ onSubmit, onStepBack, step }) {
         ? (
           <Form
             onSubmit={onSubmit}
-            onStepBack={onStepBack}
+            onBack={onBack}
           />
         )
-        : <TransactionList />}
+        : (
+          <TransactionList
+            onBack={onBack}
+          />
+        )}
     </Container>
   );
 }

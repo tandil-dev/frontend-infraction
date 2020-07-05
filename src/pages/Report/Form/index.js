@@ -13,7 +13,7 @@ import {
   MAP, infractionTypes, motoTypes, otherTypes,
 } from '../consts';
 
-function Form({ onSubmit, currentReport }) {
+function Form({ onSubmit, currentReport, onBack }) {
   const {
     register, errors, handleSubmit,
   } = useForm({ defaultValues: currentReport });
@@ -205,7 +205,7 @@ function Form({ onSubmit, currentReport }) {
           />
         </Grid>
         <Grid item xs={4}>
-          <Button component={Link} to="/" variant="contained">
+          <Button component={Link} to="/" variant="contained" onClick={onBack}>
             Atrás
           </Button>
         </Grid>
