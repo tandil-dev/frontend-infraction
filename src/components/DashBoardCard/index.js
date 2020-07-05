@@ -6,7 +6,7 @@ import {
 
 import useStyles from './styles';
 
-function DashboardCard({ mainText, secondaryText }) {
+function DashboardCard({ mainText, secondaryText, isReward }) {
   const classes = useStyles();
 
   return (
@@ -18,7 +18,7 @@ function DashboardCard({ mainText, secondaryText }) {
         { secondaryText || secondaryText === 0
           ? (
             <Typography variant="body2" color="textSecondary">
-              {secondaryText}
+              {isReward ? secondaryText / 10 : secondaryText}
             </Typography>
           )
           : <LinearProgress />}

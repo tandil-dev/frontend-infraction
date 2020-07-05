@@ -30,6 +30,7 @@ function Rewards() {
     <DashBoardCard
       mainText="Rewards Tandil"
       secondaryText={rewardsObservable}
+      isReward
     />
   );
 }

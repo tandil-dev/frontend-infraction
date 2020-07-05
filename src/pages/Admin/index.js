@@ -27,6 +27,7 @@ export default function Admin() {
   const [infractionFactoryContract, setInfractionFactoryContract] = useState();
   const [totalInfractions, setTotalInfractions] = useState(0);
   const [page, setPage] = useState(1);
+  const [input, setInput] = useState(30);
   const [address, setAddress] = useState();
   const [infractionContract, setInfractionContract] = useState();
   const [myInfractionsObservable$, setMyInfractionsObservable] = useState();
@@ -97,21 +98,22 @@ export default function Admin() {
 
   const handleAction = async (value) => {
     if (!infractionContract) return;
+
     const methods = {
       1: {
         true: 'departamentApproves()',
         false: 'departamentRejects()',
       },
       2: {
-        true: 'courtApproves()',
+        true: 'courtApproves(uint256)',
         false: 'courtRejects()',
       },
     };
     const method = methods[tab][value];
-    infractionContract.methods[method]()
+    infractionContract.methods[method](input * 10) // Reward has 1 decimal
       .send({ from: subspace.web3.eth.defaultAccount, gasLimit: 3000000 })
       .then((r) => {
-        console.log('saved', r);
+        console.log('done', r);
       });
   };
 
@@ -136,6 +138,8 @@ export default function Admin() {
           page={page}
           handleChange={handlePageChange}
           handleAction={i !== 0 ? handleAction : undefined}
+          handleInput={i === 2 ? setInput : undefined}
+          inputValue={input}
           key={label}
         />
       ))}

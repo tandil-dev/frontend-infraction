@@ -2,22 +2,21 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import DateFnsUtils from '@date-io/date-fns';
-// import ReactPlayer from 'react-player';
 import Image from 'material-ui-image';
 
 import {
   Button, TextField, Grid, NativeSelect, Typography, InputLabel, FormControl,
 } from '@material-ui/core';
-import {
-  MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker,
-} from '@material-ui/pickers';
 
 import useStyles from './styles';
-import { MAP } from '../consts';
+import {
+  MAP, infractionTypes, motoTypes, otherTypes,
+} from '../consts';
 
-function Form({ onSubmit, currentReport }) {
-  const { register, errors, handleSubmit } = useForm({ defaultValues: currentReport });
+function Form({ onSubmit, currentReport, onBack }) {
+  const {
+    register, errors, handleSubmit,
+  } = useForm({ defaultValues: currentReport });
   // eslint-disable-next-line no-console
   console.log('errors', errors);
   const classes = useStyles();
@@ -38,13 +37,21 @@ function Form({ onSubmit, currentReport }) {
               name="InfractionType"
               fullWidth
             >
-              <option value={0}>Alta velocidad</option>
-              <option value={1}>Estaciona en cordón amarillo</option>
-              <option value={2}>Estaciona obstruyendo ochava</option>
-              <option value={3}>Estaciona obstruyendo senda aeróbica</option>
-              <option value={4}>Estaciona obstruyendo senda peatonal</option>
-              {/* Completar restantes */}
-              <option value={4}>Otros</option>
+              <optgroup label="Vehículos">
+                {infractionTypes.map((label) => (
+                  <option value={label} key={label}>{label}</option>
+                ))}
+              </optgroup>
+              <optgroup label="Motocicletas">
+                {motoTypes.map((label) => (
+                  <option value={label} key={label}>{label}</option>
+                ))}
+              </optgroup>
+              <optgroup label="Generales">
+                {otherTypes.map((label) => (
+                  <option value={label} key={label}>{label}</option>
+                ))}
+              </optgroup>
             </NativeSelect>
           </FormControl>
         </Grid>
@@ -100,40 +107,38 @@ function Form({ onSubmit, currentReport }) {
           />
         </Grid>
 
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid item xs={12}>
-            <KeyboardDatePicker
-              fullWidth
-              disableToolbar
-              variant="inline"
-              format="MM/dd/yyyy"
-              id="date"
-              name="date"
-              label="¿Cuándo fué la infrcción?"
-              KeyboardButtonProps={{
-                'aria-label': 'change date',
-              }}
-              inputRef={register({ required: true })}
-            />
-          </Grid>
-        </MuiPickersUtilsProvider>
+        <Grid item xs={12}>
+          <TextField
+            id="date"
+            name="date"
+            type="date"
+            fullWidth
+            label="¿Cuándo fué la infrcción?"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputRef={register({ required: true })}
+          />
+        </Grid>
 
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid item xs={12}>
-            <KeyboardTimePicker
-              fullWidth
-              disableToolbar
-              variant="inline"
-              id="time"
-              name="time"
-              label="¿A qué hora fué?"
-              KeyboardButtonProps={{
-                'aria-label': 'change time',
-              }}
-              inputRef={register({ required: true })}
-            />
-          </Grid>
-        </MuiPickersUtilsProvider>
+        <Grid item xs={12}>
+          <TextField
+            id="time"
+            name="time"
+            type="time"
+            label="¿A qué hora fué?"
+            fullWidth
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{
+              step: 1800,
+            }}
+            inputRef={register({ required: true })}
+          />
+        </Grid>
         <Grid item xs={12}>
           <TextField
             name="description"
@@ -204,7 +209,7 @@ function Form({ onSubmit, currentReport }) {
           />
         </Grid>
         <Grid item xs={4}>
-          <Button component={Link} to="/" variant="contained">
+          <Button component={Link} to="/" variant="contained" onClick={onBack}>
             Atrás
           </Button>
         </Grid>

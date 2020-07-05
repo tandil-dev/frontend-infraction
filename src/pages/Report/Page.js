@@ -8,8 +8,7 @@ import TransactionList from '../../components/TransactionList';
 import Form from './Form';
 import useStyles from './styles';
 
-function Page({ onSubmit, onStepBack, step }) {
-
+function Page({ onSubmit, onBack, step }) {
   const steps = ['Cargar datos', 'Procesando'];
   const classes = useStyles();
 
@@ -27,10 +26,14 @@ function Page({ onSubmit, onStepBack, step }) {
         ? (
           <Form
             onSubmit={onSubmit}
-            onStepBack={onStepBack}
+            onBack={onBack}
           />
         )
-        : <TransactionList />}
+        : (
+          <TransactionList
+            onBack={onBack}
+          />
+        )}
     </Container>
   );
 }

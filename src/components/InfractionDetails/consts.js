@@ -21,4 +21,20 @@ export const headers = {
   color: 'Color',
   marca: 'Marca',
   modelo: 'Modelo',
+  date: 'Fecha',
+  time: 'Horario',
 };
+
+export const stages = [
+  'Revisión comunitaria',
+  'Revisión en departamento',
+  'Revisión en juzgado',
+  'Aprobada por juzgado',
+  'Periodo de pago',
+  'Pagada',
+  'Reclamada',
+  'Rechazada por la comunidad',
+  'Rechazada por departamento',
+  'Rechazada por juzgado',
+  'Rechazo total',
+];
