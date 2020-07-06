@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     maxWidth: 50,
     marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(-1),
+  },
+  loginButton:{
+    textTransform: 'none'
   },
 }));
 
@@ -45,10 +49,10 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
         {isLogedIn
           ? (
             <>
-              <Button color="inherit" onClick={handleLogout}>Log out</Button>
+              <Button  color="inherit"  className={classes.loginButton}  onClick={handleLogout}>Log out</Button>
             </>
           )
-          : <Button component={Link} color="inherit" to="/login">Ingresar</Button>}
+          : <Button font-size='large' component={Link}  className={classes.loginButton} color="inherit" to="/login">Ingresar</Button>}
       </Toolbar>
     </AppBar>
   );
