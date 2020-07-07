@@ -49,10 +49,10 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
         {isLogedIn
           ? (
             <>
-              <Button  color="inherit"  className={classes.loginButton}  onClick={handleLogout}>Log out</Button>
+              <Button color="inherit" className={classes.loginButton} onClick={handleLogout}>Log out</Button>
             </>
           )
-          : <Button font-size='large' component={Link}  className={classes.loginButton} color="inherit" to="/login">Ingresar</Button>}
+          : <Button component={Link} className={classes.loginButton} color="inherit" to="/login">Ingresar</Button>}
       </Toolbar>
     </AppBar>
   );
