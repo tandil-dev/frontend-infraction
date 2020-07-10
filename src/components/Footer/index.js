@@ -2,12 +2,10 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
-
-  AppBar, Toolbar, IconButton, Grid,
+  AppBar, Paper, Tabs, Tab,
 } from '@material-ui/core';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 
-import AddAPhoto from '@material-ui/icons/AddAPhoto';
+import { AccountCircle, AddAPhoto } from '@material-ui/icons';
 
 import MetamaskGateway from '../MetamaskGateway';
 
@@ -19,32 +17,32 @@ const Footer = ({ currentUser }) => {
   const classes = useStyles();
   const isLogedIn = currentUser.jwt || currentUser.djwt;
 
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <>
       {isLogedIn && (
         <AppBar position="fixed" color="primary" className={classes.appBar}>
-          <Toolbar>
-            <Grid container className={classes.grid}>
-              <Grid item xs={4}>
-                <IconButton color="inherit" component={Link} to="/dashboard">
-                  <AccountCircle />
-                </IconButton>
-              </Grid>
-
-              <Grid item xs={4}>
-                <MetamaskGateway>
-                  <IconButton color="inherit" component={Link} to="/report">
-                    <AddAPhoto />
-                  </IconButton>
-                </MetamaskGateway>
-              </Grid>
-
-              <Grid item xs={4}>
-                <IconMenu />
-              </Grid>
-
-            </Grid>
-          </Toolbar>
+          <Paper square className={classes.root}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              variant="fullWidth"
+              indicatorColor="primary"
+              textColor="primary"
+              aria-label="icon tabs example"
+            >
+              <Tab icon={<AccountCircle />} label="Perfil" component={Link} to="/dashboard" />
+              <MetamaskGateway>
+                <Tab icon={<AddAPhoto />} label="Reportar" component={Link} to="/report" />
+              </MetamaskGateway>
+              <Tab icon={<IconMenu />} label="Más" />
+            </Tabs>
+          </Paper>
         </AppBar>
       )}
     </>
