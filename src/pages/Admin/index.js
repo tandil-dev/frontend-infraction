@@ -41,7 +41,6 @@ export default function Admin() {
     );
   }, [subspace, infractionFactoryContract]);
 
-
   useEffect(() => {
     if (!infractionFactoryContract || tab > 2) return;
     const methods = ['getTotalInfactinsForVote', 'getTotalInfactinsForDepartmentReview', 'getTotalInfactinsForJudgeReview'];
@@ -61,6 +60,7 @@ export default function Admin() {
       .then((_address) => {
         setAddress(_address);
       });
+  // eslint-disable-next-line
   }, [totalInfractions, tab, page]);
 
   useEffect(() => {

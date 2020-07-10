@@ -27,6 +27,7 @@ function InfractionDetails({
   useEffect(() => {
     if (infractionContract) return;
     setInfractionContract(subspace.contract({ abi: infractionAbi, address }));
+  // eslint-disable-next-line
   }, [subspace, infractionContract, match.params.id]);
 
   useEffect(() => {

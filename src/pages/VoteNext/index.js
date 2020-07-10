@@ -51,6 +51,7 @@ function Page() {
           { abi: infractionAbi, address },
         ));
       });
+  // eslint-disable-next-line
   }, [totalInfractions, infractionFactory, index, totalInfractions]);
 
   useEffect(() => {
@@ -61,6 +62,7 @@ function Page() {
         if (voted) return setIndex(index + 1);
         setHasVoted(voted);
       });
+  // eslint-disable-next-line
   }, [infraction]);
 
   async function handleTrue() {
