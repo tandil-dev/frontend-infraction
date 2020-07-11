@@ -51,8 +51,7 @@ function Page() {
           { abi: infractionAbi, address },
         ));
       });
-  // eslint-disable-next-line
-  }, [totalInfractions, infractionFactory, index, totalInfractions]);
+  }, [totalInfractions, infractionFactory, index, subspace]);
 
   useEffect(() => {
     if (!infraction) return;
@@ -62,8 +61,7 @@ function Page() {
         if (voted) return setIndex(index + 1);
         setHasVoted(voted);
       });
-  // eslint-disable-next-line
-  }, [infraction]);
+  }, [infraction, account, index]);
 
   async function handleTrue() {
     infraction.methods

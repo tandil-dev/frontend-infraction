@@ -107,8 +107,11 @@ function TransactionList({ currentReport, onBack }) {
       setChecked(4);
     };
     sendTx();
-  // eslint-disable-next-line
-  }, [ipfsHash, infractionFactory, currentReport]);
+  }, [ipfsHash,
+    infractionFactory,
+    currentReport,
+    domainIpfsHash,
+    subspace.web3.eth.defaultAccount]);
 
   return (
     <>

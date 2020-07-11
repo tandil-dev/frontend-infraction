@@ -60,8 +60,7 @@ export default function Admin() {
       .then((_address) => {
         setAddress(_address);
       });
-  // eslint-disable-next-line
-  }, [totalInfractions, tab, page]);
+  }, [totalInfractions, tab, page, infractionFactoryContract.methods]);
 
   useEffect(() => {
     if (infractionContract || !address) return;
