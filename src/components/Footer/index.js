@@ -7,8 +7,6 @@ import {
 
 import { AccountCircle, AddAPhoto } from '@material-ui/icons';
 
-import MetamaskGateway from '../MetamaskGateway';
-
 import IconMenu from './IconMenu';
 
 import useStyles from './styles';
@@ -34,12 +32,9 @@ const Footer = ({ currentUser }) => {
               variant="fullWidth"
               indicatorColor="primary"
               textColor="primary"
-              aria-label="icon tabs example"
             >
               <Tab icon={<AccountCircle />} label="Perfil" component={Link} to="/dashboard" />
-              <MetamaskGateway>
-                <Tab icon={<AddAPhoto />} label="Reportar" component={Link} to="/report" />
-              </MetamaskGateway>
+              <Tab icon={<AddAPhoto />} label="Reportar" component={Link} to="/report" />
               <Tab icon={<IconMenu />} label="Más" />
             </Tabs>
           </Paper>
