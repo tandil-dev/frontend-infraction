@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './style';
-import viewlogin from '../../redux/actions/viewloginaction';
+import viewlogin from '../../redux/actions/viewLoginAction';
 
 
 function Form(props) {
@@ -31,7 +31,7 @@ function Form(props) {
 }
 
 const mapDispatchToProps = {
-  login,
+ login: viewlogin,
 };
 
 export default connect(null, mapDispatchToProps)(Form);
