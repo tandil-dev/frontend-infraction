@@ -31,7 +31,7 @@ function Form(props) {
 }
 
 const mapDispatchToProps = {
- login: viewlogin,
+  login: viewlogin,
 };
 
 export default connect(null, mapDispatchToProps)(Form);
