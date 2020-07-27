@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1, 1, 3, 1),
   },
   grid: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
   },
 }));
 

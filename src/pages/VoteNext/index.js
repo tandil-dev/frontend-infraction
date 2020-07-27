@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSubspace } from '@embarklabs/subspace-react';
 import {
-  Grid, Button, LinearProgress,
+  Grid, Button, LinearProgress, Container,
 } from '@material-ui/core';
 import InfractionDetails from '../../components/InfractionDetails';
 import NoMoreInfrctions from '../../components/NoMoreInfractions';
@@ -95,9 +95,15 @@ function Page() {
     setInfractionAddress(undefined);
   }
   console.log(index, totalInfractions);
-  if (index >= totalInfractions) return <NoMoreInfrctions />;
+  if (index >= totalInfractions) {
+    return (
+      <Container>
+        <NoMoreInfrctions />
+      </Container>
+    );
+  }
   return (
-    <>
+    <Container>
       { hasVoted
         ? <LinearProgress />
         : (
@@ -118,7 +124,7 @@ function Page() {
             </Grid>
           </>
         )}
-    </>
+    </Container>
   );
 }
 
