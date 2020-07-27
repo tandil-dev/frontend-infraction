@@ -5,7 +5,6 @@ import MetamaskIcon from './metamask.svg';
 const MetamaskLogin = ({ onClick }) => (
   <IconButton
     component="span"
-    
     color="primary"
     onClick={onClick}
   >

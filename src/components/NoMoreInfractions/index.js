@@ -1,20 +1,15 @@
 import React from 'react';
-import {
-  Button, Typography, makeStyles, Grid,
-} from '@material-ui/core';
 import { withRouter, Link } from 'react-router-dom';
+import {
+  Button, Typography, Grid,
+} from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    marginBottom: theme.spacing(2),
-  },
-
-}));
+import useStyles from './styles';
 
 const NoMoreInfractions = () => {
   const classes = useStyles();
   return (
-    <Grid container>
+    <Grid container spacing={2}>
       <Grid item xs={12}>
         <Typography variant="h5" align="center" className={classes.header}> Esas son todas las infracciones por ahora </Typography>
       </Grid>
