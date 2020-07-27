@@ -82,12 +82,12 @@ function InfractionDetails({
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Typography variant="h4" className={classes.header}>Detalles infracción</Typography>
+        <Typography variant="h4" className={classes.header}>Detalles de la infracción</Typography>
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h6" component="h3">Dominio</Typography>
       </Grid>
-      <Grid item xs={12} className={classes.image}>
+      <Grid item xs={12}>
         { domainImageHash
             && (
             <Image
@@ -140,19 +140,15 @@ function InfractionDetails({
           })}
           <Button
             href={`https://ipfs.infura.io/ipfs/${infractionInformtion.situationHash}`}
-            color="primary"
+            color="secondary"
             fullWidth
             rel="noopener noreferrer"
             target="_blank"
-            // variant="outlined"
+            variant="outlined"
             className={classes.button}
           >
             Ver imagenes y videos
           </Button>
-
-          {/* <Grid item xs={12}>
-            <ReactJson src={infractionInformtion} collapseStringsAfterLength={20} />
-          </Grid> */}
         </>
       )}
     </Grid>
