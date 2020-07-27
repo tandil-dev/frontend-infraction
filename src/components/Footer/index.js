@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
-  AppBar, Paper, Tabs, Tab,
+  AppBar, Tabs, Tab,
 } from '@material-ui/core';
 
 import { AccountCircle, AddAPhoto } from '@material-ui/icons';
@@ -24,20 +24,18 @@ const Footer = ({ currentUser }) => {
   return (
     <>
       {isLogedIn && (
-        <AppBar position="fixed" color="primary" className={classes.appBar}>
-          <Paper square className={classes.root}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-            >
-              <Tab icon={<AccountCircle />} label="Perfil" component={Link} to="/dashboard" className={classes.tab} />
-              <Tab icon={<AddAPhoto />} label="Reportar" component={Link} to="/report" className={classes.tab} />
-              <Tab icon={<IconMenu />} label="Más" className={classes.tab} />
-            </Tabs>
-          </Paper>
+        <AppBar position="fixed" className={classes.appBar}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            variant="fullWidth"
+            textColor="secondary"
+            TabIndicatorProps={{ className: classes.indicator }}
+          >
+            <Tab icon={<AccountCircle className={classes.iconButton} />} label="Perfil" component={Link} to="/dashboard" className={classes.tab} />
+            <Tab icon={<AddAPhoto className={classes.iconButton} />} label="Reportar" component={Link} to="/report" className={classes.tab} />
+            <Tab icon={<IconMenu className={classes.iconButton} />} label="Más" className={classes.tab} />
+          </Tabs>
         </AppBar>
       )}
     </>
