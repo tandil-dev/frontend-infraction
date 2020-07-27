@@ -1,14 +1,12 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Link from '@material-ui/core/Link';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import { connect } from 'react-redux';
+import {
+  Button, Avatar, Link, Box, Typography, Container,
+} from '@material-ui/core/';
+
 import MetamaskGateway from '../../components/MetamaskGateway';
 import MetamaskButton from '../../components/MetamaskButton';
-import Form from './Form';
+import viewlogin from '../../redux/actions/viewLoginAction';
 import useStyles from './style';
 
 function Copyright() {
@@ -25,26 +23,39 @@ function Copyright() {
   );
 }
 
-function Page({ handleMetamaskLogin }) {
+function Page({ handleMetamaskLogin, login }) {
   const classes = useStyles();
-
+  const onSubmit = () => {
+    login();
+  };
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
         <Typography variant="h4" className={classes.typography1}>
-          Sign in with Metamask
+          Ingersar con Metamask
+        </Typography>
+        <Typography variant="body1" className={classes.body1}>
+          Haga click en la imagen para ingresar
         </Typography>
         <MetamaskGateway>
           <MetamaskButton onClick={handleMetamaskLogin} />
         </MetamaskGateway>
         <Typography variant="h6" className={classes.typography2}>
-          or
+          o
         </Typography>
-        <Form />
+        <Typography variant="body1" className={classes.body1}>
+          Realice un recorrido por la aplicación
+        </Typography>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="secondary"
+          className={classes.submit}
+          onClick={onSubmit}
+        >
+          Vista Previa
+        </Button>
       </div>
       <Box mt={1}>
         <Copyright />
@@ -53,4 +64,8 @@ function Page({ handleMetamaskLogin }) {
   );
 }
 
-export default Page;
+const mapDispatchToProps = {
+  login: viewlogin,
+};
+
+export default connect(null, mapDispatchToProps)(Page);

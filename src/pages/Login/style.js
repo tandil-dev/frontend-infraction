@@ -6,11 +6,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-
-  },
-  avatar: {
-    marginTop: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -20,11 +15,14 @@ const useStyles = makeStyles((theme) => ({
   },
   typography1: {
     marginTop: theme.spacing(1),
-    'text-align': 'center',
+    textAlign: 'center',
   },
   typography2: {
     marginTop: theme.spacing(4),
-    'text-align': 'center',
+    textAlign: 'center',
+  },
+  body1: {
+    margin: theme.spacing(2, 0),
   },
 }));
 
