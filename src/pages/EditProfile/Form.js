@@ -8,7 +8,6 @@ import Grid from '@material-ui/core/Grid';
 import useStyles from './style';
 import updateProfile from '../../redux/actions/updateProfile';
 
-
 const mapStateToProps = (state) => ({
   currentUser: state.currentUser,
 });
@@ -142,7 +141,7 @@ function Form(props) {
             variant="contained"
             color="secondary"
           >
-            Update
+            Actualizar perfil
           </Button>
         </Grid>
       </Grid>
