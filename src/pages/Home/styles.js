@@ -5,11 +5,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0, 0, 2, 0),
   },
   root: {
-    padding: theme.spacing(3, 1),
     textAlign: 'center',
-  },
-  section: {
-    padding: theme.spacing(0, 0, 3, 0),
   },
   list: {
     margin: theme.spacing(0, 0),
