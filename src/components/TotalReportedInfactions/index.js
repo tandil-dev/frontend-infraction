@@ -3,7 +3,7 @@ import { useSubspace } from '@embarklabs/subspace-react';
 import DashBoardCard from '../DashBoardCard';
 import { infractionFactoryAbi, infractionFactoryAddress } from '../../web3/infractionFactory';
 
-function TotalReportedInfractions() {
+function TotalReportedInfractions({ mocked }) {
   const subspace = useSubspace();
   const [infractionFactory, setInfractionFactory] = useState(null);
   const [totalInfractionsObservable, setTotalInfractionsObservable] = useState(null);
@@ -25,11 +25,10 @@ function TotalReportedInfractions() {
       });
   }, [subspace, infractionFactory]);
 
-
   return (
     <DashBoardCard
       mainText="Infracciones reportadas"
-      secondaryText={totalInfractionsObservable}
+      secondaryText={mocked ? (Math.floor(Math.random() * 20)) : totalInfractionsObservable}
     />
   );
 }

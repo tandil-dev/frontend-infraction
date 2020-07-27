@@ -7,15 +7,15 @@ import useStyles from './styles';
 import TotalReportedInfractions from '../../components/TotalReportedInfactions';
 import Rewards from '../../components/RewardsCard';
 
-function Dashboard() {
+function Dashboard({ currentUser }) {
   const classes = useStyles();
   return (
     <Grid container justify="space-around" className={classes.grid}>
       <Grid item md={3} xs={11} className={classes.gridItem}>
-        <TotalReportedInfractions />
+        <TotalReportedInfractions mocked={!!currentUser.jwt} />
       </Grid>
       <Grid item md={3} xs={11} className={classes.gridItem}>
-        <Rewards />
+        <Rewards mocked={!!currentUser.jwt} />
       </Grid>
     </Grid>
   );

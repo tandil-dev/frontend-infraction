@@ -25,67 +25,54 @@ function Form({ onSubmit, currentReport, onBack }) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container justify="center" alignItems="stretch" className={classes.grid} spacing={2}>
         <Grid item xs={12}>
-          <Typography variant="h6">
-            Datos de la infracción
-          </Typography>
+          <Typography variant="h6">Pruebas fotograficas</Typography>
         </Grid>
+
         <Grid item xs={12}>
           <FormControl fullWidth ref={register({ required: true })}>
-            <InputLabel htmlFor="InfractionType">Tipo de infracción</InputLabel>
-            <NativeSelect
-              id="InfractionType"
-              name="InfractionType"
-              fullWidth
+            <Typography>Domino</Typography>
+
+            <Button
+              variant="contained"
+              component="label"
+              color="secondary"
             >
-              <optgroup label="Vehículos">
-                {infractionTypes.map((label) => (
-                  <option value={label} key={label}>{label}</option>
-                ))}
-              </optgroup>
-              <optgroup label="Motocicletas">
-                {motoTypes.map((label) => (
-                  <option value={label} key={label}>{label}</option>
-                ))}
-              </optgroup>
-              <optgroup label="Generales">
-                {otherTypes.map((label) => (
-                  <option value={label} key={label}>{label}</option>
-                ))}
-              </optgroup>
-            </NativeSelect>
+              Cargar imagen del dominio
+              <input
+                type="file"
+                id="domainFile"
+                name="domainFile"
+                accept="image/png, image/jpeg"
+                ref={register({ required: true })}
+                style={{ display: 'none' }}
+              />
+            </Button>
           </FormControl>
         </Grid>
-
-        <Grid item xs={12}>
-          <Typography variant="h6">Prueba fotografica</Typography>
-        </Grid>
-
         <Grid item xs={12}>
           <FormControl fullWidth ref={register({ required: true })}>
             <Typography>Situación</Typography>
-            <input
-              type="file"
-              id="situationFiles"
-              name="situationFiles"
-              multiple
-              // accept="image/png, image/jpeg"
-              ref={register({ required: true })}
-            />
+            <Button
+              variant="contained"
+              component="label"
+              color="secondary"
+            >
+              Cargar archivos de la situación
+              <input
+                type="file"
+                id="situationFiles"
+                name="situationFiles"
+                multiple
+                style={{ display: 'none' }}
+                ref={register({ required: true })}
+              />
+            </Button>
+
           </FormControl>
         </Grid>
 
         <Grid item xs={12}>
-          <FormControl fullWidth ref={register({ required: true })}>
-            {/* <InputLabel htmlFor="domain">Dominio</InputLabel> */}
-            <Typography>Domino</Typography>
-            <input
-              type="file"
-              id="domainFile"
-              name="domainFile"
-              accept="image/png, image/jpeg"
-              ref={register({ required: true })}
-            />
-          </FormControl>
+          <Typography variant="h6">Pruebas de tiempo y lugar</Typography>
         </Grid>
 
         <Grid item xs={12}>
@@ -133,32 +120,45 @@ function Form({ onSubmit, currentReport, onBack }) {
             InputLabelProps={{
               shrink: true,
             }}
-            inputProps={{
-              step: 1800,
-            }}
             inputRef={register({ required: true })}
           />
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            name="description"
-            id="description"
-            label="Ingrese una descripción (Opcional)"
-            variant="outlined"
-            fullWidth
-            multiline
-            inputRef={register()}
-          />
-        </Grid>
+
         <Grid item xs={12}>
           <Typography variant="h6">
-            Datos del vehículo
+            Detalles
           </Typography>
         </Grid>
 
         <Grid item xs={12}>
           <FormControl fullWidth ref={register({ required: true })}>
-            <InputLabel htmlFor="age-native-helper">Tipo de vehículo</InputLabel>
+            <InputLabel htmlFor="InfractionType">Tipo de infracción</InputLabel>
+            <NativeSelect
+              id="InfractionType"
+              name="InfractionType"
+              fullWidth
+            >
+              <optgroup label="Vehículos">
+                {infractionTypes.map((label) => (
+                  <option value={label} key={label}>{label}</option>
+                ))}
+              </optgroup>
+              <optgroup label="Motocicletas">
+                {motoTypes.map((label) => (
+                  <option value={label} key={label}>{label}</option>
+                ))}
+              </optgroup>
+              <optgroup label="Generales">
+                {otherTypes.map((label) => (
+                  <option value={label} key={label}>{label}</option>
+                ))}
+              </optgroup>
+            </NativeSelect>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl fullWidth ref={register({ required: true })}>
+            <InputLabel htmlFor="vehicleType">Tipo de vehículo</InputLabel>
             <NativeSelect
               name="vehicleType"
               id="vehicleType"
@@ -172,6 +172,18 @@ function Form({ onSubmit, currentReport, onBack }) {
               <option value={5}>Otros</option>
             </NativeSelect>
           </FormControl>
+        </Grid>
+
+        <Grid item xs={12}>
+          <TextField
+            name="description"
+            id="description"
+            label="Ingrese una descripción (Opcional)"
+            variant="outlined"
+            fullWidth
+            multiline
+            inputRef={register()}
+          />
         </Grid>
 
         <Grid item xs={12}>

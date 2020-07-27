@@ -1,8 +1,9 @@
 /* eslint-disable radix */
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { useSubspace } from '@embarklabs/subspace-react';
 import {
-  Grid, Button, LinearProgress,
+  Grid, Button, LinearProgress, Container,
 } from '@material-ui/core';
 import InfractionDetails from '../../components/InfractionDetails';
 import NoMoreInfrctions from '../../components/NoMoreInfractions';
@@ -10,7 +11,7 @@ import NoMoreInfrctions from '../../components/NoMoreInfractions';
 import { infractionFactoryAddress, infractionFactoryAbi } from '../../web3/infractionFactory';
 import { infractionAbi } from '../../web3/infraction';
 
-function Page() {
+function Page({ currentUser }) {
   const subspace = useSubspace();
   const [account, setAccount] = useState();
   const [index, setIndex] = useState(0);
@@ -19,31 +20,32 @@ function Page() {
   const [infractionAddress, setInfractionAddress] = useState();
   const [infraction, setInfraction] = useState();
   const [hasVoted, setHasVoted] = useState(true);
+  const [mocked] = useState(currentUser.jwt);
   useEffect(() => {
-    if (account || !subspace) return;
+    if (mocked || account || !subspace) return;
 
     subspace.web3.eth.getAccounts()
       .then(([a]) => {
         setAccount(a);
       });
-  }, [subspace, account]);
+  }, [subspace, account, mocked]);
   useEffect(() => {
-    if (infractionFactory) return;
+    if (mocked || infractionFactory) return;
     setInfractionFactory(subspace.contract(
       { abi: infractionFactoryAbi, address: infractionFactoryAddress },
     ));
-  }, [subspace, infractionFactory]);
+  }, [subspace, infractionFactory, mocked]);
 
   useEffect(() => {
-    if (!infractionFactory || !subspace) return;
+    if (mocked || !infractionFactory || !subspace) return;
     infractionFactory.methods.getTotalInfactinsForVote().call()
       .then((total) => {
         setTotalInfractions(parseInt(total));
       });
-  }, [subspace, infractionFactory]);
+  }, [subspace, infractionFactory, mocked]);
 
   useEffect(() => {
-    if (!totalInfractions || !infractionFactory || index >= totalInfractions) return;
+    if (mocked || !totalInfractions || !infractionFactory || index >= totalInfractions) return;
     infractionFactory.methods.infractionsForVote(index).call()
       .then((address) => {
         setInfractionAddress(address);
@@ -51,17 +53,17 @@ function Page() {
           { abi: infractionAbi, address },
         ));
       });
-  }, [totalInfractions, infractionFactory, index, totalInfractions]);
+  }, [totalInfractions, infractionFactory, index, totalInfractions, mocked]);
 
   useEffect(() => {
-    if (!infraction) return;
+    if (mocked || !infraction) return;
     infraction.methods.hasVoted(account).call()
       // eslint-disable-next-line consistent-return
       .then((voted) => {
         if (voted) return setIndex(index + 1);
         setHasVoted(voted);
       });
-  }, [infraction]);
+  }, [infraction, mocked]);
 
   async function handleTrue() {
     infraction.methods
@@ -94,23 +96,33 @@ function Page() {
     setInfraction(undefined);
     setInfractionAddress(undefined);
   }
-  console.log(index, totalInfractions);
-  if (index >= totalInfractions) return <NoMoreInfrctions />;
+
+  async function handlePreview() {
+    console.log('Preview mode.');
+  }
+
+  if (index >= totalInfractions) {
+    return (
+      <Container>
+        <NoMoreInfrctions />
+      </Container>
+    );
+  }
   return (
-    <>
-      { hasVoted
+    <Container>
+      { hasVoted && !mocked
         ? <LinearProgress />
         : (
           <>
-            <InfractionDetails address={infractionAddress} />
+            <InfractionDetails address={infractionAddress} mocked={mocked} />
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <Button fullWidth variant="contained" onClick={handleFalse}>
+                <Button fullWidth variant="contained" onClick={mocked ? handlePreview : handleFalse}>
                   Invalida
                 </Button>
               </Grid>
               <Grid item xs={6}>
-                <Button fullWidth variant="contained" color="secondary" onClick={handleTrue}>
+                <Button fullWidth variant="contained" color="secondary" onClick={mocked ? handlePreview : handleTrue}>
                   Valida
                 </Button>
               </Grid>
@@ -118,8 +130,12 @@ function Page() {
             </Grid>
           </>
         )}
-    </>
+    </Container>
   );
 }
 
-export default Page;
+const mapStateToProps = (state) => ({
+  currentUser: state.currentUser,
+});
+
+export default connect(mapStateToProps)(Page);

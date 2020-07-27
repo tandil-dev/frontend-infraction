@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import logout from '../../redux/actions/logout';
-import logo from './logo.svg';
+import logo from './centinela.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
     marginLeft: theme.spacing(-1),
   },
-  Button:{
-    textTransform: 'none'
+  Button: {
+    textTransform: 'none',
   },
 }));
 
@@ -49,7 +49,7 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
         {isLogedIn
           ? (
             <>
-              <Button color="inherit"  className={classes.Button} size="large" onClick={handleLogout}>
+              <Button color="inherit" className={classes.Button} size="large" onClick={handleLogout}>
                 <Typography variant="h5">
                   Salir
                 </Typography>
@@ -57,7 +57,7 @@ const StyledNavbar = ({ logout, history, currentUser }) => {
             </>
           )
           : (
-            <Button component={Link}  className={classes.Button} color="inherit" size="large" to="/login" >
+            <Button component={Link} className={classes.Button} color="inherit" size="large" to="/login">
               <Typography variant="h5">
                 Ingresar
               </Typography>

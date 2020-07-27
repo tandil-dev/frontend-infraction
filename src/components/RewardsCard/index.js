@@ -3,7 +3,7 @@ import { useSubspace } from '@embarklabs/subspace-react';
 import DashBoardCard from '../DashBoardCard';
 import { rewardsAbi, rewardsAddress } from '../../web3/rewards';
 
-function Rewards() {
+function Rewards({ mocked }) {
   const subspace = useSubspace();
   const [rewardsContract, setRewardsContract] = useState(null);
   const [rewardsObservable, setRewardsObservable] = useState(null);
@@ -25,11 +25,10 @@ function Rewards() {
       });
   }, [subspace, rewardsContract]);
 
-
   return (
     <DashBoardCard
       mainText="Rewards Tandil"
-      secondaryText={rewardsObservable}
+      secondaryText={mocked ? (Math.floor(Math.random() * 20) * 10) : rewardsObservable}
       isReward
     />
   );

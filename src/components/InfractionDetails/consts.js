@@ -38,3 +38,16 @@ export const stages = [
   'Rechazada por juzgado',
   'Rechazo total',
 ];
+
+export const mockedInfraction = {
+  address: 'España 101, Tandil, Buenos Aires, Argentina',
+  date: '2020-06-18',
+  time: '13:00',
+  description: 'El auto se encuentra estacionado en la vereda',
+  color: 'Marrón claro',
+  marca: '',
+  modelo: '',
+  situationHash: 'QmWcMgnLzYrtCCJoAjE7evsqDfmA7PGjxxf2D83H7ocGyW',
+};
+
+export const mockedDomainInfrationHash = 'QmNgzKpJdfMxqjkTKZmmNf3Ho2A6DTaRnkZcEYSYE41Cp4';
