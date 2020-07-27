@@ -1,8 +1,7 @@
-import { type as loginType } from '../actions/login';
 import { type as logoutType } from '../actions/logout';
 import { loginWithMetamaskType } from '../actions/loginWithMetamaskAction';
 import { type as updateProfileType } from '../actions/updateProfile';
-import {viewLoginType}  from '../../redux/actions/viewLoginAction';
+import { viewLoginType } from '../actions/viewLoginAction';
 
 const defaultState = {
   jwt: false,
