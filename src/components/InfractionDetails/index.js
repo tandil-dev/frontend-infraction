@@ -9,41 +9,44 @@ import Image from 'material-ui-image';
 import ipfs from '../../web3/ipfs';
 import { infractionAbi } from '../../web3/infraction';
 import { rewardsAbi, rewardsAddress } from '../../web3/rewards';
-import { headers, stages } from './consts';
+import {
+  headers, stages, mockedInfraction, mockedDomainInfrationHash,
+} from './consts';
 import useStyles from './styles';
 
 function InfractionDetails({
-  match, showStage, address, showPay,
+  match, showStage, address, showPay, mocked,
 }) {
   const subspace = useSubspace();
   const [infractionContract, setInfractionContract] = useState();
   const [rewardsContract, setRewardsContract] = useState();
-  const [stage, setStage] = useState();
+  const [stage, setStage] = useState(mocked ? 1 : undefined);
   const [infractionDataHash, setInfractionDataHash] = useState();
-  const [domainImageHash, setDomainImageHash] = useState();
-  const [infractionInformtion, setInfractionInformation] = useState();
+  const [domainImageHash, setDomainImageHash] = useState(mocked
+    ? mockedDomainInfrationHash : undefined);
+  const [infractionInformtion, setInfractionInformation] = useState(mocked
+    ? mockedInfraction : undefined);
   const classes = useStyles();
 
   useEffect(() => {
-    if (infractionContract) return;
+    if (mocked || infractionContract) return;
     setInfractionContract(subspace.contract({ abi: infractionAbi, address }));
-  }, [subspace, infractionContract, match.params.id, address]);
+  }, [subspace, infractionContract, match.params.id, address, mocked]);
 
   useEffect(() => {
-    if (stage !== '5') return;
-    if (rewardsContract) return;
+    if (mocked || stage !== '5' || rewardsContract) return;
     setRewardsContract(subspace.contract({ abi: rewardsAbi, address: rewardsAddress }));
-  }, [subspace, rewardsContract, stage]);
+  }, [subspace, rewardsContract, stage, mocked]);
 
   useEffect(() => {
-    if (!infractionContract) return;
+    if (mocked || !infractionContract) return;
     if (showStage) infractionContract.methods.stage().call().then(setStage);
     infractionContract.methods.infractionDataHash().call().then(setInfractionDataHash);
     infractionContract.methods.domainImageHash().call().then(setDomainImageHash);
-  }, [subspace, infractionContract, showStage]);
+  }, [subspace, infractionContract, showStage, mocked]);
 
   useEffect(() => {
-    if (!infractionDataHash) return;
+    if (mocked || !infractionDataHash) return;
     const getFromIpfs = async (hash) => {
       try {
         const utf8decoder = new TextDecoder();
@@ -52,6 +55,7 @@ function InfractionDetails({
         for await (const chunk of stream) {
           data += utf8decoder.decode(chunk);
         }
+        console.log(JSON.parse(data));
         setInfractionInformation(JSON.parse(data));
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -59,7 +63,7 @@ function InfractionDetails({
       }
     };
     getFromIpfs(infractionDataHash);
-  }, [infractionDataHash]);
+  }, [infractionDataHash, mocked]);
 
   const pay = async () => {
     infractionContract.methods.setPaid()
@@ -79,15 +83,16 @@ function InfractionDetails({
       });
   };
 
+  console.log('domainImageHash', domainImageHash);
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Typography variant="h4" className={classes.header}>Detalles infracción</Typography>
+        <Typography variant="h4" className={classes.header}>Detalles de la infracción</Typography>
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h6" component="h3">Dominio</Typography>
       </Grid>
-      <Grid item xs={12} className={classes.image}>
+      <Grid item xs={12}>
         { domainImageHash
             && (
             <Image
@@ -140,19 +145,15 @@ function InfractionDetails({
           })}
           <Button
             href={`https://ipfs.infura.io/ipfs/${infractionInformtion.situationHash}`}
-            color="primary"
+            color="secondary"
             fullWidth
             rel="noopener noreferrer"
             target="_blank"
-            // variant="outlined"
+            variant="outlined"
             className={classes.button}
           >
             Ver imagenes y videos
           </Button>
-
-          {/* <Grid item xs={12}>
-            <ReactJson src={infractionInformtion} collapseStringsAfterLength={20} />
-          </Grid> */}
         </>
       )}
     </Grid>

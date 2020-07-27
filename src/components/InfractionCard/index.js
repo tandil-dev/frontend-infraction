@@ -17,22 +17,22 @@ function InfactionCard({ blockNumber, createdBy, infractionAddress }) {
           image="/logo.svg"
         />
         <CardContent>
-          <Typography variant="h6" color="textSecondary">
+          <Typography variant="h6">
             Bloque
           </Typography>
-          <Typography variant="body2" color="textSecondary">
+          <Typography variant="body2">
             {blockNumber}
           </Typography>
-          <Typography variant="h6" color="textSecondary">
+          <Typography variant="h6">
             Creador
           </Typography>
-          <Typography variant="body2" color="textSecondary">
+          <Typography variant="body2">
             {`${createdBy.slice(0, 6)} ... ${createdBy.slice(-4)}`}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" fullWidth component={Link} to={`/infractions/${infractionAddress}`}>
+        <Button size="small" color="secondary" variant="outlined" fullWidth component={Link} to={`/infractions/${infractionAddress}`}>
           Ver detalles
         </Button>
       </CardActions>

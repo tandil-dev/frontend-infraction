@@ -12,10 +12,11 @@ import { infractionFactoryAbi, infractionFactoryAddress, infractionFactorydeploy
 
 import useStyles from './styles';
 
-function ReportedInfractions() {
+function ReportedInfractions({ currentUser }) {
   const subspace = useSubspace();
   const [infractionFactoryContract, setInfractionFactoryContract] = useState();
   const [myInfractionsObservable$, setMyInfractionsObservable] = useState();
+  const [mocked] = useState(!!currentUser.jwt);
   const classes = useStyles();
 
   useEffect(() => {
@@ -52,6 +53,7 @@ function ReportedInfractions() {
       <Grid item xs={12}>
         <InfactionList
           infractions={myInfractionsObservable$}
+          mocked={mocked}
         />
       </Grid>
     </Grid>
