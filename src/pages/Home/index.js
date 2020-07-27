@@ -39,9 +39,9 @@ export default function Home() {
               ¿A quién está dirigida la aplicación?
             </Typography>
           </Grid>
-          <Container>
+          <Grid container justify="space-around">
             <UserTypes />
-          </Container>
+          </Grid>
           <Grid item xs={12}>
             <Typography variant="h5" component="h2" className={classes.header}>
               ¿Qué denuncias puedo hacer?

@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     padding: theme.spacing(3),
+    alignItems: 'center',
   },
   header: {
     marginBottom: theme.spacing(0),

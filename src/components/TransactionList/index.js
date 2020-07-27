@@ -107,7 +107,11 @@ function TransactionList({ currentReport, onBack }) {
       setChecked(4);
     };
     sendTx();
-  }, [ipfsHash, infractionFactory, currentReport]);
+  }, [ipfsHash,
+    infractionFactory,
+    currentReport,
+    domainIpfsHash,
+    subspace.web3.eth.defaultAccount]);
 
   return (
     <>

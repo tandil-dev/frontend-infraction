@@ -53,7 +53,7 @@ function Page({ currentUser }) {
           { abi: infractionAbi, address },
         ));
       });
-  }, [totalInfractions, infractionFactory, index, totalInfractions, mocked]);
+  }, [totalInfractions, infractionFactory, index, subspace, totalInfractions, mocked]);
 
   useEffect(() => {
     if (mocked || !infraction) return;
@@ -63,7 +63,7 @@ function Page({ currentUser }) {
         if (voted) return setIndex(index + 1);
         setHasVoted(voted);
       });
-  }, [infraction, mocked]);
+  }, [infraction, account, index, mocked]);
 
   async function handleTrue() {
     infraction.methods

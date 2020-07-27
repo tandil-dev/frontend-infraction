@@ -5,11 +5,20 @@ import { connect } from 'react-redux';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import { makeStyles } from '@material-ui/core/styles';
+
 import { menuData } from './data';
 import logout from '../../redux/actions/logout';
 
+const useStyles = makeStyles(() => ({
+  tab: {
+    padding: 0,
+  },
+}));
+
 // eslint-disable-next-line no-shadow
 function IconMenu({ logout, history }) {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -29,10 +38,9 @@ function IconMenu({ logout, history }) {
 
   return (
     <div>
-      <IconButton color="inherit" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+      <IconButton className={classes.tab} color="inherit" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
         <MenuIcon />
       </IconButton>
-
 
       <Menu
         id="simple-menu"

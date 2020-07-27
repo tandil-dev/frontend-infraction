@@ -22,14 +22,16 @@ function InfractionDetails({
   const [rewardsContract, setRewardsContract] = useState();
   const [stage, setStage] = useState(mocked ? 1 : undefined);
   const [infractionDataHash, setInfractionDataHash] = useState();
-  const [domainImageHash, setDomainImageHash] = useState(mocked ? mockedDomainInfrationHash : undefined);
-  const [infractionInformtion, setInfractionInformation] = useState(mocked ? mockedInfraction : undefined);
+  const [domainImageHash, setDomainImageHash] = useState(mocked
+    ? mockedDomainInfrationHash : undefined);
+  const [infractionInformtion, setInfractionInformation] = useState(mocked
+    ? mockedInfraction : undefined);
   const classes = useStyles();
 
   useEffect(() => {
     if (mocked || infractionContract) return;
     setInfractionContract(subspace.contract({ abi: infractionAbi, address }));
-  }, [subspace, infractionContract, match.params.id, mocked]);
+  }, [subspace, infractionContract, match.params.id, address, mocked]);
 
   useEffect(() => {
     if (mocked || stage !== '5' || rewardsContract) return;
@@ -53,7 +55,6 @@ function InfractionDetails({
         for await (const chunk of stream) {
           data += utf8decoder.decode(chunk);
         }
-        console.log(JSON.parse(data));
         setInfractionInformation(JSON.parse(data));
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -81,7 +82,6 @@ function InfractionDetails({
       });
   };
 
-  console.log('domainImageHash', domainImageHash);
   return (
     <Grid container>
       <Grid item xs={12}>

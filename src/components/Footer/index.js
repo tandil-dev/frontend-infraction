@@ -2,14 +2,10 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
-
-  AppBar, Toolbar, IconButton, Grid,
+  AppBar, Tabs, Tab,
 } from '@material-ui/core';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 
-import AddAPhoto from '@material-ui/icons/AddAPhoto';
-
-import MetamaskGateway from '../MetamaskGateway';
+import { AccountCircle, AddAPhoto } from '@material-ui/icons';
 
 import IconMenu from './IconMenu';
 
@@ -19,32 +15,27 @@ const Footer = ({ currentUser }) => {
   const classes = useStyles();
   const isLogedIn = currentUser.jwt || currentUser.djwt;
 
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <>
       {isLogedIn && (
-        <AppBar position="fixed" color="primary" className={classes.appBar}>
-          <Toolbar>
-            <Grid container className={classes.grid}>
-              <Grid item xs={4}>
-                <IconButton color="inherit" component={Link} to="/dashboard">
-                  <AccountCircle />
-                </IconButton>
-              </Grid>
-
-              <Grid item xs={4}>
-                <MetamaskGateway>
-                  <IconButton color="inherit" component={Link} to="/report">
-                    <AddAPhoto />
-                  </IconButton>
-                </MetamaskGateway>
-              </Grid>
-
-              <Grid item xs={4}>
-                <IconMenu />
-              </Grid>
-
-            </Grid>
-          </Toolbar>
+        <AppBar position="fixed" className={classes.appBar}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            variant="fullWidth"
+            textColor="secondary"
+            TabIndicatorProps={{ className: classes.indicator }}
+          >
+            <Tab icon={<AccountCircle className={classes.iconButton} />} label="Perfil" component={Link} to="/dashboard" className={classes.tab} />
+            <Tab icon={<AddAPhoto className={classes.iconButton} />} label="Reportar" component={Link} to="/report" className={classes.tab} />
+            <Tab icon={<IconMenu className={classes.iconButton} />} label="Más" component="a" className={classes.tab} />
+          </Tabs>
         </AppBar>
       )}
     </>

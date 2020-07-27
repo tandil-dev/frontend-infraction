@@ -3,10 +3,11 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import Image from 'material-ui-image';
-
 import {
   Button, TextField, Grid, NativeSelect, Typography, InputLabel, FormControl,
 } from '@material-ui/core';
+
+import MetamaskGateway from '../../../components/MetamaskGateway';
 
 import useStyles from './styles';
 import {
@@ -226,14 +227,16 @@ function Form({ onSubmit, currentReport, onBack }) {
           </Button>
         </Grid>
         <Grid item xs={8}>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="secondary"
-          >
-            Reportar
-          </Button>
+          <MetamaskGateway>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="secondary"
+            >
+              Reportar
+            </Button>
+          </MetamaskGateway>
         </Grid>
       </Grid>
     </form>
