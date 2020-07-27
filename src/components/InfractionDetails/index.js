@@ -55,7 +55,6 @@ function InfractionDetails({
         for await (const chunk of stream) {
           data += utf8decoder.decode(chunk);
         }
-        console.log(JSON.parse(data));
         setInfractionInformation(JSON.parse(data));
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -83,7 +82,6 @@ function InfractionDetails({
       });
   };
 
-  console.log('domainImageHash', domainImageHash);
   return (
     <Grid container>
       <Grid item xs={12}>

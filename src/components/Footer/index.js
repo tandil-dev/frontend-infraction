@@ -34,7 +34,7 @@ const Footer = ({ currentUser }) => {
           >
             <Tab icon={<AccountCircle className={classes.iconButton} />} label="Perfil" component={Link} to="/dashboard" className={classes.tab} />
             <Tab icon={<AddAPhoto className={classes.iconButton} />} label="Reportar" component={Link} to="/report" className={classes.tab} />
-            <Tab icon={<IconMenu className={classes.iconButton} />} label="Más" className={classes.tab} />
+            <Tab icon={<IconMenu className={classes.iconButton} />} label="Más" component="a" className={classes.tab} />
           </Tabs>
         </AppBar>
       )}

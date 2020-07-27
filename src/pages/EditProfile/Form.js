@@ -72,11 +72,11 @@ function Form(props) {
                 message: 'Invalid CUIL, only numbers allowed',
               },
               maxLength: {
-                value: 9,
+                value: 11,
                 message: 'CUIL too long',
               },
               minLength: {
-                value: 9,
+                value: 11,
                 message: 'CUIL too short',
               },
             })}

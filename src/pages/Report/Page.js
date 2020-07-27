@@ -13,7 +13,7 @@ function Page({ onSubmit, onBack, step }) {
   const classes = useStyles();
 
   return (
-    <Container component="main">
+    <Container>
       <Typography className={classes.header} variant="h4">Reportar Infracción</Typography>
       <Stepper activeStep={step}>
         {steps.map((label) => (
