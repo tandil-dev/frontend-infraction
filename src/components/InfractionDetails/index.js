@@ -10,7 +10,8 @@ import ipfs from '../../web3/ipfs';
 import { infractionAbi } from '../../web3/infraction';
 import { rewardsAbi, rewardsAddress } from '../../web3/rewards';
 import {
-  headers, stages, mockedInfraction, mockedDomainInfrationHash,
+  headers, stages, mockedInfraction, mockedDomainInfrationHash, dateAndTimeKeys, descriptionKeys,
+  MAP, vehicleType,
 } from './consts';
 import useStyles from './styles';
 
@@ -87,16 +88,79 @@ function InfractionDetails({
       <Grid item xs={12}>
         <Typography variant="h4" className={classes.header}>Detalles de la infracción</Typography>
       </Grid>
+
       <Grid item xs={12}>
-        <Typography variant="h6" component="h3">Dominio</Typography>
+        <Typography variant="h5" component="h3">{`Tipo de infracción:  ${(infractionInformtion && (infractionInformtion.infractionType || infractionInformtion.InfractionType)) || 'No disponible'}`}</Typography>
       </Grid>
-      <Grid item xs={12}>
+
+      <Grid item md={6} xs={12} className={classes.grid}>
+        <Typography variant="h5" component="h3">Imágen dominio del vehículo</Typography>
         { domainImageHash
             && (
-            <Image
+            <img
+              alt="Imágen del dominio"
+              className={classes.infractionImage}
               src={`https://ipfs.infura.io/ipfs/${domainImageHash}`}
             />
             )}
+      </Grid>
+
+      <Grid item md={6} xs={12} className={classes.gridRightItem}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography variant="h5" className={classes.header}>Caracteristicas del vehículo</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            {infractionInformtion && descriptionKeys.map((v) => (
+              <Grid container key={v}>
+                <Grid item xs={12}>
+                  <Typography variant="h6" component="h3">{headers[v]}</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="body1">
+                    {
+                      infractionInformtion[v]
+                      && v === 'vehicleType' ? vehicleType[infractionInformtion[v]] : infractionInformtion[v]
+                      || 'No disponible'
+                    }
+                  </Typography>
+                </Grid>
+              </Grid>
+            ))}
+          </Grid>
+
+        </Grid>
+      </Grid>
+
+      {/* Segundo bloque */}
+      <Grid item md={6} xs={12}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography variant="h5" className={classes.header}>Ubicación</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            {infractionInformtion && dateAndTimeKeys.map((v) => (
+              <Grid container key={v}>
+                <Grid item xs={12}>
+                  <Typography variant="h6" component="h3">{headers[v]}</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="body1">{infractionInformtion[v] || 'No disponible'}</Typography>
+                </Grid>
+              </Grid>
+            ))}
+          </Grid>
+
+        </Grid>
+      </Grid>
+
+      <Grid item md={6} xs={12} className={classes.gridRightItem}>
+        { domainImageHash && (
+        <Image
+          src={MAP.URL}
+          aspectRatio={(MAP.WIDTH / MAP.HEIGHT)}
+        />
+        )}
       </Grid>
 
       {infractionInformtion && (
@@ -125,22 +189,6 @@ function InfractionDetails({
             </Grid>
           </>
           )}
-          {Object.entries(infractionInformtion).map(([k, v]) => {
-            if (k === 'imagenDominio' || k === 'infractionVideo'
-            || k === 'domainFile' || k === 'situationFile' || k === 'pruebas'
-            || k === 'situationHash' || k === 'situationFiles'
-            ) return null;
-            return (
-              <Grid container key={k + v}>
-                <Grid item xs={12}>
-                  <Typography variant="h6" component="h3">{headers[k]}</Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography variant="body1">{v || 'No disponible'}</Typography>
-                </Grid>
-              </Grid>
-            );
-          })}
           <Button
             href={`https://ipfs.infura.io/ipfs/${infractionInformtion.situationHash}`}
             color="secondary"

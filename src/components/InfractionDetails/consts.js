@@ -23,7 +23,9 @@ export const headers = {
   modelo: 'Modelo',
   date: 'Fecha',
   time: 'Horario',
+  vehicleType: 'Típo de vehículo',
 };
+export const vehicleType = ['Auto', 'Camión', 'Camioneta', 'Colectivo', 'Moto', 'Otros'];
 
 export const stages = [
   'Revisión comunitaria',
@@ -48,6 +50,16 @@ export const mockedInfraction = {
   marca: '',
   modelo: '',
   situationHash: 'QmWcMgnLzYrtCCJoAjE7evsqDfmA7PGjxxf2D83H7ocGyW',
+  infractionType: 'Circula de noche sin luces',
+  vehicleType: 'Auto',
 };
 
 export const mockedDomainInfrationHash = 'QmNgzKpJdfMxqjkTKZmmNf3Ho2A6DTaRnkZcEYSYE41Cp4';
+
+export const ignoreKeys = [
+  'imagenDominio', 'infractionVideo', 'domainFile', 'situationFile', 'pruebas', 'situationHash',
+  'situationFiles', 'InfractionType', 'infractionType',
+];
+
+export const dateAndTimeKeys = ['date', 'time', 'address'];
+export const descriptionKeys = ['description', 'color', 'marca', 'modelo', 'vehicleType'];
