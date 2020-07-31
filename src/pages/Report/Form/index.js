@@ -132,12 +132,13 @@ function Form({ onSubmit, currentReport, onBack }) {
         </Grid>
 
         <Grid item xs={12}>
-          <FormControl fullWidth ref={register({ required: true })}>
-            <InputLabel htmlFor="InfractionType">Tipo de infracción</InputLabel>
+          <FormControl fullWidth>
+            <InputLabel htmlFor="infractionType">Tipo de infracción</InputLabel>
             <NativeSelect
-              id="InfractionType"
-              name="InfractionType"
+              id="infractionType"
+              name="infractionType"
               fullWidth
+              inputRef={register({ required: true })}
             >
               <optgroup label="Vehículos">
                 {infractionTypes.map((label) => (
@@ -158,12 +159,13 @@ function Form({ onSubmit, currentReport, onBack }) {
           </FormControl>
         </Grid>
         <Grid item xs={12}>
-          <FormControl fullWidth ref={register({ required: true })}>
+          <FormControl fullWidth>
             <InputLabel htmlFor="vehicleType">Tipo de vehículo</InputLabel>
             <NativeSelect
               name="vehicleType"
               id="vehicleType"
               fullWidth
+              inputRef={register({ required: true })}
             >
               <option value={0}>Auto</option>
               <option value={1}>Camion</option>
