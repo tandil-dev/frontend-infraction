@@ -52,6 +52,7 @@ export default function Admin() {
   }, [subspace, infractionFactoryContract, tab]);
 
   useEffect(() => {
+    if (!infractionFactoryContract) return;
     if (page > totalInfractions) console.log('Page out of range');
     if (!totalInfractions || page > totalInfractions) return;
     const methods = ['infractionsForVote(uint256)', 'infractionsForDepartmentReview(uint256)', 'infractionsForJudgeReview(uint256)'];
@@ -60,7 +61,7 @@ export default function Admin() {
       .then((_address) => {
         setAddress(_address);
       });
-  }, [totalInfractions, tab, page, infractionFactoryContract.methods]);
+  }, [totalInfractions, tab, page, infractionFactoryContract]);
 
   useEffect(() => {
     if (infractionContract || !address) return;
@@ -109,8 +110,11 @@ export default function Admin() {
       },
     };
     const method = methods[tab][value];
-    infractionContract.methods[method](input * 10) // Reward has 1 decimal
-      .send({ from: subspace.web3.eth.defaultAccount, gasLimit: 3000000 })
+    const tx = method === 'courtApproves(uint256)'
+      ? infractionContract.methods[method](input * 10) // Reward has 1 decimal
+      : infractionContract.methods[method]();
+
+    tx.send({ from: subspace.web3.eth.defaultAccount, gasLimit: 3000000 })
       .then((r) => {
         console.log('done', r);
       });

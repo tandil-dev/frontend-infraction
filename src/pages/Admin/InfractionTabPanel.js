@@ -36,6 +36,7 @@ const InfractionTabPanel = ({
             <InfractionDetails address={address} />
             {handleAction && (
               <>
+                {handleInput && (
                 <Grid container spacing={2} className={classes.input}>
                   <Grid item xs={3}>
                     <TextField
@@ -48,6 +49,7 @@ const InfractionTabPanel = ({
                     />
                   </Grid>
                 </Grid>
+                )}
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
                     <Button fullWidth variant="contained" onClick={() => handleAction(false)}>
