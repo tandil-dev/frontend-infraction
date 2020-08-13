@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  Button, Avatar, Link, Box, Typography, Container,
+  Button, Link, Box, Typography, Container,
 } from '@material-ui/core/';
 
 import MetamaskGateway from '../../components/MetamaskGateway';

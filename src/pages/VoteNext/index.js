@@ -53,7 +53,7 @@ function Page({ currentUser }) {
           { abi: infractionAbi, address },
         ));
       });
-  }, [totalInfractions, infractionFactory, index, subspace, totalInfractions, mocked]);
+  }, [totalInfractions, infractionFactory, index, subspace, mocked]);
 
   useEffect(() => {
     if (mocked || !infraction) return;
