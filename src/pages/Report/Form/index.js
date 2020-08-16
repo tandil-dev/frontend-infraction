@@ -1,7 +1,9 @@
-import React from 'react';
+/* eslint-disable arrow-body-style */
+import React, { useState } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import Image from 'material-ui-image';
 import {
   Button, TextField, Grid, NativeSelect, Typography, InputLabel, FormControl,
@@ -15,12 +17,24 @@ import {
 } from '../consts';
 
 function Form({ onSubmit, currentReport, onBack }) {
+  const [address, setAddress] = useState('');
+  const [coords, setCoords] = useState({
+    lat: null,
+    lng: null,
+  });
   const {
     register, errors, handleSubmit,
   } = useForm({ defaultValues: currentReport });
   // eslint-disable-next-line no-console
   console.log('errors', errors);
   const classes = useStyles();
+
+  const handleSelect = async (value) => {
+    const results = await geocodeByAddress(value);
+    const latLng = await getLatLng(results[0]);
+    setAddress(value);
+    setCoords(latLng);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -77,15 +91,39 @@ function Form({ onSubmit, currentReport, onBack }) {
         </Grid>
 
         <Grid item xs={12}>
-          <TextField
-            name="address"
-            id="address"
-            label="¿Cuál es la dirección de la infracción?"
-            variant="outlined"
-            fullWidth
-            multiline
-            inputRef={register({ required: true })}
-          />
+          <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
+            {({
+              getInputProps, suggestions, getSuggestionItemProps, loading,
+            }) => (
+              <div>
+                <TextField
+                  name="address"
+                  id="address"
+                  label="¿Cuál es la dirección de la infracción?"
+                  variant="outlined"
+                  fullWidth
+                  multiline
+                  inputRef={register({ required: true })}
+                  {...getInputProps()}
+                />
+                {console.log(coords)}
+                <div className={classes.autocomplete}>
+                  {loading ? <div>Cargando...</div> : null}
+
+                  {suggestions.map((suggestion) => {
+                    const style = {
+                      backgroundColor: suggestion.active ? ' #a1a1a1' : '#424242',
+                    };
+                    return (
+                      <div {...getSuggestionItemProps(suggestion, { style })}>
+                        {suggestion.description}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </PlacesAutocomplete>
         </Grid>
 
         <Grid item xs={12}>
