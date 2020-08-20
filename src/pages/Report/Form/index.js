@@ -36,6 +36,10 @@ function Form({ onSubmit, currentReport, onBack }) {
     setCoords(latLng);
   };
 
+  const searchOptions = {
+    types: ['address'],
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container justify="center" alignItems="stretch" className={classes.grid} spacing={2}>
@@ -91,7 +95,12 @@ function Form({ onSubmit, currentReport, onBack }) {
         </Grid>
 
         <Grid item xs={12}>
-          <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
+          <PlacesAutocomplete
+            value={address}
+            onChange={setAddress}
+            onSelect={handleSelect}
+            searchOptions={searchOptions}
+          >
             {({
               getInputProps, suggestions, getSuggestionItemProps, loading,
             }) => (
@@ -106,7 +115,6 @@ function Form({ onSubmit, currentReport, onBack }) {
                   inputRef={register({ required: true })}
                   {...getInputProps()}
                 />
-                {console.log(coords)}
                 <div className={classes.autocomplete}>
                   {loading ? <div>Cargando...</div> : null}
 
@@ -120,6 +128,14 @@ function Form({ onSubmit, currentReport, onBack }) {
                       </div>
                     );
                   })}
+                  <p>
+                    long:
+                    {coords.lng}
+                  </p>
+                  <p>
+                    lat:
+                    {coords.lat}
+                  </p>
                 </div>
               </div>
             )}
