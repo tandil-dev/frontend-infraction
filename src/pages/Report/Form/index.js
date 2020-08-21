@@ -6,7 +6,16 @@ import { useForm } from 'react-hook-form';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import Image from 'material-ui-image';
 import {
-  Button, TextField, Grid, NativeSelect, Typography, InputLabel, FormControl,
+  Button,
+  TextField,
+  Grid,
+  NativeSelect,
+  Typography,
+  InputLabel,
+  FormControl,
+  ListItem,
+  List,
+  ListItemText,
 } from '@material-ui/core';
 
 import MetamaskGateway from '../../../components/MetamaskGateway';
@@ -124,7 +133,11 @@ function Form({ onSubmit, currentReport, onBack }) {
                     };
                     return (
                       <div {...getSuggestionItemProps(suggestion, { style })}>
-                        {suggestion.description}
+                        <List dense="true">
+                          <ListItem>
+                            <ListItemText primary={suggestion.description} />
+                          </ListItem>
+                        </List>
                       </div>
                     );
                   })}
