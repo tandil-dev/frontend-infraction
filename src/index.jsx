@@ -16,8 +16,8 @@ import { web3 } from './web3';
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
-    primary: { main: '#3a4e7a' },
-    secondary: { main: '#ac84fc' },
+    primary: { main: '#004c8b' },
+    secondary: { main: '#f79633' },
   },
 });
 
