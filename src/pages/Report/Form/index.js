@@ -49,8 +49,15 @@ function Form({ onSubmit, currentReport, onBack }) {
     types: ['address'],
   };
 
+  const onSubmitForm = (data) => {
+    onSubmit({
+      ...data,
+      coords,
+    });
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmitForm)}>
       <Grid container justify="center" alignItems="stretch" className={classes.grid} spacing={2}>
         <Grid item xs={12}>
           <Typography variant="h6">Pruebas fotograficas</Typography>
@@ -141,14 +148,6 @@ function Form({ onSubmit, currentReport, onBack }) {
                       </div>
                     );
                   })}
-                  <p>
-                    long:
-                    {coords.lng}
-                  </p>
-                  <p>
-                    lat:
-                    {coords.lat}
-                  </p>
                 </div>
               </div>
             )}
