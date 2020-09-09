@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import Image from 'material-ui-image';
+import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
 import {
   Button,
   TextField,
@@ -22,7 +22,7 @@ import MetamaskGateway from '../../../components/MetamaskGateway';
 
 import useStyles from './styles';
 import {
-  MAP, infractionTypes, motoTypes, otherTypes,
+  infractionTypes, motoTypes, otherTypes,
 } from '../consts';
 
 function Form({ onSubmit, currentReport, onBack }) {
@@ -55,6 +55,17 @@ function Form({ onSubmit, currentReport, onBack }) {
       coords,
     });
   };
+
+  function Map() {
+    return (
+      <GoogleMap
+        defaultZoom={10}
+        defaultCenter={{ lat: coords.lat, lng: coords.lng }}
+      />
+    );
+  }
+
+  const WrappedMap = withScriptjs(withGoogleMap(Map));
 
   return (
     <form onSubmit={handleSubmit(onSubmitForm)}>
@@ -152,13 +163,22 @@ function Form({ onSubmit, currentReport, onBack }) {
               </div>
             )}
           </PlacesAutocomplete>
+
         </Grid>
 
         <Grid item xs={12}>
-          <Image
-            src={MAP.URL}
-            aspectRatio={(MAP.WIDTH / MAP.HEIGHT)}
-          />
+          {coords.lat && coords.lng ? (
+            <div>
+              <WrappedMap
+                // eslint-disable-next-line no-template-curly-in-string
+                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+                loadingElement={<div style={{ height: '100%' }} />}
+                containerElement={<div style={{ height: '400px' }} />}
+                mapElement={<div style={{ height: '100%' }} />}
+              />
+            </div>
+          )
+            : null}
         </Grid>
 
         <Grid item xs={12}>
