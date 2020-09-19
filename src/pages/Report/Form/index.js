@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
+import { GoogleMap, withGoogleMap, Marker } from 'react-google-maps';
 import {
   Button,
   TextField,
@@ -59,13 +59,15 @@ function Form({ onSubmit, currentReport, onBack }) {
   function Map() {
     return (
       <GoogleMap
-        defaultZoom={10}
+        defaultZoom={17}
         defaultCenter={{ lat: coords.lat, lng: coords.lng }}
-      />
+      >
+        <Marker position={{ lat: coords.lat, lng: coords.lng }} />
+      </GoogleMap>
     );
   }
 
-  const WrappedMap = withScriptjs(withGoogleMap(Map));
+  const WrappedMap = withGoogleMap(Map);
 
   return (
     <form onSubmit={handleSubmit(onSubmitForm)}>
@@ -171,8 +173,6 @@ function Form({ onSubmit, currentReport, onBack }) {
             <div>
               <WrappedMap
                 // eslint-disable-next-line no-template-curly-in-string
-                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-                loadingElement={<div style={{ height: '100%' }} />}
                 containerElement={<div style={{ height: '400px' }} />}
                 mapElement={<div style={{ height: '100%' }} />}
               />
