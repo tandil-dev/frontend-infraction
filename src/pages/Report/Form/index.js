@@ -4,7 +4,6 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import { GoogleMap, withGoogleMap, Marker } from 'react-google-maps';
 import {
   Button,
   TextField,
@@ -19,6 +18,7 @@ import {
 } from '@material-ui/core';
 
 import MetamaskGateway from '../../../components/MetamaskGateway';
+import Mapa from '../../../components/Map';
 
 import useStyles from './styles';
 import {
@@ -55,19 +55,6 @@ function Form({ onSubmit, currentReport, onBack }) {
       coords,
     });
   };
-
-  function Map() {
-    return (
-      <GoogleMap
-        defaultZoom={17}
-        defaultCenter={{ lat: coords.lat, lng: coords.lng }}
-      >
-        <Marker position={{ lat: coords.lat, lng: coords.lng }} />
-      </GoogleMap>
-    );
-  }
-
-  const WrappedMap = withGoogleMap(Map);
 
   return (
     <form onSubmit={handleSubmit(onSubmitForm)}>
@@ -171,8 +158,8 @@ function Form({ onSubmit, currentReport, onBack }) {
         <Grid item xs={12}>
           {coords.lat && coords.lng ? (
             <div>
-              <WrappedMap
-                // eslint-disable-next-line no-template-curly-in-string
+              <Mapa
+                coords={coords}
                 containerElement={<div style={{ height: '400px' }} />}
                 mapElement={<div style={{ height: '100%' }} />}
               />
